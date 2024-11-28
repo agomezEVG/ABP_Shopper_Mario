@@ -9,7 +9,6 @@
             -webkit-text-stroke-color: black;
         }
 
-
     * {
         margin: 0;
         padding: 0;
@@ -76,105 +75,135 @@
     }
 
     /* ------------- ACCESO ADMIN ------------- */
-    img {
-        position: absolute;
-        top: 70.2%;
-        left: 45.5%;
-        width: 8%;
-    }
+        img {
+            position: absolute;
+            top: 70.2%;
+            left: 45.5%;
+            width: 8%;
+        }
 
-    #admin{
-        cursor: default;
-    }
+        #admin{
+            cursor: default;
+        }
 
 /* ------------- RANKING ------------- */
 
-table#ranking {
-    width: 70%;
-    margin: 1% auto;
-    padding: 1% 0;
-    background-image: url('img/fondoLadrillo.jpg');
-    background-size: cover;
-    
-}
-th > h3{
-    font-size: 2rem;
-    text-shadow: 6px 7px black;
-    color: #D9D9D9;
-}
+    table#ranking {
+        width: 70%;
+        margin: 1% auto;
+        padding: 1% 0;
+        background-image: url('img/fondoLadrillo.jpg');
+        background-size: cover;
+        
+    }
+    th > h3{
+        font-size: 2rem;
+        text-shadow: 6px 7px black;
+        color: #D9D9D9;
+    }
 
-td {
-    text-align: center;
-    font-size: 2rem;
-    color: #D9D9D9;
-    text-shadow: 6px 7px black;
-}
+    td {
+        text-align: center;
+        font-size: 2rem;
+        color: #D9D9D9;
+        text-shadow: 6px 7px black;
+    }
 
 /* ------------- INICIO SESION ADMIN ------------- */
 
-#sectionLogin {
-    width: 40%;
-    margin: 4% auto 0;
-    padding: 1.5%;
-    border-radius: 20px;
-    background-image: url('img/fondoLadrillo.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-}
+    #sectionLogin {
+        width: 40%;
+        margin: 4% auto 0;
+        padding: 1.5%;
+        border-radius: 20px;
+        background-image: url('img/fondoLadrillo.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
 
-#sectionLogin > form {
-    width: 100%;
-    padding: 1.5% 0;
-}
+    #sectionLogin > form {
+        width: 100%;
+        padding: 1.5% 0;
+    }
 
-#sectionLogin input {
-    display: block;
-    width: fit-content;
-    margin: 1.5% auto;
-    padding: 1% 1.5%;
-    border: 2px solid #D9D9D9;
-    border-radius: 10px;
-    background-color: #d9d9d940;
-    color: #D9D9D9;
-    font-size: 1.2rem;
-    -webkit-text-stroke-width: 1.5px;
-}
+    #sectionLogin input {
+        display: block;
+        width: fit-content;
+        margin: 1.5% auto;
+        padding: 1% 1.5%;
+        border: 2px solid #D9D9D9;
+        border-radius: 10px;
+        background-color: #d9d9d940;
+        color: #D9D9D9;
+        font-size: 1.2rem;
+        -webkit-text-stroke-width: 1.5px;
+    }
 
-#sectionLogin input::placeholder {
-    color: #D9D9D9;
-    -webkit-text-stroke-width: 1.5px;
-    font-style: italic;
-}
+    #sectionLogin input::placeholder {
+        color: #D9D9D9;
+        -webkit-text-stroke-width: 1.5px;
+        font-style: italic;
+    }
 
-#sectionLogin div {
-    width: fit-content;
-    margin: auto;
-    color: #D9D9D9;
-    -webkit-text-stroke-width: 1.5px;
-}
+    #sectionLogin div {
+        width: fit-content;
+        margin: auto;
+        color: #D9D9D9;
+        -webkit-text-stroke-width: 1.5px;
+    }
 
-#sectionLogin div > input[type="checkbox"] {
-    display: inline-block;
-}
+    #sectionLogin div > input[type="checkbox"] {
+        display: inline-block;
+    }
 
-#sectionLogin div > label {
-}
+    #sectionLogin p {
+        margin-top: 3%;
+        font-size: 0.8rem;
+        text-align: center;
+        color: #D9D9D9;
+        font-size: 1rem;
+        -webkit-text-stroke-width: 1.5px;
+        -webkit-text-stroke-color: black;
+    }
 
-#sectionLogin p {
-    margin-top: 3%;
-    font-size: 0.8rem;
-    text-align: center;
-    color: #D9D9D9;
-    font-size: 1rem;
-    -webkit-text-stroke-width: 1.5px;
-    -webkit-text-stroke-color: black;
-}
+    #sectionLogin a{
+        color: #D9D9D9;
+    }
 
-#sectionLogin a{
-    color: #D9D9D9;
-}
+    #sectionLogin input[type="submit"] {
+        width: 40%;
+        margin-top: 3%;
+    }
 
-#sectionLogin input[type="submit"] {
-    width: 40%;
-    margin-top: 3%;
-}
+/* ------------- PANEL ADMINISTRADOR ------------- */
+
+    #panelAdmin {
+        display: flex;
+        flex-wrap: wrap;
+        width: 30%;
+        margin: 4% auto;
+        padding: 1% 1.5%;
+        border-radius: 20px;
+        background-image: url('img/fondoLadrillo.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    #panelAdmin h3{
+        width: fit-content;
+        padding-bottom: 2%;
+        font-size: 2rem;
+        text-shadow: 4px 6px black;
+        color: #D9D9D9;
+    }
+
+    #panelAdmin button {
+        flex-grow: 1;
+        margin: 2.5% 5%;
+        padding: 1.5%;
+        justify-content: center;
+        border: 3px solid black;
+        border-radius: 10% 20% / 20% 10%;
+        background-color: #d9d9d971;
+        color: #D9D9D9;
+    }
