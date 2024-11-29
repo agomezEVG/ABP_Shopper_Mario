@@ -19,7 +19,6 @@
 
 html, body{
     width: 100%;
-    height: 100%;
     background-image: url('../img/FondoJuego.jpg');
     background-repeat: round;
     background-size: cover;
@@ -28,6 +27,7 @@ html, body{
 main {
     width: 100%;
     height: 100vh;
+    padding-top: 3%;
 }
 
 /* ------------- OPCIONES INICIO ------------- */
@@ -36,7 +36,7 @@ main {
         h1, h2, h3{
             
             text-align: center;
-            margin: 0 auto 1%;
+            margin: 4% auto 1%;
             text-shadow: 10px 10px black;
         }
 
@@ -78,7 +78,7 @@ main {
 /* ------------- ACCESO ADMIN ------------- */
     img {
         position: absolute;
-        top: 70.2%;
+        top: 76%;
         left: 45.5%;
         width: 8%;
     }
