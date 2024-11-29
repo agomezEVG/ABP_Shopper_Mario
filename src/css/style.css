@@ -109,6 +109,11 @@ main {
         color: #D9D9D9;
         text-shadow: 6px 7px black;
     }
+    .volver{
+      font-size: 2em;
+      color: white;
+      margin: 0 46%;
+    }
 
 /* ------------- INICIO SESION ADMIN ------------- */
 
