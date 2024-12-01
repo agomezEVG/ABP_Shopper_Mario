@@ -311,4 +311,69 @@ main {
     button[type='button']:hover {
       background-color:rgba(0, 123, 255, 0.5) ;
     }
+/* ------------- MODIFICAR ------------- */
+
+    #panelModificar , #panelModificar *{
+        text-shadow: none;
+        -webkit-text-stroke-width: 0;
+        -webkit-text-stroke-color: transparent;
+        font-family: monospace;
+    }
+
+    #panelModificar {
+      padding: 50px;
+      border-radius: 10px;
+      box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+      width: 80%;
+      height: fit-content;
+      background-color: #1F2937;
+      color: #EDEDED; 
+      border: 2px solid #3B82F6;
+    }    
+
+    #panelModificar h3 {
+        text-align: center;
+        margin-bottom: 20px;
+        color:white;
+    }
+
+    #panelModificar label{
+      font-size: 1em;
+    }
+
+    #selectModificar {
+        width: 10%;
+        padding: 10px;
+        margin-left: 20px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 1em;
+        background-color: #f9f9f9;
+        color:#1F2937;
+    }
+
+    #selectModificar:focus {
+        border-color: #007bff;
+        outline: none;
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    }
+
+
+    button {
+        width: fit-content;
+        padding: 10px;
+        background-color:#3B82F6 ;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        margin: 10px auto;
+    }
+
+    button:hover {
+      background-color:rgba(0, 123, 255, 0.5);
+    }
 

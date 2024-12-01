@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>SHOPPER MARIO</title>
+        
+        <!-- ENLACES DE DISEÑO E ICONOS -->
+        <link rel="shortcut icon" href="img/iconoRedondo.png" type="image/x-icon">
+        <link rel="stylesheet" href="../../css/style.css" type="text/css">
+    </head>
+    <body>
+      <main>
+                <section id="panelModificar">
+                    <h3>MODIFICAR</h3>
+                    
+                    <label for="selectModificar">Tipo de elemento:</label>
+                    <select id="selectModificar" name="tipoElemento">
+                        <option value="jugador">Jugador</option>
+                        <option value="npc">NPC</option>
+                        <option value="objeto">Objeto</option>
+                        <option value="enemigo">Enemigo</option>
+                    </select>
+                    
+                  <table>
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Descripción</th>
+                            <th>Imágenes</th>
+                            <th>Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Jugador 1</td>
+                            <td>Un valiente héroe del reino</td>
+                            <td>
+                                <img src="ruta_imagen1.jpg"  width="100">
+                            </td>
+                            <td><button class="btn-modificar">Modificar</button></td>
+                        </tr>
+                        <tr>
+                            <td>Enemigo 1</td>
+                            <td>Un feroz dragón</td>
+                            <td>
+                                <img src="ruta_imagen2.jpg"  width="100">
+                            </td>
+                            <td><button class="btn-modificar">Modificar</button></td>
+                        </tr>
+                        <tr>
+                            <td>Objeto 1</td>
+                            <td>Espada mágica</td>
+                            <td>
+                                <img src="ruta_imagen3.jpg" width="100">
+                            </td>
+                            <td><button class="btn-modificar">Modificar</button></td>
+                        </tr>
+                    </tbody>
+                  </table>
+                </section>
+                
+      </main>
+    </body>
+</html>
