@@ -337,9 +337,6 @@ main {
         color:white;
     }
 
-    #panelModificar label{
-      font-size: 1em;
-    }
 
     #selectModificar {
         width: 10%;
@@ -367,7 +364,7 @@ main {
         color: #fff;
         border: none;
         border-radius: 5px;
-        font-size: 16px;
+        font-size: 1em;
         cursor: pointer;
         transition: background-color 0.3s ease;
         margin: 10px auto;
@@ -377,3 +374,22 @@ main {
       background-color:rgba(0, 123, 255, 0.5);
     }
 
+    #panelModificar table{
+      border-spacing: 20px;
+    }
+
+    #panelModificar thead {
+      font-size: 3em;
+      color:#3B82F6 ;
+    }
+
+
+    #panelModificar tbody td{
+      font-size: 1em;
+    }
+
+
+    #panelModificar img{
+      position: relative;
+      width: 50%;
+    }
