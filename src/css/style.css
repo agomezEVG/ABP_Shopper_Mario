@@ -386,10 +386,19 @@ main {
 
     #panelModificar tbody td{
       font-size: 1em;
+      padding: 10px;
+    }
+    
+    .img-container{
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+      align-items: center;
     }
 
-
     #panelModificar img{
-      position: relative;
-      width: 50%;
+      position: static;
+      width: 30%;
+      height: auto;
     }
