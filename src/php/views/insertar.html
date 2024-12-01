@@ -15,7 +15,7 @@
                 <h3>INSERTAR</h3>
                 
                 <!-- Select con opciones -->
-                <label for="selectInsertar">Tipo de elemento:</label>
+                <label for="selectInsertar">Tipo de elemento</label>
                 <select id="selectInsertar" name="tipoElemento">
                     <option value="jugador">Jugador</option>
                     <option value="npc">NPC</option>
@@ -25,13 +25,13 @@
                 
                 <!-- Formulario para datos -->
                 <form id="formInsertar" action="#" method="post" enctype="multipart/form-data">
-                    <label for="nombre">Nombre:</label>
+                    <label for="nombre">Nombre</label>
                     <input type="text" id="nombre" name="nombre" placeholder="Introduce el nombre" required>
                     
-                    <label for="descripcion">Descripción:</label>
+                    <label for="descripcion">Descripción</label>
                     <textarea id="descripcion" name="descripcion" placeholder="Introduce una descripción" rows="4" required></textarea>
                     
-                    <label for="imagenes">Imágenes:</label>
+                    <label for="imagenes">Imágenes</label>
                     <input type="file" id="imagenes" name="imagenes[]" accept="image/*" multiple required>
                     
                     <button type="submit">Insertar</button>
