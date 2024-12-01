@@ -1,2 +1,7 @@
 #Ignorar configuración con el servidor
 configDB.php
+
+
+#Ignorar carpeta vscode del servicio sftp
+/.vscode/
+
