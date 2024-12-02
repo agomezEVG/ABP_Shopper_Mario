@@ -38,9 +38,9 @@
         }
         
         public function mListarPersonajes() {
-            $sql = "SELECT personaje.idPersonaje, personaje.nombre, personaje.descripcion, personaje.tipo, imagen.url
-                    FROM personaje personaje
-                    LEFT JOIN imagen ON personaje.idPersonaje = imagen.idPersonaje";
+            $sql = 'SELECT personaje.idPersonaje, personaje.nombre, personaje.descripcion, personaje.tipo, imagen.url
+                    FROM personaje
+                    LEFT JOIN imagen ON personaje.idPersonaje = imagen.idPersonaje';
         
             $resultado = $this->conexion->query($sql);
         

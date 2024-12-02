@@ -1,5 +1,5 @@
 <?php
-    require_once 'config/config.php';
+    require_once 'src/php/config/config.php';
 
     if(!isset($_GET['controlador'])) $_GET['controlador'] = CONTROLADOR_POR_DEFECTO;
     if(!isset($_GET['metodo'])) $_GET['metodo'] = METODO_POR_DEFECTO;

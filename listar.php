@@ -8,6 +8,6 @@
         $mensaje = "No se han encontrado personajes.";
         require_once 'src/php/views/vistaError.php';
     } else {
-        require_once 'src/php/views/panelAdmin.php';    
+        require_once 'src/php/views/vistaListar.php';
     }
 ?>

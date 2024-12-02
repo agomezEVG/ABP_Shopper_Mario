@@ -7,7 +7,7 @@
 
         <link rel="stylesheet" href="src\css\style.css">
     </head>
-    <body>
+    <body id="vistaListar">
         <table>
             <thead>
                 <tr>

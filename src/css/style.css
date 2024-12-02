@@ -18,7 +18,6 @@ html, body{
     background-image: url('../img/FondoJuego.jpg');
     background-repeat: round;
     background-size: cover;
-    overflow:hidden;
 }
 
     main {
@@ -324,7 +323,64 @@ html, body{
 
 /* ------------- GESTION DE IMAGENES ------------- */
 
-    
+    #vistaListar {
+        height: 100dvh;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    h2 {
+        text-align: center;
+        color: #007BFF;
+    }
+    table {
+        width: 80%;
+        margin: 20px auto;
+        border-collapse: collapse;
+        background-color: #fff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    th, td {
+        padding: 12px;
+        text-align: left;
+        border: 1px solid #ddd;
+    }
+    th {
+        background-color: #007BFF;
+        color: white;
+    }
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+    tr:hover {
+        background-color: #ddd;
+    }
+    .action-buttons {
+        text-align: center;
+        white-space: nowrap;
+    }
+    .btn {
+        padding: 8px 16px;
+        margin-left: 10px;
+        border: none;
+        border-radius: 5px;
+        font-size: 14px;
+        cursor: pointer;
+        color: white;
+        transition: background-color 0.3s ease;
+    }
+    .btn-eliminar {
+        background-color: #FF4D4D;
+    }
+    .btn-eliminar:hover {
+        background-color: #CC0000;
+    }
+    .btn-modificar {
+        background-color: #4CAF50;
+    }
+    .btn-modificar:hover {
+        background-color: #357a38;
+    }
     
 
 
