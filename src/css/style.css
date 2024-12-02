@@ -142,6 +142,7 @@ main {
         padding: 1.5% 0;
     }
 
+
     #sectionLogin input {
         display: block;
         width: fit-content;
@@ -181,7 +182,7 @@ main {
     }
 
     #sectionLogin a{
-        color: #D9D9D9;
+        color: lightsteelblue;
     }
 
     #sectionLogin input[type="submit"] {
@@ -192,7 +193,7 @@ main {
 
     #sectionOlvidado{
         width: 30%;
-        height: 40%;
+        height: fit-content;
         margin: 4% auto 0;
         padding: 2%;
         border-radius: 20px;
@@ -239,7 +240,7 @@ main {
         background-color:green;
         width: fit-content;
         flex-grow: 0.25;
-        margin-bottom: 2%;
+        margin-bottom: 1%;
     }
 
     #sectionOlvidado input[type="submit"]:hover {
