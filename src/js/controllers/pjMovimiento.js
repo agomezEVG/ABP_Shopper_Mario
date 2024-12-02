@@ -32,11 +32,11 @@ function cargarImagen(url, callback) {
     peticion_http.send();
 }
 
-// Función para verificar si ambas imágenes están cargadas
+// Función para verificar si todas las imágenes están cargadas
 function verificarImagenes() {
     imagenesCargadas++;
     if (imagenesCargadas === 5) {
-        inicializarPersonaje(); // Solo inicializamos el personaje si todas las imágenes están cargadas
+        inicializarPersonaje(); 
     }
 }
 
@@ -48,25 +48,25 @@ cargarImagen('../../img/pj/mario_base.png', function(img) {
 });
 cargarImagen('../../img/pj/mario_walk1.png', function(img) {
     pjWalk1 = img;
-    if (pjBase && pjWalk1 && pjWalk2 && pjCrouch && pjJump) inicializarPersonaje(); // Si ya se cargaron todas las imágenes
+    if (pjBase && pjWalk1 && pjWalk2 && pjCrouch && pjJump) inicializarPersonaje(); 
 });
 cargarImagen('../../img/pj/mario_walk2.png', function(img) {
     pjWalk2 = img;
-    if (pjBase && pjWalk1 && pjWalk2 && pjCrouch && pjJump) inicializarPersonaje(); // Si ya se cargaron todas las imágenes
+    if (pjBase && pjWalk1 && pjWalk2 && pjCrouch && pjJump) inicializarPersonaje(); 
 });
 cargarImagen('../../img/pj/mario_crouch.png', function(img) {
     pjCrouch = img;
-    if (pjBase && pjWalk1 && pjWalk2 && pjCrouch && pjJump) inicializarPersonaje(); // Si ya se cargaron todas las imágenes
+    if (pjBase && pjWalk1 && pjWalk2 && pjCrouch && pjJump) inicializarPersonaje(); 
 });
 cargarImagen('../../img/pj/mario_jump.png', function(img) {
     pjJump = img;
-    if (pjBase && pjWalk1 && pjWalk2 && pjCrouch && pjJump) inicializarPersonaje(); // Si ya se cargaron todas las imágenes
+    if (pjBase && pjWalk1 && pjWalk2 && pjCrouch && pjJump) inicializarPersonaje(); 
 });
 
 // Posición inicial del personaje
 
 let posX = 100;
-let posY = 400; // Se puede ajustar según el fondo
+let posY = 400;
 
 let velocidad = 4; // Velocidad de movimiento
 let imagenActual = 0; // Para alternar entre imágenes
@@ -98,7 +98,7 @@ function actualizarMovimiento() {
 
     // Solo alternamos las imágenes si el personaje se está moviendo y no está saltando
     if (direccionMovimiento !== null && !saltando){
-        moverPersonaje(); // Cambiar entre imágenes de caminar
+        moverPersonaje(); 
     }
 }
 
@@ -171,8 +171,8 @@ let intervaloSalto = null;
 // Función para detener el salto una vez el personaje regrese al suelo
 function detenerSalto() {
     clearInterval(intervaloSalto); // Detenemos el intervalo del salto
-    saltando = false; // Ya no estamos saltando
-    pj.src = pjBase.src; // Volver a la imagen base
+    saltando = false;
+    pj.src = pjBase.src;
 }
 
 function saltoPersonaje() {
