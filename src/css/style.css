@@ -251,7 +251,7 @@ html, body{
       transition: background-color 0.3s ease;
       position: absolute;
       top:90%;
-      left: 45%;
+      left: 46.5%;
 }  
 
     #buttonLogout:hover{
@@ -489,4 +489,20 @@ html, body{
     -webkit-text-stroke-color: transparent;
     font-family: 'Jersey 10';
 }
+#dashboard {
+  width: 100%;
+  margin-top: 10%;
+  display: flex;
+  flex-direction: column;
+}
+#dashboard .stat{
+  margin: 10% 0;
+  font-size: 1em;
+  text-align: center;
+}
 
+
+#dashboard .stat h4{
+  color:#3B82F6 ;
+  font-size: 2em;
+}
