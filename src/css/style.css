@@ -208,6 +208,7 @@ html, body{
         flex-shrink: 1;
         width: 100%;
         margin: 0;
+        cursor: pointer;
         border: none;
         background-color: transparent;
     }
@@ -231,8 +232,7 @@ html, body{
     }
     
     #panelAdmin > main {
-        display: flex;
-        
+        position: relative;
         height: 95dvh;
         margin: 1%;
         border-radius: 0.5vw;
@@ -240,19 +240,24 @@ html, body{
     }
 
     #buttonLogout {
-        display: block;
-        margin: auto;
-        width: fit-content;
-        background-color: #0074D9;
+        position: absolute;
+        bottom: 1%;
+        left: 50%;
+        transform: translate(-50%);
+        padding: 0.2vw;
+        cursor: pointer;
+        border: none;
+        background-color: transparent;
     }
 
     #buttonLogout h3 {
         width: 100%;
         text-align: center;
         font-family: 'Jersey 10';
-        font-size: 1.5rem;
+        font-size: 1.4rem;
+        color: #860101;
         letter-spacing: 0.5vw;
-        text-shadow: 0.2vw 0.2vw black;
+        text-shadow: 0.1vw 0.1vw black;
         -webkit-text-stroke-width: 0;
     }
 
