@@ -231,8 +231,7 @@ html, body{
     }
     
     #panelAdmin > main {
-        display: flex;
-        
+        position: relative;
         height: 95dvh;
         margin: 1%;
         border-radius: 0.5vw;
@@ -240,10 +239,11 @@ html, body{
     }
 
     #buttonLogout {
-        display: block;
-        margin: auto;
-        width: fit-content;
-        background-color: #0074D9;
+        position: absolute;
+        bottom: 1%; /* Mitad del contenedor */
+        left: 50%; /* Mitad del contenedor */
+        transform: translate(-50%);
+        background-color: transparent;
     }
 
     #buttonLogout h3 {
