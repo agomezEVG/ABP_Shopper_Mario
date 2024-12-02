@@ -108,9 +108,9 @@ html, body{
         text-shadow: 6px 7px black;
     }
     .volver{
-      font-size: 2em;
-      color: white;
-      margin: 0 46%;
+        font-size: 2em;
+        color: white;
+        margin: 0 46%;
     }
 
 /* ------------- INICIO SESION ADMIN ------------- */
@@ -125,14 +125,15 @@ html, body{
         background-size: cover;
     }
 
-    #sectionLogin, #sectionLogin *{
-         color: white;
+    #sectionLogin, #sectionLogin * {
+        color: white;
         font-size: 1.75rem;
         font-family: 'Jersey 10';
         -webkit-text-stroke-width: 0;
         -webkit-text-stroke-color: transparent;
         text-shadow:none;
     }
+
     #sectionLogin > form {
         width: 100%;
         padding: 1.5% 0;
@@ -195,7 +196,11 @@ html, body{
     aside {
         display: flex;
         flex-direction: column;
+        width: 30%;
         height: 100dvh;
+        background-image: url('../img/fondoLadrillo.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
     }
 
     aside > button {
@@ -210,10 +215,7 @@ html, body{
     aside > button:focus, button:hover {
         flex-grow: 2;
         background-color: #461b01c1;
-    }
-
-    #logout {
-        flex-grow: 0;
+        transition: 0.1s ease-in-out;
     }
 
     aside h3 {
@@ -225,19 +227,38 @@ html, body{
         color: #D9D9D9;
         letter-spacing: 0.5vw;
         text-shadow: 0.2vw 0.3vw black;
-        -webkit-text-stroke-width: 0px;
+        -webkit-text-stroke-width: 0;
     }
     
     #panelAdmin > main {
+        display: flex;
+        
         height: 95dvh;
         margin: 1%;
         border-radius: 0.5vw;
         background-color: #d9d9d99f;
     }
 
+    #buttonLogout {
+        display: block;
+        margin: auto;
+        width: fit-content;
+        background-color: #0074D9;
+    }
+
+    #buttonLogout h3 {
+        width: 100%;
+        text-align: center;
+        font-family: 'Jersey 10';
+        font-size: 1.5rem;
+        letter-spacing: 0.5vw;
+        text-shadow: 0.2vw 0.2vw black;
+        -webkit-text-stroke-width: 0;
+    }
+
 
 /* ------------- OLVIDADO CONTRASEÑA ------------- */
-
+/*
 #sectionOlvidado{
     width: 30%;
     margin: 0;
@@ -252,7 +273,7 @@ html, body{
 }
 
 #sectionOlvidado, #sectionOlvidado *{
-     color: white;
+    color: white;
     font-size: 1.75rem;
     font-family: 'Jersey 10';
     -webkit-text-stroke-width: 0;
@@ -298,7 +319,7 @@ html, body{
 
 
 /* ------------- INSERTAR ------------- */
-
+/*
 #panelInsertar , #panelInsertar *{
     text-shadow: none;
     -webkit-text-stroke-width: 0;
@@ -366,7 +387,7 @@ input[type="text"]:focus, textarea:focus {
     box-shadow: 0 0 8px rgba(59, 130, 246, 0.3); 
 }
 
-    button {
+button {
     display: block;
     width: 20%;
     padding: 10px;
@@ -394,7 +415,7 @@ button[type='button']:hover {
   background-color:rgba(0, 123, 255, 0.5) ;
 }
 /* ------------- MODIFICAR ------------- */
-
+/*
 #panelModificar , #panelModificar *{
     text-shadow: none;
     -webkit-text-stroke-width: 0;
@@ -439,7 +460,7 @@ button[type='button']:hover {
 }
 
 
-button {
+/* button {
     width: fit-content;
     padding: 10px;
     background-color:#3B82F6 ;
@@ -450,8 +471,8 @@ button {
     cursor: pointer;
     transition: background-color 0.3s ease;
     margin: 10px auto;
-}
-
+} */
+/*
 button:hover {
   background-color:rgba(0, 123, 255, 0.5);
 }
