@@ -129,6 +129,14 @@ main {
         background-size: cover;
     }
 
+    #sectionLogin, #sectionLogin *{
+         color: white;
+        font-size: 1.75rem;
+        font-family: 'Jersey 10';
+        -webkit-text-stroke-width: 0;
+        -webkit-text-stroke-color: transparent;
+        text-shadow:none;
+    }
     #sectionLogin > form {
         width: 100%;
         padding: 1.5% 0;
@@ -142,9 +150,7 @@ main {
         border: 2px solid #D9D9D9;
         border-radius: 10px;
         background-color: #d9d9d940;
-        color: #D9D9D9;
-        font-size: 1.2rem;
-        -webkit-text-stroke-width: 1.5px;
+        font-size: 1.75rem;
     }
 
     #sectionLogin input::placeholder {
@@ -157,7 +163,7 @@ main {
         width: fit-content;
         margin: auto;
         color: #D9D9D9;
-        -webkit-text-stroke-width: 1.5px;
+        -webkit-text-stroke-width: 2px;
     }
 
     #sectionLogin div > input[type="checkbox"] {
@@ -185,37 +191,6 @@ main {
 
 /* ------------- PANEL ADMINISTRADOR ------------- */
 
-    #panelAdmin {
-        display: flex;
-        flex-wrap: wrap;
-        width: 30%;
-        margin: 4% auto;
-        padding: 1% 1.5%;
-        border-radius: 20px;
-        background-image: url('../img/fondoLadrillo.jpg');
-        background-repeat: no-repeat;
-        background-size: cover;
-    }
-
-    #panelAdmin h3{
-        width: fit-content;
-        padding-bottom: 2%;
-        font-size: 1.5rem;
-        text-shadow: 4px 6px black;
-        color: #D9D9D9;
-    }
-
-    #panelAdmin button {
-        flex-grow: 1;
-        width: fit-content;
-        margin: 2.5% 5%;
-        padding: 1.5%;
-        justify-content: center;
-        border: 3px solid black;
-        border-radius: 10% 20% / 20% 10%;
-        background-color: #d9d9d971;
-        color: #D9D9D9;
-    }
 
 
 /* ------------- INSERTAR ------------- */
