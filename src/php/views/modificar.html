@@ -9,8 +9,16 @@
         <link rel="shortcut icon" href="img/iconoRedondo.png" type="image/x-icon">
         <link rel="stylesheet" href="../../css/style.css" type="text/css">
     </head>
-    <body>
-      <main>
+    <body id="panelAdmin">
+        <aside>
+            <button><h3>DASHBOARD</h3></button>
+            <button onclick="window.location.href='modificar.html'"><h3>PERSONAJES</h3></button>
+            <button><h3>IMAGENES</h3></button>
+            <button><h3>OBJETOS</h3></button>
+            <button><h3>DIÁLOGOS</h3></button>
+            <button><h3>RANKING</h3></button>
+        </aside>
+        <main>
                 <section id="panelModificar">
                     <h3>MODIFICAR</h3>
                     
@@ -69,9 +77,10 @@
                         </tr>
                     </tbody>
                   </table>
-                    <button type="button" onclick='window.location.href= "panelAdmin.html"'>Volver</button>
-                </section>
-                
-      </main>
+                <button onclick='window.location.href="inicioSesion.html"' id="buttonLogout">
+                  Cerrar sesión
+                </button>
+            </section>
+        </main>
     </body>
 </html>
