@@ -15,6 +15,10 @@
             $this->vista = 'inicioSesion.html';
         }
 
+        public function dasboard() {
+            $this->vista = 'v_panelAdmin.php';
+        }
+
         public function cValidarDatosPersonaje($arrayPOST) {
             if (empty($arrayPOST['nombre'])) {
                 $this->mensajeEstado = 'No se ha rellenado el nombre';
