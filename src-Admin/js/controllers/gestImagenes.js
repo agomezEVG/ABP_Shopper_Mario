@@ -3,7 +3,7 @@
 async function cargarImagenes() {
     try {
         
-        const response = await fetch('index.php');
+        const response = await fetch('index.php?c=PanelControl&m=');
         if (!response.ok) throw new Error(`Error en la respuesta: ${response.statusText}`);
 
 
