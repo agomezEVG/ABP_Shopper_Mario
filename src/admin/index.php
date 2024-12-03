@@ -12,10 +12,13 @@
 
     $objControlador = new $nombreControlador();
 
+
     $datos = [];
 
     if(method_exists($objControlador, $_GET['metodo'])) {
         $datos = $objControlador->{$_GET['metodo']}();
-        echo json_encode($datos);
     }
+
+    require_once 'app/views/v_' . $objControlador->vista;
+
 ?>

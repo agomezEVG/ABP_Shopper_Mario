@@ -1,11 +1,11 @@
 <?php
-    Class Mpanelcontrol {
+    Class M_panelcontrol {
 
         private $conexion;
 
         public function __construct() {
 
-            require_once 'src/php/config/configDb.php';
+            require_once 'app/config/configDb.php';
 
             $this->conexion = new mysqli(SERVIDOR, USUARIO, PASSWORD, BBDD);
             $this->conexion->set_charset("utf8");

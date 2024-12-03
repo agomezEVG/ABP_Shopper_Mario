@@ -8,7 +8,7 @@
         <!-- ENLACES DE DISEÑO E ICONOS -->
         <link rel="shortcut icon" href="img/iconoRedondo.png" type="image/x-icon">
 
-        <link rel="stylesheet" href="../../css/style.css" type="text/css">
+        <link rel="stylesheet" href="css/style.css" type="text/css">
 
         <!-- ARCHIVOS JAVASCRIPT -->
         <!-- <script src="../../src/js/controllers/imagenes.js"></script> -->

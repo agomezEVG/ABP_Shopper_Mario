@@ -1,13 +1,18 @@
 <?php
 
-    Class Cpanelcontrol {
+    Class C_panelcontrol {
 
         private $objMPanelControl;
         public $mensajeEstado;
+        public $vista;
 
         public function __construct(){
-            require_once 'src/php/models/mPanelControl.php';
-            $this->objMPanelControl = new Mpanelcontrol();
+            require_once 'app/models/m_PanelControl.php';
+            $this->objMPanelControl = new M_panelcontrol();
+        }
+
+        public function inicio (){
+            $this->vista = 'inicioSesion.html';
         }
 
         public function cValidarDatosPersonaje($arrayPOST) {
@@ -35,11 +40,9 @@
         }
     
         public function cAltaPersonaje($nombre, $descripcion, $tipo, $urlImagen) {
-            var_dump($nombre, $descripcion, $tipo, $urlImagen);
 
             $idPersonaje = $this->objMPanelControl->mAltaPersonaje($nombre, $descripcion, $tipo);
             
-
             if(!$idPersonaje)
                 return false;
             else
@@ -49,23 +52,29 @@
         }
 
         public function cListarPersonajes() {
+            
             $personajes = $this->objMPanelControl->mListarPersonajes();
+            
             return $personajes;
         }
         
         public function cEliminarPersonaje($idPersonaje) {
+            
             if(!empty($idPersonaje)) {
                 $estado = $this->objMPanelControl->mEliminarPersonaje($idPersonaje);
                 return $estado;
             }
-            return false; 
+            
+            return false;
         }
         
         public function cModificarPersonaje($idPersonaje, $nombre, $descripcion, $tipo, $urlImagen) {
+            
             if(!empty($idPersonaje) && !empty($nombre) && !empty($descripcion) && !empty($tipo) && !empty($urlImagen)) {
                 $estado = $this->objMPanelControl->mModificarPersonaje($idPersonaje, $nombre, $descripcion, $tipo, $urlImagen);
                 return $estado;
             }
+            
             return false;
         }        
     }
