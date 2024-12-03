@@ -9,7 +9,7 @@
             $this->objMInicioSesion = new M_InicioSesion();
         }
 
-        public function validarInicioSesion {
+        public function validarInicioSesion() {
             
         }
     }

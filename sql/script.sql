@@ -1,3 +1,10 @@
+CREATE TABLE administrador (
+    idAdmin TINYINT NOT NULL AUTO_INCREMENT,
+    correo varchar(125) NOT NULL, 
+    passwd varchar(255) NOT NULL,
+    CONSTRAINT pk_idAdmin PRIMARY KEY (idAdmin)
+);
+
 CREATE TABLE personaje (
     idPersonaje TINYINT NOT NULL AUTO_INCREMENT,
     nombre VARCHAR(75) NOT NULL,
