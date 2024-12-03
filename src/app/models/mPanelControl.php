@@ -58,7 +58,8 @@
         public function mEliminarPersonaje($idPersonaje) {
             $sql = 'DELETE FROM personaje WHERE idPersonaje = '.$idPersonaje.';';
             $resultado = $this->conexion->query($sql);
-        
+            
+
             if (!$resultado) {
                 return false;
             }

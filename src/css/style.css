@@ -325,36 +325,44 @@ html, body{
 
     #vistaListar {
         height: 100dvh;
-        background-repeat: no-repeat;
+        background-repeat: round;
         background-size: cover;
     }
 
-    h2 {
-        text-align: center;
-        color: #007BFF;
-    }
     table {
         width: 80%;
-        margin: 20px auto;
         border-collapse: collapse;
         background-color: #fff;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
+    
     th, td {
         padding: 12px;
         text-align: left;
-        border: 1px solid #ddd;
+        font-family: 'Jersey 10';
+        text-shadow: none;
+        color: black;
     }
+    
     th {
         background-color: #007BFF;
         color: white;
+        text-align: center;
+        font-size: 2rem;
     }
+    
+    td {
+        font-size: 1.6rem;
+    }
+    
     tr:nth-child(even) {
         background-color: #f2f2f2;
     }
+
     tr:hover {
         background-color: #ddd;
     }
+
     .action-buttons {
         text-align: center;
         white-space: nowrap;
@@ -381,7 +389,6 @@ html, body{
     .btn-modificar:hover {
         background-color: #357a38;
     }
-    
 
 
 /* ------------- INSERTAR ------------- */

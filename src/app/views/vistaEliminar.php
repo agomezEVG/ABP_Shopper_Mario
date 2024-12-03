@@ -30,8 +30,8 @@
 </head>
 <body>
     <h2>¿Estás seguro de que quieres eliminar este personaje?</h2>
-    <form action="" method="POST">
-        <input type="hidden" name="idPersonaje" value="<?= $idPersonaje ?>">
+    <form action="eliminar.php" method="POST">
+        <input type="hidden" name="idPersonaje" value="<?php $idPersonaje ?>">
         <button type="submit" name="confirmar" class="btn btn-confirmar">Confirmar</button>
         <a href="listar.php" class="btn btn-cancelar">Cancelar</a>
     </form>

@@ -3,7 +3,7 @@
 async function cargarImagenes() {
     try {
         
-        const response = await fetch('../../listar.php');
+        const response = await fetch('index.php');
         if (!response.ok) throw new Error(`Error en la respuesta: ${response.statusText}`);
 
 

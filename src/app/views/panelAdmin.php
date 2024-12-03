@@ -17,7 +17,7 @@
         <aside>
             <button><h3>DASHBOARD</h3></button>
             <button><h3>PERSONAJES</h3></button>
-            <a href="../../../listar.php"><button><h3>IMAGENES</h3></button></a>
+            <button onclick=''><h3>IMAGENES</h3></button>
             <button><h3>OBJETOS</h3></button>
             <button><h3>DIÁLOGOS</h3></button>
             <button><h3>RANKING</h3></button>
