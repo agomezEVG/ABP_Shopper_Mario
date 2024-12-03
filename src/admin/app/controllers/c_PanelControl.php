@@ -8,7 +8,7 @@
 
         public function __construct(){
             require_once 'app/models/m_PanelControl.php';
-            $this->objMPanelControl = new M_panelcontrol();
+            $this->objMPanelControl = new M_PanelControl();
         }
 
         public function inicio (){
@@ -19,7 +19,7 @@
             $this->vista = 'v_panelAdmin.php';
         }
 
-        public function cValidarDatosPersonaje($arrayPOST) {
+        public function c_ValidarDatosPersonaje($arrayPOST) {
             if (empty($arrayPOST['nombre'])) {
                 $this->mensajeEstado = 'No se ha rellenado el nombre';
                 return false;

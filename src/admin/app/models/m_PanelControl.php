@@ -1,5 +1,5 @@
 <?php
-    Class M_panelcontrol {
+    Class M_PanelControl {
 
         private $conexion;
 
