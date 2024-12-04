@@ -12,7 +12,7 @@
             $this->conexion->set_charset("utf8");
             // $controlador = new mysqli_driver();
             // $controlador->report_mode = MYSQLI_REPORT_OFF;
-            $texto_error=$this->conexion->errno;
+            // $texto_error=$this->conexion->errno;
         }
 
         public function validarInicioSesion($datosIS) {

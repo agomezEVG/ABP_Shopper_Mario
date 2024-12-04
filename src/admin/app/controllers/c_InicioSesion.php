@@ -14,15 +14,13 @@
         
         public function validarInicioSesion($datosIS) {
 
-            var_dump($datosIS);
 
-            if(!empty($datosIS['user']) && !empty($datosIS['passwd'])){
+            if(!empty($datosIS['email']) && !empty($datosIS['passwd'])){
                 $estado = $this->objMInicioSesion->validarInicioSesion($datosIS);
 
                 if($estado) {
-                    
                     $this->vista = 'panelAdmin.php';
-                    return $estado;
+                    return true;
                 }
                 else {
                     $this->vista = 'error.php';
