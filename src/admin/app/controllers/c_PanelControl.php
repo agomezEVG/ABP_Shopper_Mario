@@ -11,10 +11,6 @@
             $this->objMPanelControl = new M_PanelControl();
         }
 
-        public function inicio (){
-            $this->vista = 'inicioSesion.html';
-        }
-
         public function dasboard() {
             $this->vista = 'v_panelAdmin.php';
         }

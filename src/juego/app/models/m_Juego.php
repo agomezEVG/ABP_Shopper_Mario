@@ -1,9 +1,11 @@
 <?php
-    Class Mregistro {
+    Class M_Juego {
+        
         private $conexion;
 
         public function __construct() {
-            require_once '../config/configDb.php';
+
+            require_once 'app/config/configDb.php';
 
             $this->conexion = new mysqli(SERVIDOR, USUARIO, PASSWORD, BBDD);
             $this->conexion->set_charset("utf8");
@@ -11,7 +13,5 @@
             // $controlador->report_mode = MYSQLI_REPORT_OFF;
             $texto_error=$this->conexion->errno;
         }
-
-        
     }
 ?>

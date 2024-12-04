@@ -29,9 +29,9 @@ html, body{
 
     /* ------------- TITULO ------------- */
         h1, h2, h3{
-            
             text-align: center;
-            margin: 4% auto 1%;
+            margin: 0 auto 1%;
+            padding-top: 2%;
             text-shadow: 10px 10px black;
             -webkit-text-stroke-width: 3px;
             -webkit-text-stroke-color: black;
@@ -58,14 +58,12 @@ html, body{
 
     h2, h2 > a{
         width: 40%;
-        margin-top: 2%;
         font-size: 4.5rem;
         color: brown;
     }
 
     h3, h3 > a{
         width: 40%;
-        margin-top: 2%;
         font-size: 3rem;
         text-decoration: none;
         color: brown;
@@ -75,7 +73,7 @@ html, body{
 /* ------------- ACCESO ADMIN ------------- */
     img {
         position: absolute;
-        top: 77%;
+        top: 74.8%;
         left: 45.5%;
         width: 8%;
     }
@@ -84,41 +82,24 @@ html, body{
         cursor: default;
     }
 
-/* ------------- RANKING ------------- */
-
-    table#ranking {
-        width: 70%;
-        margin: 1% auto;
-        padding: 1% 0;
-        background-image: url('../img/fondoLadrillo.jpg');
-        background-size: cover;
-        
-    }
-    th > h3{
-        font-size: 2rem;
-        text-shadow: 6px 7px black;
-        color: #D9D9D9;
-    }
-
-    td {
-        text-align: center;
-        font-size: 2rem;
-        color: #D9D9D9;
-        text-shadow: 6px 7px black;
-    }
-    .volver{
-        font-size: 2em;
-        color: white;
-        margin: 0 46%;
-    }
-
 /* ------------- INICIO SESION ADMIN ------------- */
 
+    #volver{
+        position: fixed;
+        width: 10%;
+        padding: 0.5%;
+        margin: 1%;
+        border: none;
+        border-radius: 50%;
+        font-size: 1.2rem;
+        color: #4AA2E2;
+        background-color: #D9D9D9;
+        
+    }
+
     #sectionLogin {
-        width: 40%;
-        margin: 4% auto 0;
-        padding: 1.5%;
-        border-radius: 20px;
+        width: 50%;
+        border-radius: 0.5vw;
         background-image: url('../img/fondoLadrillo.jpg');
         background-repeat: no-repeat;
         background-size: cover;
@@ -186,400 +167,27 @@ html, body{
         margin-top: 3%;
     }
 
-/* ------------- RECUPERAR CONTRASEÑA ------------- */
-    /*
-    #sectionOlvidado{
-        width: 30%;
-        margin: 0;
-        padding: 0;
-        height: fit-content;
-        margin: 4% auto 0;
-        padding: 2%;
-        border-radius: 20px;
+
+
+/* ------------- RANKING ------------- */
+
+    table#ranking {
+        width: 70%;
+        margin: 1% auto;
+        padding: 1% 0;
         background-image: url('../img/fondoLadrillo.jpg');
-        background-repeat: round;
         background-size: cover;
+        
     }
-
-    #sectionOlvidado, #sectionOlvidado *{
-        color: white;
-        font-size: 1.75rem;
-        font-family: 'Jersey 10';
-        -webkit-text-stroke-width: 0;
-        -webkit-text-stroke-color: transparent;
-        text-shadow:none;
-    }
-    #sectionOlvidado > form {
-        width: 100%;
-        height: 100%;
-        padding: 1.5% 0;
-        display: flex;
-        align-items: center ;
-        flex-direction: column;
-        justify-content: space-evenly;
-    }
-
-    #sectionOlvidado input {
-        width: fit-content;
-        margin: 1.5% ;
-        padding: 1% 1.5%;
-        border: 2px solid #D9D9D9;
-        border-radius: 10px;
-        background-color: #d9d9d940;
-        font-size: 1.75rem;
-        flex-grow: 0;
-    }
-
-    #sectionOlvidado input::placeholder {
-        -webkit-text-stroke-width: 1.5px;
-    }
-
-
-    #sectionOlvidado input[type="submit"] {
-        background-color:green;
-        width: fit-content;
-        flex-grow: 0.25;
-        margin-bottom: 1%;
-    }
-
-    #sectionOlvidado input[type="submit"]:hover {
-    background-color: darkgreen;
-    }
-
-/* ------------- PANEL ADMINISTRADOR ------------- */
-
-    #panelAdmin {
-        display: flex;
-    }
-
-    aside {
-        display: flex;
-        flex-direction: column;
-        width: 30%;
-        height: 100dvh;
-        background-image: url('../img/fondoLadrillo.jpg');
-        background-repeat: no-repeat;
-        background-size: cover;
-    }
-
-    aside > button {
-        flex-grow: 1;
-        flex-shrink: 1;
-        width: 100%;
-        margin: 0;
-        cursor: pointer;
-        border: none;
-        background-color: transparent;
-    }
-
-    aside > button:focus, button:hover {
-        flex-grow: 2;
-        background-color: #461b01c1;
-        transition: 0.1s ease-in-out;
-    }
-
-    aside h3 {
-        width: 100%;
-        text-align: left;
-        padding-left: 4%;   
-        font-family:'Jersey 10';
-        font-size: 2.5rem;
+    th > h3{
+        font-size: 2rem;
+        text-shadow: 6px 7px black;
         color: #D9D9D9;
-        letter-spacing: 0.5vw;
-        text-shadow: 0.2vw 0.3vw black;
-        -webkit-text-stroke-width: 0;
-    }
-    
-    #panelAdmin > main {
-        position: relative;
-        height: 95dvh;
-        margin: 1%;
-        border-radius: 0.5vw;
-        background-color: #d9d9d99f;
     }
 
-    #buttonLogout {
-        position: absolute;
-        bottom: 1%;
-        left: 50%;
-        transform: translate(-50%);
-        padding: 0.2vw;
-        cursor: pointer;
-        border: none;
-        background-color: transparent;
-    }
-
-    #buttonLogout h3 {
-        width: 100%;
-        text-align: center;
-        font-family: 'Jersey 10';
-        font-size: 1.4rem;
-        color: #860101;
-        letter-spacing: 0.5vw;
-        text-shadow: 0.1vw 0.1vw black;
-        -webkit-text-stroke-width: 0;
-    }
-
-
-/* ------------- GESTION DE IMAGENES ------------- */
-
-    #vistaListar {
-        height: 100dvh;
-        background-repeat: round;
-        background-size: cover;
-    }
-
-    table {
-        width: 80%;
-        border-collapse: collapse;
-        background-color: #fff;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-    
-    th, td {
-        padding: 12px;
-        text-align: left;
-        font-family: 'Jersey 10';
-        text-shadow: none;
-        color: black;
-    }
-    
-    th {
-        background-color: #007BFF;
-        color: white;
+    td {
         text-align: center;
         font-size: 2rem;
+        color: #D9D9D9;
+        text-shadow: 6px 7px black;
     }
-    
-    td {
-        font-size: 1.6rem;
-    }
-    
-    tr:nth-child(even) {
-        background-color: #f2f2f2;
-    }
-
-    tr:hover {
-        background-color: #ddd;
-    }
-
-    .action-buttons {
-        text-align: center;
-        white-space: nowrap;
-    }
-    .btn {
-        padding: 8px 16px;
-        margin-left: 10px;
-        border: none;
-        border-radius: 5px;
-        font-size: 14px;
-        cursor: pointer;
-        color: white;
-        transition: background-color 0.3s ease;
-    }
-    .btn-eliminar {
-        background-color: #FF4D4D;
-    }
-    .btn-eliminar:hover {
-        background-color: #CC0000;
-    }
-    .btn-modificar {
-        background-color: #4CAF50;
-    }
-    .btn-modificar:hover {
-        background-color: #357a38;
-    }
-
-
-/* ------------- INSERTAR ------------- */
-/*
-#panelInsertar , #panelInsertar *{
-    text-shadow: none;
-    -webkit-text-stroke-width: 0;
-    -webkit-text-stroke-color: transparent;
-    font-family: monospace;
-}
-#panelInsertar {
-  padding: 50px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-  max-width: 800px;
-  background-color: #1F2937;
-  color: #EDEDED; 
-  border: 2px solid #3B82F6;
-  text-align: center;
-}    
-
-#panelInsertar h3 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #3B82F6;
-  }
-
-#panelInsertar label{
-  font-family: monospace;
-  display: block;
-  font-size: 1.25em;
-  margin: 10px;
-
-}
-
-#selectInsertar {
-    width: 15%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-    background-color: #f9f9f9;
-    color:#1F2937;
-}
-
-#selectInsertar:focus {
-    border-color: #007bff;
-    outline: none;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-}
-
-input[type="text"], textarea, input[type="file"] {
-    width: 50%;
-    padding: 10px;
-    margin-left: 20px;
-    margin-bottom: 20px;
-    color:#1F2937;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-    background-color: #f9f9f9;
-}
-
-
-input[type="text"]:focus, textarea:focus {
-    border-color: #007bff;
-    outline: none;
-    box-shadow: 0 0 8px rgba(59, 130, 246, 0.3); 
-}
-
-button {
-    display: block;
-    width: 20%;
-    padding: 10px;
-    background-color: #3B82F6;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin: 10px auto;
-}
-
-button:hover {
-    background-color: #2563EB;
-}
-
-button[type='submit']{
-  background-color:red;
-  width: 10%;
-}
-
-
-button[type='button']:hover {
-  background-color:rgba(0, 123, 255, 0.5) ;
-}
-/* ------------- MODIFICAR ------------- */
-/*
-#panelModificar , #panelModificar *{
-    text-shadow: none;
-    -webkit-text-stroke-width: 0;
-    -webkit-text-stroke-color: transparent;
-    font-family: monospace;
-}
-
-#panelModificar {
-  padding: 50px;
-  border-radius: 10px;
-  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
-  width: 90%;
-  height: fit-content;
-  background-color: #1F2937;
-  color: #EDEDED; 
-  border: 2px solid #3B82F6;
-}    
-
-#panelModificar h3 {
-    text-align: center;
-    margin-bottom: 20px;
-    color:#3B82F6;
-}
-
-
-#selectModificar {
-    width: 10%;
-    padding: 10px;
-    margin-left: 20px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 1em;
-    background-color: #f9f9f9;
-    color:#1F2937;
-}
-
-#selectModificar:focus {
-    border-color: #007bff;
-    outline: none;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-}
-
-
-/* button {
-    width: fit-content;
-    padding: 10px;
-    background-color:#3B82F6 ;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    font-size: 1.15em;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin: 10px auto;
-} */
-/*
-button:hover {
-  background-color:rgba(0, 123, 255, 0.5);
-}
-.btn-borrar{
-  background-color: red;
-}
-.btn-borrar:hover{
-  background-color: crimson;
-}
-#panelModificar table{
-  border-spacing: 20px;
-}
-
-#panelModificar thead {
-  font-size: 3em;
-  color:#3B82F6 ;
-}
-
-
-#panelModificar tbody td{
-  font-size: 1.5em;
-  padding: 10px;
-}
-
-.img-container{
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-  flex-wrap: wrap;
-  align-items: center;
-}
-
-#panelModificar img{
-  position: static;
-  width: 30%;
-  height: auto;
-}

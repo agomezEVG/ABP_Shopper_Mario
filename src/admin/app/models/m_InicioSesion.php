@@ -2,7 +2,7 @@
 
     Class M_InicioSesion {
 
-        private $objMInicioSesion;
+        private $conexion;
 
         public function __construct() {
 
@@ -15,9 +15,26 @@
             $texto_error=$this->conexion->errno;
         }
 
-        public function comprobar() {
+        public function validarInicioSesion($datosIS) {
             
-            $sql = 'SELECT * FROM administrador WHERE correo = '..';';
+            $correo = $datosIS['email'];
+            $passwd = $datosIS['passwd'];
+
+            $sql = 'SELECT * FROM administrador WHERE correo = "'.$correo.'";';
+
+            $resultado = $this->conexion->query($sql);
+
+            if($resultado->num_rows > 0){
+            
+                $fila = $resultado->fetch_assoc();
+
+                if(password_verify($passwd, $fila['passwd']))
+                    return true;
+
+                return false;
+            }
+            
+            return false;
 
         }
     }
