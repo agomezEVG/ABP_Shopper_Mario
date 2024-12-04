@@ -271,17 +271,22 @@ html, body{
         background-size: cover;
     }
 
-    aside > button {
+    aside > a {
+        display: block;
         flex-grow: 1;
         flex-shrink: 1;
         width: 100%;
         margin: 0;
-        cursor: pointer;
+    }
+
+    aside button{
+        width: 100%;
+        height: 100%;
         border: none;
         background-color: transparent;
     }
 
-    aside > button:focus, button:hover {
+    aside > a:focus, a:hover {
         flex-grow: 2;
         background-color: #461b01c1;
         transition: 0.1s ease-in-out;
@@ -307,19 +312,18 @@ html, body{
         background-color: #d9d9d99f;
     }
 
-    #buttonLogout {
+    #Logout {
         position: absolute;
-        bottom: 1%;
-        left: 50%;
+        top: 1%;
+        left: 98%;
         transform: translate(-50%);
+        width: 2.5%;
         padding: 0.2vw;
         cursor: pointer;
-        border: none;
         background-color: transparent;
     }
 
-    #buttonLogout h3 {
-        width: 100%;
+    #Logout img {
         text-align: center;
         font-family: 'Jersey 10';
         font-size: 1.4rem;

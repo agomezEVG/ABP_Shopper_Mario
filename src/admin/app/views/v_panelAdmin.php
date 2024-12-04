@@ -15,19 +15,17 @@
     </head>
     <body id="panelAdmin">
         <aside>
-            <button><h3>DASHBOARD</h3></button>
-            <button><h3>PERSONAJES</h3></button>
-            <button onclick=''><h3>IMAGENES</h3></button>
-            <button><h3>OBJETOS</h3></button>
-            <button><h3>DIÁLOGOS</h3></button>
-            <button><h3>RANKING</h3></button>
+            <a href="#"><button><h3>DASHBOARD</h3></button></a>
+            <a href="#"><button><h3>PERSONAJES</h3></button></a>
+            <a href="index.php?c=PanelControl&m=ListarPersonajes"><button><h3>IMAGENES</h3></button></a>
+            <a href="#"><button><h3>OBJETOS</h3></button></a>
+            <a href="#"><button><h3>DIÁLOGOS</h3></button></a>
+            <a href="#"><button><h3>RANKING</h3></button></a>
         </aside>
         <main>
             <section>
                 
-                <button onclick='window.location.href="inicioSesion.html"' id="buttonLogout">
-                    <h3>CERRAR SESIÓN</h3>
-                </button>
+                <a href="index.php"><img src="img/logout.png" alt="LOGOUT" id="Logout"/></a>
             </section>
         </main>
     </body>

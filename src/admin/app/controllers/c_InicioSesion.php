@@ -18,11 +18,11 @@
                 $estado = $this->objMInicioSesion->validarInicioSesion($datosIS);
 
                 if($estado) {
-                    $this->vista = 'panelAdmin.php';
+                    $this->vista = 'PanelAdmin.php';
                     return true;
                 }
                 else {
-                    $this->vista = 'error.php';
+                    $this->vista = 'Error.php';
                     return 'Datos inválidos';
                 }
                 
