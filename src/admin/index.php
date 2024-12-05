@@ -4,6 +4,7 @@
     // Si el controlador y el metodo llegan sin valor, el programa envia los datos por defecto
     if(!isset($_GET['c'])) $_GET['c'] = CONTROLADOR_POR_DEFECTO;
     if(!isset($_GET['m'])) $_GET['m'] = METODO_POR_DEFECTO;
+    
     // Ruta del archivo, incluye el controlador
     $rutaControlador = 'app/controllers/c_' . $_GET['c'] . '.php';
     require_once $rutaControlador;

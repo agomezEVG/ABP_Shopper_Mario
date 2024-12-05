@@ -14,21 +14,25 @@
             // $texto_error=$this->conexion->errno;
         }
 
-        public function mAltaPersonaje($nombre, $descripcion, $tipo) {
-            $sql = "INSERT INTO personaje (nombre, descripcion, tipo) VALUES ('".$nombre."', '".$descripcion."', '".$tipo."')";
+        /* ------------------------------- MODELOS DE PERSONAJES ------------------------------- */
+        public function mAltaPersonaje($nombre) {
+
+            $sql = 'INSERT INTO personaje (nombre, descripcion, tipo) VALUES ("'.$nombre.'", "'.$descripcion.'", "'.$tipo.'");';
             $resultado = $this->conexion->query($sql);
             
             if ($resultado) {
+
                 $idPersonaje = $this->conexion->insert_id;
                 return $idPersonaje;
             } else {
                 return false;
             }
         }        
-
         public function mAltaImagen($idPersonaje, $urlImagen) {
-            $sqlImagen = "INSERT INTO imagen (idPersonaje, url) VALUES ('".$idPersonaje."', '".$urlImagen."')";
-            $resultado = $this->conexion->query($sqlImagen);
+            
+            $sql = 'INSERT INTO imagen (idPersonaje, url) VALUES ("'.$idPersonaje.'", "'.$urlImagen.'");';
+            
+            $resultado = $this->conexion->query($sql);
 
             if ($resultado) {
                 return true;
@@ -36,11 +40,9 @@
                 return false;
             }
         }
-        
         public function mListarPersonajes() {
             $sql = 'SELECT personaje.idPersonaje, personaje.nombre, personaje.descripcion, personaje.tipo, imagen.url
-                    FROM personaje
-                    LEFT JOIN imagen ON personaje.idPersonaje = imagen.idPersonaje';
+                    FROM personaje LEFT JOIN imagen ON personaje.idPersonaje = imagen.idPersonaje';
         
             $resultado = $this->conexion->query($sql);
         
@@ -54,11 +56,10 @@
                 return false;
             }
         }
-
         public function mEliminarPersonaje($idPersonaje) {
+            
             $sql = 'DELETE FROM personaje WHERE idPersonaje = '.$idPersonaje.';';
             $resultado = $this->conexion->query($sql);
-            
 
             if (!$resultado) {
                 return false;
@@ -71,7 +72,6 @@
             }
             return false;
         }        
-
         public function mModificarPersonaje($idPersonaje, $nombre, $descripcion, $tipo, $url) {
             $sqlPersonaje = "UPDATE personaje SET nombre = '".$nombre."', descripcion = '".$descripcion."', tipo = '".$tipo."' WHERE idPersonaje = ".$idPersonaje.";";
             $resultadoPersonaje = $this->conexion->query($sqlPersonaje);
@@ -88,6 +88,26 @@
             }
         
             return true; 
+        }
+
+        /* ------------------------------- MODELOS DE NPCs ------------------------------- */
+
+        public function mAltaNPC ($datosNPC) {
+
+            $sql = ''
+            
+        }
+        public function mModificarNPC ($datosNPC) {
+            
+            
+        }
+        public function mEliminarNPC ($datosNPC) {
+            
+            
+        }
+        public function mListarNPC ($datosNPC) {
+            
+
         }
     }
 ?>

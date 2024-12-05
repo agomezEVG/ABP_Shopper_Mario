@@ -4,7 +4,7 @@ CREATE TABLE administrador (
     correo varchar(125) NOT NULL, 
     passwd varchar(255) NOT NULL,
     CONSTRAINT pk_idAdmin PRIMARY KEY (idAdmin),
-    CONSTRAINT USK_correo UNIQUE (correo)
+    CONSTRAINT usk_correo UNIQUE (correo)
 );
 
 CREATE TABLE personaje (
@@ -24,13 +24,13 @@ CREATE TABLE jugador (
 CREATE TABLE enemigo (
     idEnemigo TINYINT UNSIGNED NOT NULL,
     CONSTRAINT pk_idEnemigo PRIMARY KEY (idEnemigo),
-    CONSTRAINT fk_idEnemigo FOREIGN KEY (idEnemigo) REFERENCES personaje(idPersonaje)
+    CONSTRAINT fk_idEnemigo FOREIGN KEY (idEnemigo) REFERENCES personaje(idPersonaje) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE npc (
     idNPC TINYINT UNSIGNED NOT NULL AUTO_INCREMENT,
-    CONSTRAINT fk_personaje_idNPC FOREIGN KEY (idNPC) REFERENCES personaje(idPersonaje),
-    CONSTRAINT pk_idNPC PRIMARY KEY (idNPC)
+    CONSTRAINT pk_idNPC PRIMARY KEY (idNPC),
+    CONSTRAINT fk_personaje_idNPC FOREIGN KEY (idNPC) REFERENCES personaje(idPersonaje) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE dialogo (
@@ -42,8 +42,8 @@ CREATE TABLE dialogo (
 CREATE TABLE npc_dialogo (
     idNPC TINYINT UNSIGNED NOT NULL,
     idDialogo TINYINT UNSIGNED NOT NULL,
-    CONSTRAINT fk_NPC_idNPC FOREIGN KEY (idNPC) REFERENCES npc(idNPC),
-    CONSTRAINT fk_Dialogo_idDialogo FOREIGN KEY (idDialogo) REFERENCES dialogo(idDialogo),
+    CONSTRAINT fk_NPC_idNPC FOREIGN KEY (idNPC) REFERENCES npc(idNPC) ON UPDATE CASCADE ON DELETE CASCADE,
+    CONSTRAINT fk_Dialogo_idDialogo FOREIGN KEY (idDialogo) REFERENCES dialogo(idDialogo) ON UPDATE CASCADE ON DELETE CASCADE,
 );
 
 -- CREATE table partida (
@@ -64,7 +64,7 @@ CREATE TABLE imagen (
     posicion VARCHAR (45) NOT NULL,
     idPersonaje TINYINT UNSIGNED NOT NULL,
     CONSTRAINT pk_idImagen PRIMARY KEY (idImagen),
-    CONSTRAINT fk_idPersonaje FOREIGN KEY (idPersonaje) REFERENCES personaje(idPersonaje),
+    CONSTRAINT fk_idPersonaje FOREIGN KEY (idPersonaje) REFERENCES personaje(idPersonaje) ON UPDATE CASCADE ON DELETE CASCADE,
     CONSTRAINT ck_tipo CHECK (tipo IN ('E', 'J', 'N', 'O'))
 );
 
