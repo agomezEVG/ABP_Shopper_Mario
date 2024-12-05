@@ -22,11 +22,11 @@
                   echo json_encode(['success' => 1, 'mensaje'=>'Éxito en el inicio de sesión','vista'=>'PanelAdmin.php']);
                 }
                 else {
-                  echo json_encode(['success' => 0, 'mensaje'=>'Error al iniciar sesion', 'vista'=>'Error.php']);
+                  echo json_encode(['success' => 0, 'mensaje'=>'Error al iniciar sesion bobo', 'vista'=>'Error.php']);
                 }
                 
             }else{
-                  echo json_encode(['success' => 0, 'mensaje'=>'faltan datos', 'vista'=>'Error.php']);
+                  echo json_encode(['success' => 0, 'mensaje'=>'Rellenalo bien hazme el favor', 'vista'=>'Error.php']);
             }
         }
     }

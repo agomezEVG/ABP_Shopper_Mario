@@ -16,11 +16,14 @@ class C_login {
       if (respuesta.success === 1) {
         window.location.href = '../../v_panelAdmin.php';
       } else {
-
-        const error = document.createElement('h3');
-        error.classList.add('error-message')
-        error.innerHTML = respuesta.mensaje || 'Usuario o contraseña incorrectos';
-        formulario.append(error); 
+          const existingError = formulario.querySelector('.error-message');
+          if (existingError) {
+            existingError.remove();
+          }
+            const error = document.createElement('h2');
+            error.classList.add('error-message')
+            error.innerHTML = respuesta.mensaje || 'Usuario o contraseña incorrectos';
+            formulario.append(error); 
       }
     } catch (error) {
       console.error('Error al intentar iniciar sesión', error);

@@ -169,6 +169,11 @@ html, body{
         margin-top: 3%;
     }
 
+    #sectionLogin .error-message{
+      color:yellow;
+      font-size: 1em;
+    }
+
 
 
 /* ------------- RANKING ------------- */
