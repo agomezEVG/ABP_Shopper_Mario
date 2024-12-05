@@ -8,50 +8,61 @@ CREATE TABLE administrador (
 );
 
 CREATE TABLE personaje (
-    idPersonaje TINYINT NOT NULL AUTO_INCREMENT,
+    idPersonaje TINYINT UNSIGNED NOT NULL AUTO_INCREMENT,
     nombre VARCHAR(75) NOT NULL,
     descripcion VARCHAR(255) NOT NULL,
     tipo CHAR (1) NOT NULL,
     CONSTRAINT pk_idPersonaje PRIMARY KEY (idPersonaje) 
 );
 
--- CREATE TABLE jugador (
---     idJugador TINYINT NOT NULL,
---     CONSTRAINT fk_Jugador FOREIGN KEY (idJugador) REFERENCES jugador(idJugador)
--- );
+CREATE TABLE jugador (
+    idJugador TINYINT UNSIGNED NOT NULL,
+    CONSTRAINT pk_idJugador PRIMARY KEY (idJugador),
+    CONSTRAINT fk_idJugador FOREIGN KEY (idJugador) REFERENCES personaje(idPersonaje)
+);
 
--- CREATE TABLE enemigo (
---     idEnemigo TINYINT NOT NULL,
---     CONSTRAINT fk_Jugador FOREIGN KEY (idJugador) REFERENCES jugador(idJugador),
--- );
+CREATE TABLE enemigo (
+    idEnemigo TINYINT UNSIGNED NOT NULL,
+    CONSTRAINT pk_idEnemigo PRIMARY KEY (idEnemigo),
+    CONSTRAINT fk_idEnemigo FOREIGN KEY (idEnemigo) REFERENCES personaje(idPersonaje)
+);
 
 CREATE TABLE npc (
-    idNPC TINYINT NOT NULL AUTO_INCREMENT,
+    idNPC TINYINT UNSIGNED NOT NULL AUTO_INCREMENT,
     CONSTRAINT fk_personaje_idNPC FOREIGN KEY (idNPC) REFERENCES personaje(idPersonaje),
     CONSTRAINT pk_idNPC PRIMARY KEY (idNPC)
 );
 
 CREATE TABLE dialogo (
-    idDialogo TINYINT NOT NULL AUTO_INCREMENT,
+    idDialogo TINYINT UNSIGNED NOT NULL AUTO_INCREMENT,
     mensaje VARCHAR(125) NOT NULL,
     CONSTRAINT pk_idDialogo PRIMARY KEY (idDialogo)
 );
 
 CREATE TABLE npc_dialogo (
-    idNPC TINYINT NOT NULL,
-    idDialogo TINYINT NOT NULL,
+    idNPC TINYINT UNSIGNED NOT NULL,
+    idDialogo TINYINT UNSIGNED NOT NULL,
     CONSTRAINT fk_NPC_idNPC FOREIGN KEY (idNPC) REFERENCES npc(idNPC),
     CONSTRAINT fk_Dialogo_idDialogo FOREIGN KEY (idDialogo) REFERENCES dialogo(idDialogo),
 );
 
--- CREATE table partida ();
+-- CREATE table partida (
+--     idPartida SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
+--     duracion TIME NOT NULL,
+--     fechaHora DATETIME NOT NULL,
+--     nickname char(3) NOT NULL,
+--     puntuacion SMALLINT NOT NULL,
+--     idJugador TINYINT UNSIGNED NOT NULL,
+--     CONSTRAINT pk_idPartida PRIMARY KEY (idPartida),
+--     CONSTRAINT fk_Partida_idJugador FOREIGN KEY (idJugador) REFERENCES jugador(idJugador)
+-- );
 
 CREATE TABLE imagen (
-    idImagen TINYINT NOT NULL AUTO_INCREMENT,
+    idImagen TINYINT UNSIGNED NOT NULL AUTO_INCREMENT,
     url VARCHAR(255) NOT NULL,
     tipo CHAR(1) NOT NULL,
     posicion VARCHAR (45) NOT NULL,
-    idPersonaje TINYINT NOT NULL,
+    idPersonaje TINYINT UNSIGNED NOT NULL,
     CONSTRAINT pk_idImagen PRIMARY KEY (idImagen),
     CONSTRAINT fk_idPersonaje FOREIGN KEY (idPersonaje) REFERENCES personaje(idPersonaje),
     CONSTRAINT ck_tipo CHECK (tipo IN ('E', 'J', 'N', 'O'))
