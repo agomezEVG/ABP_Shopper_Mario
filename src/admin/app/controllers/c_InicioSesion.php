@@ -13,20 +13,20 @@
         }
         
         public function validarInicioSesion($datosIS) {
-
+            ob_clean();
+            header('Content-Type: application/json');
             if(!empty($datosIS['email']) && !empty($datosIS['passwd'])){
                 $estado = $this->objMInicioSesion->validarInicioSesion($datosIS);
 
                 if($estado) {
-                    $this->vista = 'PanelAdmin.php';
-                    return true;
+                  echo json_encode(['success' => 1, 'mensaje'=>'Éxito en el inicio de sesión','vista'=>'PanelAdmin.php']);
                 }
                 else {
-                    $this->vista = 'Error.php';
-                    return 'Datos inválidos';
+                  echo json_encode(['success' => 0, 'mensaje'=>'Error al iniciar sesion', 'vista'=>'Error.php']);
                 }
                 
+            }else{
+                  echo json_encode(['success' => 0, 'mensaje'=>'faltan datos', 'vista'=>'Error.php']);
             }
         }
     }
-?>

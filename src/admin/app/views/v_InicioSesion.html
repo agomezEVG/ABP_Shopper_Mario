@@ -8,6 +8,8 @@
         <!-- ESTILOS E ICONOS -->
         <link rel="shortcut icon" href="img/iconoRedondo.png" type="image/x-icon">
         <link rel="stylesheet" href="css/style.css">
+
+        <script type='module' src='js/app.js'></script>
     </head>
     <body>
         <main>
@@ -17,7 +19,7 @@
                 <span>S</span><span>E</span><span>S</span><span>I</span><span>Ó</span><span>N</span>
             </h1>
             <section id="sectionLogin">
-                <form action="index.php?c=InicioSesion&m=validarInicioSesion" method="POST">
+                <form id='loginForm' method="POST">
                     <input type="email" name="email" id="email" placeholder="Email"/>
                     <input type="password" name="passwd" id="passwd" placeholder="Password"/>
                     <div>
@@ -27,6 +29,8 @@
                     <p><a href="forgotPassword.html">¿Has olvidado la contraseña?</a></p>
                     <input type="submit" value="Iniciar Sesion"/>
                 </form>
+
+
             </section>
         </main>
     </body>
