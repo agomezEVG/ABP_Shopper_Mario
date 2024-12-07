@@ -12,13 +12,14 @@ CREATE TABLE personaje (
     nombre VARCHAR(75) NOT NULL,
     descripcion VARCHAR(255) NOT NULL,
     tipo CHAR (1) NOT NULL,
-    CONSTRAINT pk_idPersonaje PRIMARY KEY (idPersonaje) 
+    CONSTRAINT pk_idPersonaje PRIMARY KEY (idPersonaje),
+    CONSTRAINT ck_tipo CHECK (tipo IN ('E', 'J', 'N', 'O'))
 );
 
 CREATE TABLE jugador (
     idJugador TINYINT UNSIGNED NOT NULL,
     CONSTRAINT pk_idJugador PRIMARY KEY (idJugador),
-    CONSTRAINT fk_idJugador FOREIGN KEY (idJugador) REFERENCES personaje(idPersonaje)
+    CONSTRAINT fk_idJugador FOREIGN KEY (idJugador) REFERENCES personaje(idPersonaje) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE enemigo (
@@ -65,7 +66,6 @@ CREATE TABLE imagen (
     idPersonaje TINYINT UNSIGNED NOT NULL,
     CONSTRAINT pk_idImagen PRIMARY KEY (idImagen),
     CONSTRAINT fk_idPersonaje FOREIGN KEY (idPersonaje) REFERENCES personaje(idPersonaje) ON UPDATE CASCADE ON DELETE CASCADE,
-    CONSTRAINT ck_tipo CHECK (tipo IN ('E', 'J', 'N', 'O'))
 );
 
 -- CREATE TABLE objeto ();

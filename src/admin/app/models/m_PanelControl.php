@@ -15,7 +15,7 @@
         }
 
         /* ------------------------------- MODELOS DE PERSONAJES ------------------------------- */
-        public function mAltaPersonaje($nombre) {
+        public function mAltaPersonaje($nombre, $descripcion, $tipo) {
 
             $sql = 'INSERT INTO personaje (nombre, descripcion, tipo) VALUES ("'.$nombre.'", "'.$descripcion.'", "'.$tipo.'");';
             $resultado = $this->conexion->query($sql);
@@ -94,19 +94,63 @@
 
         public function mAltaNPC ($datosNPC) {
 
-            $sql = ''
+            $this->mAltaPersonaje($)
+            
+            $sql = 'INSERT INTO npc (idNPC) VALUES ('.$idNPC.');';
+
+            $resultado = $this->conexion->query($sql);
+
+            if($resultado->num_rows > 0)
+                return true;
+
+            return false;
             
         }
-        public function mModificarNPC ($datosNPC) {
+        public function mModificarNPC ($idNPC) {
             
+            $sql = 'INSERT INTO npc (idNPC) VALUES ('.$idNPC.');';
+
+            $resultado = $this->conexion->query($sql);
+
+            if($resultado->num_rows > 0)
+                return true;
+
+            return false;
             
         }
-        public function mEliminarNPC ($datosNPC) {
+        public function mEliminarNPC ($idNPC) {
             
-            
+            $sql = 'DELETE FROM personaje WHERE idPersonaje = '.$idNPC.';';
+            $resultado = $this->conexion->query($sql);
+
+            if (!$resultado) {
+                return false;
+            }
+
+            $filas = $this->conexion->affected_rows;
+        
+            if ($filas > 0) {
+                return true;
+            }
+            return false;
         }
-        public function mListarNPC ($datosNPC) {
+        public function mListarNPC () {
             
+            $sql = 'SELECT * FROM personaje RIGHT JOIN npc ON idNPC = idPersonaje;';
+
+            $resultado = $this->conexion->query($sql);
+
+            if($resultado->num_rows > 0) {
+
+                $datosNPC = [];
+
+                while($fila = $resultado->fetch_assoc())
+                    $datosNPC[] = $fila;
+                
+                return $datosNPC;
+            } else {
+                return false;
+            }
 
         }
     }

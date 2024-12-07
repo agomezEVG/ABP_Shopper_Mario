@@ -96,30 +96,39 @@
         /* ------------------------------- CRUD DE NPC ------------------------------- */
         public function c_AltaNPC ($datosNPC) {
 
+            $this->objMPanelControl->mAltaNPC($datosNPC);
+
+
             $estado = $this->c_ValidarDatosPersonaje($datosNPC);
 
-            if($estado){
+            if($estado) {
 
                 $nombre = $datosNPC['nombre'];
                 $descripcion = $datosNPC['descripcion'];
-                $tipo = $datosNPC['tipo'];
+                $tipo = 'N';
                 $urlImagen = $datosNPC['url'];
                 
-                $idPersonaje = $this->objMPanelControl->mAltaPersonaje($nombre, $descripcion, $tipo);
+                $idNPC = $this->objMPanelControl->mAltaPersonaje($nombre, $descripcion, $tipo);
             } else {
                 return false;
             }
-            $estado = $this->objMPanelControl->mAltaNPC($idPersonaje);
-
-
-        }
-        public function c_ModificarNPC ($datosNPC) {
             
-            $estado = $this->objMPanelControl->mModificarNPC($datosNPC);
+            if(!$idNPC) {
+                $this->vista = 'Error.php';
+                return false;
+            } else {
+                $this->objMPanelControl->mAltaImagen($idNPC, $urlImagen);
+                return true;
+            }
         }
-        public function c_EliminarNPC ($datosNPC) {
+
+        public function c_ModificarNPC ($idNPC) {
             
-            $estado = $this->objMPanelControl->mEliminarNPC($datosNPC);
+            $estado = $this->objMPanelControl->mModificarNPC($idNPC);
+        }
+        public function c_EliminarNPC ($idNPC) {
+            
+            $estado = $this->objMPanelControl->mEliminarNPC($idNPC);
         }
         public function c_ListarNPC ($datosNPC) {
             
