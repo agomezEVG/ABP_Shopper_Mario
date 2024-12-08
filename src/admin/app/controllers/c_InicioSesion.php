@@ -14,7 +14,7 @@
         
         public function validarInicioSesion($datosIS) {
 
-            if(!empty($datosIS['email']) && !empty($datosIS['passwd'])){
+            if(!empty($datosIS['email']) && !empty($datosIS['passwd'])) {
                 $estado = $this->objMInicioSesion->validarInicioSesion($datosIS);
 
                 if($estado) {

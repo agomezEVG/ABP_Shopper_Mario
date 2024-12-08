@@ -312,6 +312,32 @@ html, body{
         background-color: #d9d9d99f;
     }
 
+    #panelAdmin section {
+        width: 60%;
+        height: 100%;
+        padding: 2.5% 0;
+        box-sizing: border-box;
+    }
+
+    #panelAdmin section > h2, h3, p {
+        width: 100%;
+        text-align: center;
+        font-family: 'Jersey 10';
+        text-shadow: 0 0 black;
+        -webkit-text-stroke-width: 0;
+    }
+    #panelAdmin section > h2 {
+        font-size: 3rem;
+    }
+    #panelAdmin section > h3 {
+        color: #3B82F6;
+        letter-spacing: 0.05vw;
+        font-size: 2rem;
+    }
+    #panelAdmin section > p {
+        font-size: 1.5rem;
+    }
+
     #Logout {
         position: absolute;
         top: 1%;

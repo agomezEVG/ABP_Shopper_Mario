@@ -19,7 +19,7 @@
         /* ------------------------------- CRUD DE IMAGENES ------------------------------- */
         public function c_AltaPersonaje($datosPersonaje) {
 
-            $estado = $this->c_ValidarDatosPersonaje($datosPersonaje);
+            $estado = $this->c_ValidarDatos($datosPersonaje);
 
             if($estado) {
 
@@ -68,24 +68,24 @@
             return $personajes;
         }
 
-        /* ------------------------------- VALIDACION DE PERSONAJES ------------------------------- */
-        public function c_ValidarDatosPersonaje($datosPersonaje) {
-            if (empty($arrayPOST['nombre'])) {
+        /* ------------------------------- VALIDACION DE DATOS ------------------------------- */
+        public function c_ValidarDatos($arraydatos) {
+            if (empty($arraydatos['nombre'])) {
                 $this->mensajeEstado = 'No se ha rellenado el nombre';
                 return false;
             }
     
-            if (empty($arrayPOST['descripcion'])) {
+            if (empty($arraydatos['descripcion'])) {
                 $this->mensajeEstado = 'No se ha rellenado la descripción';
                 return false;
             }
     
-            if (empty($arrayPOST['imagen'])) {
+            if (empty($arraydatos['imagen'])) {
                 $this->mensajeEstado = 'No se ha añadido la URL de la imagen';
                 return false;
             }
 
-            if (!isset($arrayPOST['tipo'])) {
+            if (!isset($arraydatos['tipo'])) {
                 $this->mensajeEstado = 'No se ha añadido tipo de personaje';
                 return false;
             }
@@ -96,10 +96,9 @@
         /* ------------------------------- CRUD DE NPC ------------------------------- */
         public function c_AltaNPC ($datosNPC) {
 
+            $estado = $this->c_ValidarDatos($datosNPC);
+            
             $this->objMPanelControl->mAltaNPC($datosNPC);
-
-
-            $estado = $this->c_ValidarDatosPersonaje($datosNPC);
 
             if($estado) {
 
@@ -121,7 +120,6 @@
                 return true;
             }
         }
-
         public function c_ModificarNPC ($idNPC) {
             
             $estado = $this->objMPanelControl->mModificarNPC($idNPC);
@@ -130,9 +128,42 @@
             
             $estado = $this->objMPanelControl->mEliminarNPC($idNPC);
         }
-        public function c_ListarNPC ($datosNPC) {
+        public function c_ListarNPC () {
             
-            $datos = $this->objMPanelControl->mListarNPC($datosNPC);
+            $datos = $this->objMPanelControl->mListarNPC();
+        }
+
+        /* ------------------------------- CRUD DE DIALOGO ------------------------------- */
+        public function c_AltaDialogo ($datosDialogo) {
+
+            $estado = $this->vDatosDialogo($datosDialogo);
+
+            if(!$estado){
+
+                $estado = $this->objMPanelControl->mAltaDialogo($datosDialogo);
+
+                if($estado){
+                    foreach
+                }
+            }
+
+        }
+        public function c_ModificarDialogo ($idDialogo) {
+
+            $estado = $this->objMPanelControl->mModificarDialogo($idDialogo);
+        }
+        public function c_EliminarDialogo ($idDialogo) {
+            
+            $estado = $this->objMPanelControl->mEliminarDialogo($idDialogo);
+        }
+        public function c_ListarDialogo ($datosDialogo) {
+            
+            $datos = $this->objMPanelControl->mListarDialogo($datosDialogo);
+        }
+        public function vDatosDialogo($datosDialogo) {
+
+            if(!empty($datosDialogo['mensaje']))
+                return false;
         }
     }
 ?>

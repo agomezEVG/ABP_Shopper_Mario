@@ -28,18 +28,7 @@
                 return false;
             }
         }        
-        public function mAltaImagen($idPersonaje, $urlImagen) {
-            
-            $sql = 'INSERT INTO imagen (idPersonaje, url) VALUES ("'.$idPersonaje.'", "'.$urlImagen.'");';
-            
-            $resultado = $this->conexion->query($sql);
-
-            if ($resultado) {
-                return true;
-            } else {
-                return false;
-            }
-        }
+        
         public function mListarPersonajes() {
             $sql = 'SELECT personaje.idPersonaje, personaje.nombre, personaje.descripcion, personaje.tipo, imagen.url
                     FROM personaje LEFT JOIN imagen ON personaje.idPersonaje = imagen.idPersonaje';
@@ -94,7 +83,7 @@
 
         public function mAltaNPC ($datosNPC) {
 
-            $this->mAltaPersonaje($)
+            $this->mAltaPersonaje($datosNPC);
             
             $sql = 'INSERT INTO npc (idNPC) VALUES ('.$idNPC.');';
 
@@ -151,7 +140,81 @@
             } else {
                 return false;
             }
+        }
 
+        /* ------------------------------- MODELOS DE IMAGENES ------------------------------- */
+        public function mAltaImagen($idPersonaje, $urlImagen) {
+            
+            $sql = 'INSERT INTO imagen (idPersonaje, url) VALUES ("'.$idPersonaje.'", "'.$urlImagen.'");';
+            
+            $resultado = $this->conexion->query($sql);
+
+            if ($resultado) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        /* ------------------------------- MODELOS DE DIALOGOS ------------------------------- */
+
+        public function mAltaDialogo ($datosDialogo) {
+            
+            $sql = 'INSERT INTO dialogo (mensaje) VALUES ('.$datosDialogo['mensaje'].');';
+
+            $resultado = $this->conexion->query($sql);
+
+            if($resultado->num_rows > 0)
+                return true;
+
+            return false;
+            
+        }
+        public function mModificarDialogo ($idDialogo) {
+            
+            $sql = 'INSERT INTO  (idNPC) VALUES ('.$idNPC.');';
+
+            $resultado = $this->conexion->query($sql);
+
+            if($resultado->num_rows > 0)
+                return true;
+
+            return false;
+            
+        }
+        public function mEliminarDialogo ($idDialogo) {
+            
+            $sql = 'DELETE FROM dialogo WHERE idDialogo = '.$idDialogo.';';
+            $resultado = $this->conexion->query($sql);
+
+            if (!$resultado) {
+                return false;
+            }
+
+            $filas = $this->conexion->affected_rows;
+        
+            if ($filas > 0) {
+                return true;
+            }
+            return false;
+        }
+        public function mListarDialogo () {
+            
+            $sql = 'SELECT * FROM dialogo;';
+
+            $resultado = $this->conexion->query($sql);
+
+            if($resultado->num_rows > 0) {
+
+                $datosDialogo = [];
+
+                while($fila = $resultado->fetch_assoc())
+                    $datosDialogo[] = $fila;
+                
+                return $datosDialogo;
+            } else {
+                return false;
+            }
         }
     }
 ?>
