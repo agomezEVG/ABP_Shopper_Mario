@@ -2,33 +2,33 @@ import M_login from '../modelo/m_login.js'
 
 class C_login {
   constructor(data) {
-    this.data = data;
-    this.email = data.email;
-    this.passwd = data.passwd;
+    this.data = data
+    this.email = data.email
+    this.passwd = data.passwd
   }
 
   async validarInicioSesion(formulario) {
-    const modeloLogin = new M_login(this.data);
+    const modeloLogin = new M_login(this.data)
 
     try {
-      const respuesta = await modeloLogin.login();
+      const respuesta = await modeloLogin.login()
 
       if (respuesta.success === 1) {
-        window.location.href = '../../v_panelAdmin.php';
+        window.location.href = '../../v_panelAdmin.php'
       } else {
-          const existingError = formulario.querySelector('.error-message');
+          const existingError = formulario.querySelector('.error-message')
           if (existingError) {
-            existingError.remove();
+            existingError.remove()
           }
-            const error = document.createElement('h2');
+            const error = document.createElement('h2')
             error.classList.add('error-message')
-            error.innerHTML = respuesta.mensaje || 'Usuario o contraseña incorrectos';
-            formulario.append(error); 
+            error.innerHTML = respuesta.mensaje || 'Usuario o contraseña incorrectos'
+            formulario.append(error)
       }
     } catch (error) {
-      console.error('Error al intentar iniciar sesión', error);
+      console.error('Error al intentar iniciar sesión', error)
     }
   }
 }
 
-export default C_login;
+export default C_login
