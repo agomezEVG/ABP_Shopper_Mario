@@ -16,10 +16,10 @@
             $this->vista = 'PanelAdmin.php';
         }
 
-        /* ------------------------------- CRUD DE IMAGENES ------------------------------- */
+        /* ------------------------------- CRUD DE PERSONAJES ------------------------------- */
         public function c_AltaPersonaje($datosPersonaje) {
 
-            $estado = $this->c_ValidarDatos($datosPersonaje);
+            $estado = $this->vDatosPersonaje($datosPersonaje);
 
             if($estado) {
 
@@ -52,13 +52,24 @@
             
             return false;
         }
-        public function cModificarPersonaje($idPersonaje, $nombre, $descripcion, $tipo, $urlImagen) {
-            
-            if(!empty($idPersonaje) && !empty($nombre) && !empty($descripcion) && !empty($tipo) && !empty($urlImagen)) {
+        public function cModificarPersonaje($datosPersonaje) {
+
+            $estado = $this->vDatosPersonaje($datosPersonaje);
+
+            if($estado) {
+                $idPersonaje = $datosPersonaje['idPersonaje'];
+                $nombre = $datosPersonaje['nombre'];
+                $descripcion = $datosPersonaje['descripcion'];
+                $tipo = $datosPersonaje['tipo'];
+                $urlImagen = $datosPersonaje['url'];
+
                 $estado = $this->objMPanelControl->mModificarPersonaje($idPersonaje, $nombre, $descripcion, $tipo, $urlImagen);
-                return $estado;
+
+                if($estado)
+                    $this->vista = 'PanelAdmin.php';
+                else 
+                    $this->vista = 'Error.php';
             }
-            
             return false;
         }
         public function cListarPersonajes() {
@@ -68,35 +79,37 @@
             return $personajes;
         }
 
-        /* ------------------------------- VALIDACION DE DATOS ------------------------------- */
-        public function c_ValidarDatos($arraydatos) {
-            if (empty($arraydatos['nombre'])) {
+        /* ------------------------------- VALIDACION DE DATOS PERSONAJES ------------------------------- */
+        public function vDatosPersonaje($datosPersonaje) {
+            if (empty($datosPersonaje['nombre'])) {
                 $this->mensajeEstado = 'No se ha rellenado el nombre';
                 return false;
             }
     
-            if (empty($arraydatos['descripcion'])) {
+            if (empty($datosPersonaje['descripcion'])) {
                 $this->mensajeEstado = 'No se ha rellenado la descripción';
                 return false;
             }
     
-            if (empty($arraydatos['imagen'])) {
+            if (empty($datosPersonaje['imagen'])) {
                 $this->mensajeEstado = 'No se ha añadido la URL de la imagen';
                 return false;
             }
 
-            if (!isset($arraydatos['tipo'])) {
+            if (!isset($datosPersonaje['tipo'])) {
                 $this->mensajeEstado = 'No se ha añadido tipo de personaje';
                 return false;
             }
     
             return true;
         }
+        /* ------------------------------- FIN VALIDACION DE DATOS PERSONAJES ------------------------------- */
+
 
         /* ------------------------------- CRUD DE NPC ------------------------------- */
         public function c_AltaNPC ($datosNPC) {
 
-            $estado = $this->c_ValidarDatos($datosNPC);
+            $estado = $this->vDatosNPC($datosNPC);
             
             $this->objMPanelControl->mAltaNPC($datosNPC);
 
@@ -120,45 +133,122 @@
                 return true;
             }
         }
-        public function c_ModificarNPC ($idNPC) {
+        public function c_ModificarNPC ($datosNPC) {
+
+            $estado = $this->vDatosNPC($datosNPC);
+
+            if($estado) {
+
+                $idNPC = $datosNPC['idPersonaje'];
+                $nombre = $datosNPC['nombre'];
+                $descripcion = $datosNPC['descripcion'];
+                $tipo = 'N';
+                $urlImagen = $datosNPC['url'];
+
+                $estado = $this->objMPanelControl->mModificarPersonaje($idNPC, $nombre, $descripcion, $tipo, $urlImagen);
+
+
+            } else {
+                return false;
+            }
+
             
-            $estado = $this->objMPanelControl->mModificarNPC($idNPC);
         }
         public function c_EliminarNPC ($idNPC) {
             
-            $estado = $this->objMPanelControl->mEliminarNPC($idNPC);
+            $estado = $this->objMPanelControl->mEliminarPersonaje($idNPC);
+
+            if($estado) {
+                $this->vista = 'PanelAdmin.php';
+            } else {
+                $this->vista = 'Error.php';
+            }
         }
         public function c_ListarNPC () {
             
             $datos = $this->objMPanelControl->mListarNPC();
         }
+        /* ------------------------------- VALIDACION DE DATOS PERSONAJES ------------------------------- */
+        public function vDatosNPC($datosNPC) {
+            if (empty($datosNPC['nombre'])) {
+                $this->mensajeEstado = 'No se ha rellenado el nombre';
+                return false;
+            }
+    
+            if (empty($datosNPC['descripcion'])) {
+                $this->mensajeEstado = 'No se ha rellenado la descripción';
+                return false;
+            }
+    
+            if (empty($datosNPC['imagen'])) {
+                $this->mensajeEstado = 'No se ha añadido la URL de la imagen';
+                return false;
+            }
+
+            if (!isset($datosNPC['tipo'])) {
+                $this->mensajeEstado = 'No se ha añadido tipo de personaje';
+                return false;
+            }
+    
+            return true;
+        }
+        /* ------------------------------- FIN VALIDACION DE DATOS PERSONAJES ------------------------------- */
+
 
         /* ------------------------------- CRUD DE DIALOGO ------------------------------- */
         public function c_AltaDialogo ($datosDialogo) {
 
             $estado = $this->vDatosDialogo($datosDialogo);
 
-            if(!$estado){
+            if($estado) {
 
-                $estado = $this->objMPanelControl->mAltaDialogo($datosDialogo);
+                $mensaje = $datosDialogo['mensaje'];
 
-                if($estado){
-                    foreach
-                }
+                $estado = $this->objMPanelControl->mAltaDialogo($mensaje);
             }
-
         }
-        public function c_ModificarDialogo ($idDialogo) {
+        public function c_ModificarDialogo ($datosDialogo) {
 
-            $estado = $this->objMPanelControl->mModificarDialogo($idDialogo);
+            $estado = $this->vDatosDialogo($datosDialogo);
+
+            if($estado){
+
+                $idDialogo = $datosDialogo['idDialogo']; 
+                $mensaje = $datosDialogo['mensaje']; 
+
+                $estado = $this->objMPanelControl->mModificarDialogo($idDialogo, $mensaje);
+
+                if($estado)
+                    return true;
+                else
+                    return false;
+            }
+            else
+                return false;
+
         }
         public function c_EliminarDialogo ($idDialogo) {
             
             $estado = $this->objMPanelControl->mEliminarDialogo($idDialogo);
+
+            if($estado){
+                $this->vista = 'Modificar.php';
+                return true;
+            } else {   
+                $this->vista = 'Error.php';
+                return false;
+            }
         }
-        public function c_ListarDialogo ($datosDialogo) {
+        public function c_ListarDialogo () {
             
-            $datos = $this->objMPanelControl->mListarDialogo($datosDialogo);
+            $datos = $this->objMPanelControl->mListarDialogo();
+
+            if(is_array($datos)){
+                $this->vista = 'Listar.php';
+            } else {
+                $this->vista = 'Error.php';
+            }
+
         }
         public function vDatosDialogo($datosDialogo) {
 

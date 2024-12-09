@@ -14,7 +14,7 @@
             // $texto_error=$this->conexion->errno;
         }
 
-        /* ------------------------------- MODELOS DE PERSONAJES ------------------------------- */
+        /* ------------------------------- MÉTODOS DE PERSONAJES ------------------------------- */
         public function mAltaPersonaje($nombre, $descripcion, $tipo) {
 
             $sql = 'INSERT INTO personaje (nombre, descripcion, tipo) VALUES ("'.$nombre.'", "'.$descripcion.'", "'.$tipo.'");';
@@ -28,23 +28,6 @@
                 return false;
             }
         }        
-        
-        public function mListarPersonajes() {
-            $sql = 'SELECT personaje.idPersonaje, personaje.nombre, personaje.descripcion, personaje.tipo, imagen.url
-                    FROM personaje LEFT JOIN imagen ON personaje.idPersonaje = imagen.idPersonaje';
-        
-            $resultado = $this->conexion->query($sql);
-        
-            if ($resultado->num_rows > 0) {
-                $personajes = [];
-                while ($fila = $resultado->fetch_assoc()) {
-                    $personajes[] = $fila;
-                }
-                return $personajes;
-            } else {
-                return false;
-            }
-        }
         public function mEliminarPersonaje($idPersonaje) {
             
             $sql = 'DELETE FROM personaje WHERE idPersonaje = '.$idPersonaje.';';
@@ -78,54 +61,69 @@
         
             return true; 
         }
-
-        /* ------------------------------- MODELOS DE NPCs ------------------------------- */
-
-        public function mAltaNPC ($datosNPC) {
-
-            $this->mAltaPersonaje($datosNPC);
-            
-            $sql = 'INSERT INTO npc (idNPC) VALUES ('.$idNPC.');';
-
+        public function mListarPersonajes() {
+            $sql = 'SELECT personaje.idPersonaje, personaje.nombre, personaje.descripcion, personaje.tipo, imagen.url
+                    FROM personaje LEFT JOIN imagen ON personaje.idPersonaje = imagen.idPersonaje';
+        
             $resultado = $this->conexion->query($sql);
-
-            if($resultado->num_rows > 0)
-                return true;
-
-            return false;
-            
-        }
-        public function mModificarNPC ($idNPC) {
-            
-            $sql = 'INSERT INTO npc (idNPC) VALUES ('.$idNPC.');';
-
-            $resultado = $this->conexion->query($sql);
-
-            if($resultado->num_rows > 0)
-                return true;
-
-            return false;
-            
-        }
-        public function mEliminarNPC ($idNPC) {
-            
-            $sql = 'DELETE FROM personaje WHERE idPersonaje = '.$idNPC.';';
-            $resultado = $this->conexion->query($sql);
-
-            if (!$resultado) {
+        
+            if ($resultado->num_rows > 0) {
+                $personajes = [];
+                while ($fila = $resultado->fetch_assoc()) {
+                    $personajes[] = $fila;
+                }
+                return $personajes;
+            } else {
                 return false;
             }
-
-            $filas = $this->conexion->affected_rows;
-        
-            if ($filas > 0) {
-                return true;
-            }
-            return false;
         }
+        /* ------------------------------- FIN MÉTODOS DE PERSONAJES ------------------------------- */
+
+
+        /* ------------------------------- MÉTODOS DE IMAGENES ------------------------------- */
+        public function mAltaImagen($idPersonaje, $urlImagen) {
+            
+            $sql = 'INSERT INTO imagen (idPersonaje, url) VALUES ("'.$idPersonaje.'", "'.$urlImagen.'");';
+            
+            $resultado = $this->conexion->query($sql);
+
+            if ($resultado) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        /* ------------------------------- FIN MÉTODOS DE IMAGENES ------------------------------- */
+
+
+        /* ------------------------------- MÉTODOS DE NPCs ------------------------------- */
+        public function mAltaNPC ($idNPC) {
+
+            $sql = 'INSERT INTO npc (idNPC) VALUES ("'.$idNPC.'");';
+            
+            $resultado = $this->conexion->query($sql);
+
+            $sqlMultiple = 'SELECT GROUP_CONCAT(
+                    CONCAT(INSERT INTO npc_dialogo (idNPC, idDialogo) VALUES ('.$idNPC.', idDialogo, );))
+                    FROM dialogo;';
+
+            $resultado = $this->conexion->multi_query($sqlMultiple);
+
+            if($resultado) 
+                return true;
+            else
+                return false;
+
+        }
+        // public function mModificarNPC () { 
+            // LAS MODIFICACIONES SE HARÁN AL PERSONAJE DE TIPO NPC
+        // }
+        // public function mEliminarNPC () {
+            // EL BORRADO DEL NPC SE HARÁ EN LA TABLA PERSONAJE Y MEDIANTE EL BORRADO EN CASCADE SE ELIMINARÁ EN LA TABLA NPC
+        // }
         public function mListarNPC () {
             
-            $sql = 'SELECT * FROM personaje RIGHT JOIN npc ON idNPC = idPersonaje;';
+            $sql = 'SELECT nombre, descripcion FROM npc INNER JOIN personaje ON idNPC = idPersonaje;';
 
             $resultado = $this->conexion->query($sql);
 
@@ -141,62 +139,70 @@
                 return false;
             }
         }
+        /* ------------------------------- FIN MÉTODOS DE NPCs ------------------------------- */
 
-        /* ------------------------------- MODELOS DE IMAGENES ------------------------------- */
-        public function mAltaImagen($idPersonaje, $urlImagen) {
+
+        /* ------------------------------- MÉTODOS DE DIÁLOGOS ------------------------------- */
+        public function mAltaDialogo ($mensaje) {
+
+                $sql = 'INSERT INTO dialogo (mensaje) VALUES ("'.$mensaje.'");';
+                
+                $resultado = $this->conexion->query($sql);
+                
+                if($resultado){
+                    
+                    $idDialogo = $this->conexion->insert_id;
+
+                    $sqlMultiple = 'SELECT GROUP_CONCAT(
+                            CONCAT(INSERT INTO npc_dialogo (idNPC, idDialogo) VALUES (idNPC, '.$idDialogo.', ); ) )
+                            FROM npc;';
+
+                    $resultado = $this->conexion->multi_query($sqlMultiple);
+
+                    if($resultado) 
+                        return true;
+                    else
+                        return false;
+                } else {   
+                    return false;
+                }
+        }
+        public function mModificarDialogo ($idDialogo, $mensaje) {
             
-            $sql = 'INSERT INTO imagen (idPersonaje, url) VALUES ("'.$idPersonaje.'", "'.$urlImagen.'");';
-            
+            $sql = 'UPDATE dialogo SET mensaje = "'.$mensaje.'" WHERE idDialogo = '.$idDialogo.');';
+
             $resultado = $this->conexion->query($sql);
 
-            if ($resultado) {
-                return true;
-            } else {
+            if($resultado){
+
+                $filas = $this->conexion->affected_rows;
+                
+                if($filas > 0)
+                    return true;
+
                 return false;
             }
-        }
-
-        /* ------------------------------- MODELOS DE DIALOGOS ------------------------------- */
-
-        public function mAltaDialogo ($datosDialogo) {
-            
-            $sql = 'INSERT INTO dialogo (mensaje) VALUES ('.$datosDialogo['mensaje'].');';
-
-            $resultado = $this->conexion->query($sql);
-
-            if($resultado->num_rows > 0)
-                return true;
 
             return false;
-            
-        }
-        public function mModificarDialogo ($idDialogo) {
-            
-            $sql = 'INSERT INTO  (idNPC) VALUES ('.$idNPC.');';
-
-            $resultado = $this->conexion->query($sql);
-
-            if($resultado->num_rows > 0)
-                return true;
-
-            return false;
-            
         }
         public function mEliminarDialogo ($idDialogo) {
             
             $sql = 'DELETE FROM dialogo WHERE idDialogo = '.$idDialogo.';';
+            
             $resultado = $this->conexion->query($sql);
 
-            if (!$resultado) {
-                return false;
-            }
+            if ($resultado) {
 
-            $filas = $this->conexion->affected_rows;
-        
-            if ($filas > 0) {
-                return true;
-            }
-            return false;
+                $filas = $this->conexion->affected_rows;
+
+                if ($filas > 0) {
+                    return true;
+                }
+                return false;
+                
+            } else {
+                return false;
+            } 
         }
         public function mListarDialogo () {
             
@@ -216,5 +222,6 @@
                 return false;
             }
         }
+        /* ------------------------------- FIN MÉTODOS DE DIÁLOGOS ------------------------------- */
     }
 ?>

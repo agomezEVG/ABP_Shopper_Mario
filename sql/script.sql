@@ -44,7 +44,7 @@ CREATE TABLE npc_dialogo (
     idNPC TINYINT UNSIGNED NOT NULL,
     idDialogo TINYINT UNSIGNED NOT NULL,
     CONSTRAINT fk_NPC_idNPC FOREIGN KEY (idNPC) REFERENCES npc(idNPC) ON UPDATE CASCADE ON DELETE CASCADE,
-    CONSTRAINT fk_Dialogo_idDialogo FOREIGN KEY (idDialogo) REFERENCES dialogo(idDialogo) ON UPDATE CASCADE ON DELETE CASCADE,
+    CONSTRAINT fk_Dialogo_idDialogo FOREIGN KEY (idDialogo) REFERENCES dialogo(idDialogo) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 -- CREATE table partida (
@@ -65,7 +65,7 @@ CREATE TABLE imagen (
     posicion VARCHAR (45) NOT NULL,
     idPersonaje TINYINT UNSIGNED NOT NULL,
     CONSTRAINT pk_idImagen PRIMARY KEY (idImagen),
-    CONSTRAINT fk_idPersonaje FOREIGN KEY (idPersonaje) REFERENCES personaje(idPersonaje) ON UPDATE CASCADE ON DELETE CASCADE,
+    CONSTRAINT fk_idPersonaje FOREIGN KEY (idPersonaje) REFERENCES personaje(idPersonaje) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 -- CREATE TABLE objeto ();
