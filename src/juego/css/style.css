@@ -1,0 +1,193 @@
+
+/* ------------- LAYOUT PRINCIPAL ------------- */
+
+    /* ------------- TIPOGRAFIA Y ESTILOS ------------- */
+
+    @import url('https://fonts.cdnfonts.com/css/super-mario-256');
+    @import url('https://fonts.googleapis.com/css2?family=Jersey+10&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    margin: auto;
+    font-family: 'Super Mario 256', sans-serif;
+}
+
+html, body{
+    width: 100%;
+    background-image: url('../img/FondoJuego.jpg');
+    background-repeat: round;
+    background-size: cover;
+}
+
+    main {
+        width: 100%;
+        height: 100dvh;
+    }
+
+/* ------------- OPCIONES INICIO ------------- */
+
+    /* ------------- TITULO ------------- */
+        h1, h2, h3{
+            text-align: center;
+            margin: 0 auto 1%;
+            padding-top: 2%;
+            text-shadow: 10px 10px black;
+            -webkit-text-stroke-width: 3px;
+            -webkit-text-stroke-color: black;
+        }
+
+        h1{
+            font-size: 6rem;
+            width: 40%;
+        }
+        h1 span:nth-child(1) { color: #0074D9; } 
+        h1 span:nth-child(2) { color: #FFDC00; } 
+        h1 span:nth-child(3) { color: #FF4136; } 
+        h1 span:nth-child(4) { color: #2ECC40; } 
+        h1 span:nth-child(5) { color: #FF4136; } 
+        h1 span:nth-child(6) { color: #FFDC00; } 
+        h1 span:nth-child(7) { color: #0074D9; } 
+        h1 span:nth-child(8) { color: #FFDC00; } 
+        h1 span:nth-child(9) { color: #0074D9; } 
+        h1 span:nth-child(10) { color: #2ECC40; }
+        h1 span:nth-child(11) { color: #FF4136; }
+        h1 span:nth-child(12) { color: #FFDC00; } 
+        h1 span:nth-child(13) { color: #0074D9; } 
+        h1 span:nth-child(14) { color: #FF4136; } 
+
+    h2, h2 > a{
+        width: 40%;
+        font-size: 4.5rem;
+        color: brown;
+    }
+
+    h3, h3 > a{
+        width: 40%;
+        font-size: 3rem;
+        text-decoration: none;
+        color: brown;
+        -webkit-text-stroke-color: black;
+    }
+
+/* ------------- ACCESO ADMIN ------------- */
+    img {
+        position: absolute;
+        top: 74.8%;
+        left: 45.5%;
+        width: 8%;
+    }
+
+    #admin{
+        cursor: default;
+    }
+
+/* ------------- INICIO SESION ADMIN ------------- */
+
+    #volver{
+        position: fixed;
+        width: 10%;
+        padding: 0.5%;
+        margin: 1%;
+        border: none;
+        border-radius: 50%;
+        font-size: 1.2rem;
+        color: #4AA2E2;
+        background-color: #D9D9D9;
+        
+    }
+
+    #sectionLogin {
+        width: 50%;
+        border-radius: 0.5vw;
+        background-image: url('../img/fondoLadrillo.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    #sectionLogin, #sectionLogin * {
+        color: white;
+        font-size: 1.75rem;
+        font-family: 'Jersey 10';
+        -webkit-text-stroke-width: 0;
+        -webkit-text-stroke-color: transparent;
+        text-shadow:none;
+    }
+
+    #sectionLogin > form {
+        width: 100%;
+        padding: 1.5% 0;
+    }
+
+
+    #sectionLogin input {
+        display: block;
+        width: fit-content;
+        margin: 1.5% auto;
+        padding: 1% 1.5%;
+        border: 2px solid #D9D9D9;
+        border-radius: 10px;
+        background-color: #d9d9d940;
+        font-size: 1.75rem;
+    }
+
+    #sectionLogin input::placeholder {
+        color: #D9D9D9;
+        -webkit-text-stroke-width: 1.5px;
+        font-style: italic;
+    }
+
+    #sectionLogin div {
+        width: fit-content;
+        margin: auto;
+        color: #D9D9D9;
+        -webkit-text-stroke-width: 2px;
+    }
+
+    #sectionLogin div > input[type="checkbox"] {
+        display: inline-block;
+    }
+
+    #sectionLogin p {
+        margin-top: 3%;
+        font-size: 0.8rem;
+        text-align: center;
+        color: #D9D9D9;
+        font-size: 1rem;
+        -webkit-text-stroke-width: 1.5px;
+        -webkit-text-stroke-color: black;
+    }
+
+    #sectionLogin a{
+        color: lightsteelblue;
+    }
+
+    #sectionLogin input[type="submit"] {
+        width: 40%;
+        margin-top: 3%;
+    }
+
+
+
+/* ------------- RANKING ------------- */
+
+    table#ranking {
+        width: 70%;
+        margin: 1% auto;
+        padding: 1% 0;
+        background-image: url('../img/fondoLadrillo.jpg');
+        background-size: cover;
+        
+    }
+    th > h3{
+        font-size: 2rem;
+        text-shadow: 6px 7px black;
+        color: #D9D9D9;
+    }
+
+    td {
+        text-align: center;
+        font-size: 2rem;
+        color: #D9D9D9;
+        text-shadow: 6px 7px black;
+    }
