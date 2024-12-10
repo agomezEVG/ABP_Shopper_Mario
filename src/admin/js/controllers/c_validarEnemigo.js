@@ -17,6 +17,7 @@ class C_validarEnemigo{
 
   inicializarEventos() {
     this.formElement.addEventListener('submit', (event) => this.validarFormulario(event))
+    this.mostrarImagen()
   }
 
   validarFormulario(event) {
@@ -84,6 +85,32 @@ class C_validarEnemigo{
     })
 
     return valido
+  }
+
+  mostrarImagen(){
+
+    this.imagenesEnemigo.addEventListener('change', (event)=>{
+      const archivos = event.target.files
+      console.log('Va bien')
+
+      if(archivos.length > 0){
+        Array.from(archivos).forEach(archivo =>{
+          const reader = new FileReader()
+          
+          reader.onload = function(e){
+            const img = document.createElement('img')
+            img.src = e.target.result
+            img.className = 'img-enemigo'
+            img.style.maxWidth = '100px'
+            img.style.height = 'auto';
+            contenedorImagenes.appendChild(img)
+          }
+
+          reader.readAsDataURL(archivo)
+        })
+      }
+    })
+ 
   }
 }
 

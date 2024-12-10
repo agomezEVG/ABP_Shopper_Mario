@@ -41,33 +41,6 @@ window.addEventListener('DOMContentLoaded', () => {
         new C_validarEnemigo(enemyForm)
       }
 
-  if(imagenesEnemigo && contenedorImagenes){
-
-    imagenesEnemigo.addEventListener('change', (event)=>{
-      const archivos = event.target.files
-      console.log(archivos)
-
-      if(archivos.length > 0){
-        Array.from(archivos).forEach(archivo =>{
-          const reader = new FileReader()
-          
-          reader.onload = function(e){
-            const img = document.createElement('img')
-            img.src = e.target.result
-            img.className = 'img-enemigo'
-            img.style.maxWidth = '100px'
-            img.style.height = 'auto';
-            contenedorImagenes.appendChild(img)
-          }
-
-          reader.readAsDataURL(archivo)
-        })
-      }
-    })
-    
-  
-  } 
-
 
 
 })
