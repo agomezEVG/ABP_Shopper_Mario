@@ -9,7 +9,7 @@
         }
 
         public function inicio (){
-            $this->vista = 'InicioSesion.html';
+            $this->vista = 'InicioSesion';
         }
         
         public function validarInicioSesion($datosIS) {
@@ -18,11 +18,11 @@
                 $estado = $this->objMInicioSesion->validarInicioSesion($datosIS);
 
                 if($estado) {
-                    $this->vista = 'PanelAdmin.php';
+                    $this->vista = 'PanelAdmin';
                     return true;
                 }
                 else {
-                    $this->vista = 'Error.php';
+                    $this->vista = 'Error';
                     return 'Datos inválidos';
                 }
                 
