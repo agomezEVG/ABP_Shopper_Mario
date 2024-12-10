@@ -304,6 +304,9 @@ html, body{
 
 #sectionOlvidado input::placeholder {
     -webkit-text-stroke-width: 1.5px;
+    color: #D9D9D9;
+    font-style: italic;
+    font-size: 26px;
 }
 
 
@@ -318,6 +321,43 @@ html, body{
   background-color: darkgreen;
 }
 
+#sectionOlvidado textarea {
+    color: #D9D9D9;
+    font-family: 'Jersey 10';
+    font-size: 1.75rem;
+    border: 2px solid #D9D9D9;
+    border-radius: 10px;
+    background-color: #d9d9d940;
+    width: 70%;
+    padding: 1% 1.5%;
+    resize: none;
+}
+
+#sectionOlvidado textarea::placeholder {
+    color: #D9D9D9;
+    font-style: italic;
+    -webkit-text-stroke-width: 1.5px;
+}
+
+#sectionOlvidado input[type="reset"] {
+    background-color:green;
+    width: fit-content;
+    flex-grow: 0.25;
+    margin-bottom: 1%;
+}
+
+#sectionOlvidado input[type="reset"]:hover {
+  background-color: darkgreen;
+}
+
+/* ------------- FORM CORRECTO ---------- */
+
+#resultado {
+    font-size: 1.5rem;
+    color: #D9D9D9;
+    margin-top: 1rem;
+    text-align: center;
+}
 
 /* ------------- MODIFICAR ------------- */
 
@@ -505,4 +545,10 @@ html, body{
 #dashboard .stat h4{
   color:#3B82F6 ;
   font-size: 2em;
+}
+
+.message {
+    font-size: 14px;
+    padding-top: 5px; 
+    display: block;
 }

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>SHOOPER MARIO</title>
+        <link rel="shortcut icon" href="../../img/iconoRedondo.png" type="image/x-icon">
+        <link rel="stylesheet" href="../../css/style.css">
+    </head>
+    <body>
+        <main>
+            <section id="sectionOlvidado">
+                <!-- Formulario para registrar NPC -->
+                <form id="formulario">
+                    <label for="nombre">Nombre del NPC:</label>
+                    <input type="text" id="nombre" name="nombre" placeholder="Nombre del NPC">
+                    <span id="error-nombre" class="error"></span>
+                    
+                    <label for="descripcion">Descripción del NPC:</label>
+                    <input type="text" id="descripcion" name="descripcion" placeholder="Descripción para el NPC">
+                    <span id="error-descripcion" class="error"></span>
+                    
+                    <label for="mensaje">Diálogo:</label>
+                    <textarea id="mensaje" name="mensaje" rows="5" placeholder="Diálogo que mostrará el NPC"></textarea>
+                    <span id="error-mensaje" class="error"></span>
+                    
+                    <input type="submit" value="Dar de alta">
+                    <input type="reset" value="Restablecer">
+                </form>
+                <!-- Contenedor para mostrar resultados -->
+                <div id="resultado"></div>
+            </section>
+            <a class="volver" href="index.html">Volver</a>
+        </main>
+        <script type="module" src="../../js/app.js"></script>
+    </body>
+</html>
