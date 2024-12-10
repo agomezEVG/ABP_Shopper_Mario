@@ -45,6 +45,7 @@
             return false;
         }        
         public function mModificarPersonaje($idPersonaje, $nombre, $descripcion, $tipo, $url) {
+            
             $sqlPersonaje = "UPDATE personaje SET nombre = '".$nombre."', descripcion = '".$descripcion."', tipo = '".$tipo."' WHERE idPersonaje = ".$idPersonaje.";";
             $resultadoPersonaje = $this->conexion->query($sqlPersonaje);
         

@@ -7,13 +7,13 @@
         public $vista;
 
         public function __construct(){
-            require_once 'app/models/m_PanelControl.php';
+            require_once 'app/models/m_PanelControl';
             $this->objMPanelControl = new M_PanelControl();
         }
 
         /* ------------------------------- METODO POR DEFECTO ------------------------------- */
         public function inicio() {
-            $this->vista = 'PanelAdmin.php';
+            $this->vista = 'PanelAdmin';
         }
 
         /* ------------------------------- CRUD DE PERSONAJES ------------------------------- */
@@ -35,13 +35,13 @@
             
             if($idPersonaje) {
                 $estado = $this->objMPanelControl->mAltaImagen($idPersonaje, $urlImagen);
-                $this->vista = 'Alta.php';
+                $this->vista = 'Alta';
+                return true;
             } else {
-                $this->vista = 'Error.php';
+                $this->vista = 'Error';
                 return false;
             }
 
-            return $estado;
         }
         public function cEliminarPersonaje($idPersonaje) {
             
@@ -65,18 +65,29 @@
 
                 $estado = $this->objMPanelControl->mModificarPersonaje($idPersonaje, $nombre, $descripcion, $tipo, $urlImagen);
 
-                if($estado)
-                    $this->vista = 'PanelAdmin.php';
-                else 
-                    $this->vista = 'Error.php';
+                if($estado) {
+                    $this->vista = 'PanelAdmin';
+                    return true;
+                }            
+                else {
+                    $this->vista = 'Error';
+                    return false;
+                }
             }
             return false;
         }
         public function cListarPersonajes() {
             
             $personajes = $this->objMPanelControl->mListarPersonajes();
-            
-            return $personajes;
+
+            if($personajes != false) {
+                $this->vista = 'Listar';
+                return true;
+            }
+            else {
+                $this->vista = 'Error';
+                return false;
+            }
         }
 
         /* ------------------------------- VALIDACION DE DATOS PERSONAJES ------------------------------- */
@@ -126,7 +137,7 @@
             }
             
             if(!$idNPC) {
-                $this->vista = 'Error.php';
+                $this->vista = 'Error';
                 return false;
             } else {
                 $this->objMPanelControl->mAltaImagen($idNPC, $urlImagen);
@@ -159,9 +170,9 @@
             $estado = $this->objMPanelControl->mEliminarPersonaje($idNPC);
 
             if($estado) {
-                $this->vista = 'PanelAdmin.php';
+                $this->vista = 'PanelAdmin';
             } else {
-                $this->vista = 'Error.php';
+                $this->vista = 'Error';
             }
         }
         public function c_ListarNPC () {
@@ -232,10 +243,10 @@
             $estado = $this->objMPanelControl->mEliminarDialogo($idDialogo);
 
             if($estado){
-                $this->vista = 'Modificar.php';
+                $this->vista = 'Modificar';
                 return true;
             } else {   
-                $this->vista = 'Error.php';
+                $this->vista = 'Error';
                 return false;
             }
         }
@@ -244,9 +255,9 @@
             $datos = $this->objMPanelControl->mListarDialogo();
 
             if(is_array($datos)){
-                $this->vista = 'Listar.php';
+                $this->vista = 'Listar';
             } else {
-                $this->vista = 'Error.php';
+                $this->vista = 'Error';
             }
 
         }

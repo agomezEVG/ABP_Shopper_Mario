@@ -21,6 +21,5 @@
     }
 
     // Incluye la vista del controlador correspondiente
-    require_once 'app/views/v_' . $objControlador->vista;
-
+    require_once 'app/views/v_' . $objControlador->vista . '.php';
 ?>
