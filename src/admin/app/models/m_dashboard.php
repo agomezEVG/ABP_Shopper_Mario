@@ -36,7 +36,7 @@
           $datos['maxima_puntuacion'] = $result->fetch_assoc();
           
 
-          $queryFrecuenciaPersonajes = 'SELECT idPersonaje, COUNT(*) AS frecuencia FROM partida GROUP BY idPersonaje ORDER BY frecuencia DESC';
+          $queryFrecuenciaPersonajes = 'SELECT nombre , COUNT(*) AS frecuencia FROM partida INNER JOIN personaje ON personaje.idPersonaje = partida.idPersonaje GROUP BY nombre ORDER BY frecuencia DESC;';
           $result = $this->conexion->query($queryFrecuenciaPersonajes);
           $datos['frecuencia_personajes'] = $result->fetch_all(MYSQLI_ASSOC);
           return $datos;

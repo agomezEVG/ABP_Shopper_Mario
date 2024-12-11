@@ -338,7 +338,25 @@ html, body{
         -webkit-text-stroke-width: 0;
     }
 
+    #mostrarDatosPanelAdmin, #mostrarDatosPanelAdmin *  {
+      text-shadow: none;
+      -webkit-text-stroke-width: 0;
+      -webkit-text-stroke-color: transparent;
+      font-family: 'Jersey 10';
+    }    
+    #mostrarDatosPanelAdmin{
+      display: flex;
+      flex-direction: column;
+      border: 1px solid black;
+      width: 100%;
+      height: fit-content;
+    }
 
+    .dinamicos-Admin{
+      width: fit-content;
+      height: fit-content;
+    }
+    
 /* ------------- GESTION DE IMAGENES ------------- */
 
     #vistaListar {

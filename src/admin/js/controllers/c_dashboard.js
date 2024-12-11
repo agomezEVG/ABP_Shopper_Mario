@@ -10,6 +10,7 @@ class C_dashboard{
   async cargarDatos(){
      const dashboard = new M_dashboard()
     const data = await dashboard.datosDashboard()
+    console.log(data)
     this.mostrarDatos(data)
 
   }
@@ -18,18 +19,33 @@ class C_dashboard{
       
     this.panelAdmin.innerHTML = ''
 
-    const dashboardContainer = document.createElement('div')
-    dashboardContainer.classList.add(`dashboard-container`)
+    this.panelAdmin.innerHTML = '<h2>Estadísticas</h2>'
 
     const totalPartidasDiv = this.crearDiv('Total Partidas: ', data.total_partidas)
-    dashboardContainer.appendChild(totalPartidasDiv)
-    panelAdmin.appendChild(dashboardContainer)
+    this.panelAdmin.appendChild(totalPartidasDiv)
+
+    const promedioPuntuacionDiv = this.crearDiv('Promedio Puntuación: ',data.promedioPuntuacion)
+    this.panelAdmin.appendChild(promedioPuntuacionDiv)
+
+    const promedioDuracionDiv = this.crearDiv('Tiempo Promedio de las Partidas: ', data.promedio_duracion)
+    this.panelAdmin.appendChild(promedioDuracionDiv)
+    
+    const maximaPuntuacionDiv = this.crearDiv('Máxima puntuación: ', `${data.maxima_puntuacion.nombreUsuario} - ${data.maxima_puntuacion.puntuacion}`)
+    this.panelAdmin.appendChild(maximaPuntuacionDiv)
+    
+    const frecuenciaPersonajesDiv = this.crearDiv('Frecuencia Personajes: ', this.frecuenciaPersonaje(data.frecuencia_personajes))
+    this.panelAdmin.appendChild(frecuenciaPersonajesDiv)
+    
+
     
   }
 
 
   crearDiv(titulo, contenido){
     const contenedor = document.createElement('div')
+    contenedor.style.display = 'flex'
+    contenedor.style.flexDirection = 'column'
+    contenedor.classList.add('dinamicos-Admin')
     const encabezado = document.createElement('h3')
     encabezado.innerText = titulo
     const parrafo = document.createElement('p')
@@ -39,6 +55,12 @@ class C_dashboard{
     contenedor.appendChild(encabezado)
     contenedor.appendChild(parrafo)
     return contenedor
+  }
+
+  frecuenciaPersonaje(frecuencia){
+        return frecuencia.map(item => {
+          return  `${item.nombre} -- ${item.frecuencia}`
+        }).join('\n')
   }
 }
 
