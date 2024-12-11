@@ -342,8 +342,28 @@
                 return false;
             }
         }
-
+        
     /* ------------------------------- VALIDACION DE DATOS OBJETOS ------------------------------- */
 
+        public function vDatosObjeto($datosObjeto) {
+            if (empty($datosObjeto['nombre'])) {
+                $this->mensajeEstado = 'No se ha rellenado el nombre';
+                return false;
+            }
+
+            if (empty($datosObjeto['descripcion'])) {
+                $this->mensajeEstado = 'No se ha rellenado la descripción';
+                return false;
+            }
+
+            if (empty($datosObjeto['imagen'])) {
+                $this->mensajeEstado = 'No se ha añadido la URL de la imagen';
+                return false;
+            }
+            return true;
+        }
+
+    /* ------------------------------- FIN VALIDACION DE DATOS OBJETOS ------------------------------- */
+    
     }
 ?>

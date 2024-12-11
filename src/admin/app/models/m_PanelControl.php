@@ -102,10 +102,15 @@
             $resultado = $this->conexion->query($sql);
 
             if ($resultado) {
+                /* 
+                Seleccionar idImagen de la imagen en cuestión
+                INSERTAR AQUÍ ESA ID -> $sqlObjeto = 'INSERT INTO objeto (idImagen) VALUES ("'.$idImagen.'");'; 
+                return true o false
+                */
                 $sqlId = 'SELECT idImagen FROM imagen WHERE url = "'.$urlImagen.'";';
                 $resultadoId = $this->conexion->query($sqlId);
 
-                $sqlObjeto = 'INSERT INTO objeto (idImagen) VALUES ("'.$resultadoId.'");';
+                $sqlObjeto = 'INSERT INTO objeto (idImagen) VALUES ("'.$resultadoId.'") WHERE idObjeto = "'.$idObjeto.'";';
                 $resultadoObjeto = $this->conexion->query($sqlObjeto);
                 
                 if ($resultadoObjeto) {
@@ -113,11 +118,6 @@
                 } else {
                     return false;
                 }
-                /* 
-                Seleccionar idImagen de la imagen en cuestión
-                INSERTAR AQUÍ ESA ID -> $sqlObjeto = 'INSERT INTO objeto (idImagen) VALUES ("'.$idImagen.'");'; 
-                return true o false
-                */
             } else {
                 return false;
             }
@@ -261,7 +261,6 @@
             $resultado = $this->conexion->query($sql);
             
             if ($resultado) {
-
                 $idObjeto = $this->conexion->insert_id;
                 return $idObjeto;
             } else {
