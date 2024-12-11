@@ -215,7 +215,7 @@
 
 
         /* ------------------------------- CRUD DE DIALOGO ------------------------------- */
-        public function c_AltaDialogo ($datosDialogo) {
+        public function cAltaDialogo ($datosDialogo) {
 
             $estado = $this->vDatosDialogo($datosDialogo);
 
@@ -226,7 +226,7 @@
                 $estado = $this->objMPanelControl->mAltaDialogo($mensaje);
             }
         }
-        public function c_ModificarDialogo ($datosDialogo) {
+        public function cModificarDialogo ($datosDialogo) {
 
             $estado = $this->vDatosDialogo($datosDialogo);
 
@@ -246,7 +246,7 @@
                 return false;
 
         }
-        public function c_EliminarDialogo ($idDialogo) {
+        public function cEliminarDialogo ($idDialogo) {
             
             $estado = $this->objMPanelControl->mEliminarDialogo($idDialogo);
 
@@ -258,14 +258,16 @@
                 return false;
             }
         }
-        public function c_ListarDialogo () {
+        public function cListarDialogos () {
             
-            $datos = $this->objMPanelControl->mListarDialogo();
+            $datosDialogo = $this->objMPanelControl->mListarDialogos();
 
-            if(is_array($datos)){
-                $this->vista = 'Listar';
+            if($datosDialogo != false) {
+                $this->vista = 'ListarDialogos';
+                return $datosDialogo;
             } else {
                 $this->vista = 'Error';
+                return false;
             }
 
         }

@@ -14,9 +14,9 @@
             <a href="index.php?c=PanelControl&m=inicio"><button><h3>DASHBOARD</h3></button></a>
             <a href="index.php?c=PanelControl&m=cListarPersonajes"><button><h3>PERSONAJES</h3></button></a>
             <a href="index.php?c=PanelControl&m=cListarImagenes"><button><h3>IMAGENES</h3></button></a>
-            <a href="index.php?c=PanelControl&m=cListarObjetos""><button><h3>OBJETOS</h3></button></a>
-            <a href="index.php?c=PanelControl&m=cListarDialogos""><button><h3>DIÁLOGOS</h3></button></a>
-            <a href="index.php?c=PanelControl&m=cListarRanking""><button><h3>RANKING</h3></button></a>
+            <a href="index.php?c=PanelControl&m=cListarObjetos"><button><h3>OBJETOS</h3></button></a>
+            <a href="index.php?c=PanelControl&m=cListarDialogos"><button><h3>DIÁLOGOS</h3></button></a>
+            <a href="index.php?c=PanelControl&m=cListarRanking"><button><h3>RANKING</h3></button></a>
         </aside>
         <main>
             <section>

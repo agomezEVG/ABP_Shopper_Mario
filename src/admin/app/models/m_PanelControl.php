@@ -205,7 +205,7 @@
                 return false;
             } 
         }
-        public function mListarDialogo () {
+        public function mListarDialogos () {
             
             $sql = 'SELECT * FROM dialogo;';
 

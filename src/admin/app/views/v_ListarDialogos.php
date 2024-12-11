@@ -23,28 +23,24 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>Nombre</th>
-                            <th>Descripción</th>
-                            <th>Tipo</th>
+                            <th>Mensaje</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
                     <?php
                         if($datos) {
-                            foreach ($datos as $personaje) {
+                            foreach ($datos as $dialogo) {
                                 echo '<tr>';
-                                echo '<td>' . $personaje['nombre'] . '</td>';
-                                echo '<td>' . $personaje['descripcion'] . '</td>';
-                                echo '<td>' . $personaje['tipo'] . '</td>';
+                                echo '<td>' . $dialogo['mensaje'] . '</td>';
                                 echo '<td class="action-buttons">';
                                 echo '<form action="eliminar.php" method="POST" style="display:inline;">';
-                                echo '<input type="hidden" name="idPersonaje" value="' . $personaje['idPersonaje'] . '">';
-                                echo '<button type="submit" class="btn btn-eliminar" value="'.$personaje['idPersonaje'].'">Eliminar</button>';
+                                echo '<input type="hidden" name="idPersonaje" value="' . $dialogo['idDialogo'] . '">';
+                                echo '<button type="submit" class="btn btn-eliminar" value="'.$dialogo['idDialogo'].'">Eliminar</button>';
                                 echo '</form>';
                                 echo '<form action="src/php/views/vistaModificar.php" method="POST" style="display:inline;">';
-                                echo '<input type="hidden" name="idPersonaje" value="' . $personaje['idPersonaje'] . '">';
-                                echo '<button type="submit" class="btn btn-modificar" value="'.$personaje['idPersonaje'].'">Modificar</button>';
+                                echo '<input type="hidden" name="idPersonaje" value="' . $dialogo['idDialogo'] . '">';
+                                echo '<button type="submit" class="btn btn-modificar" value="'.$dialogo['idDialogo'].'">Modificar</button>';
                                 echo '</form>';
                                 echo '</td>';
                                 echo '</tr>';
