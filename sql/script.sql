@@ -68,7 +68,14 @@ CREATE TABLE imagen (
     CONSTRAINT fk_idPersonaje FOREIGN KEY (idPersonaje) REFERENCES personaje(idPersonaje) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
--- CREATE TABLE objeto ();
+CREATE TABLE objeto (
+    idObjeto TINYINT UNSIGNED NOT NULL AUTO_INCREMENT,
+    nombre VARCHAR(75) NOT NULL,
+    descripcion VARCHAR(255) NOT NULL,
+    idImagen TINYINT UNSIGNED NOT NULL,
+    CONSTRAINT pk_idObjeto PRIMARY KEY (idObjeto),
+    CONSTRAINT fk_idImagen FOREIGN KEY (idImagen) REFERENCES imagen(idImagen) ON UPDATE CASCADE ON DELETE CASCADE
+);
 
 -- CREATE TABLE habilidad ();
 
