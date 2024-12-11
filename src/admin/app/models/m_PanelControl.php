@@ -102,19 +102,24 @@
             $resultado = $this->conexion->query($sql);
 
             if ($resultado) {
-                /* 
-                Seleccionar idImagen de la imagen en cuestión
-                INSERTAR AQUÍ ESA ID -> $sqlObjeto = 'INSERT INTO objeto (idImagen) VALUES ("'.$idImagen.'");'; 
-                return true o false
-                */
+                // Seleccionar idImagen de la imagen en cuestión
                 $sqlId = 'SELECT idImagen FROM imagen WHERE url = "'.$urlImagen.'";';
                 $resultadoId = $this->conexion->query($sqlId);
-
-                $sqlObjeto = 'INSERT INTO objeto (idImagen) VALUES ("'.$resultadoId.'") WHERE idObjeto = "'.$idObjeto.'";';
-                $resultadoObjeto = $this->conexion->query($sqlObjeto);
-                
-                if ($resultadoObjeto) {
-                    return true;
+            
+                // Verificar si la consulta fue exitosa y si se obtuvo un resultado
+                if ($resultadoId && $row = $resultadoId->fetch_assoc()) {
+                    // Obtener el idImagen
+                    $idImagen = $row['idImagen'];
+            
+                    // Insertar el idImagen en la tabla 'objeto' con el idObjeto proporcionado
+                    $sqlObjeto = 'INSERT INTO objeto (idImagen) VALUES ("'.$idImagen.'") WHERE idObjeto = "'.$idObjeto.'";';
+                    $resultadoObjeto = $this->conexion->query($sqlObjeto);
+            
+                    if ($resultadoObjeto) {
+                        return true;
+                    } else {
+                        return false;
+                    }
                 } else {
                     return false;
                 }
