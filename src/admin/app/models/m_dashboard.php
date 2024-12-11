@@ -39,6 +39,15 @@
           $queryFrecuenciaPersonajes = 'SELECT nombre , COUNT(*) AS frecuencia FROM partida INNER JOIN personaje ON personaje.idPersonaje = partida.idPersonaje GROUP BY nombre ORDER BY frecuencia DESC;';
           $result = $this->conexion->query($queryFrecuenciaPersonajes);
           $datos['frecuencia_personajes'] = $result->fetch_all(MYSQLI_ASSOC);
+
+
+         $queryBasedeDatos= "SELECT ROUND(SUM(data_length + index_length) / 1024 / 1024, 2) AS tamano_mb
+              FROM information_schema.tables
+              WHERE table_schema = 'shopperMario'";
+              $result = $this->conexion->query($queryBasedeDatos);
+          $datos['tamano_mb'] = $result->fetch_assoc()['tamano_mb'];
+          
           return $datos;
+
         }
 }

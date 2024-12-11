@@ -20,7 +20,7 @@ class C_dashboard{
     this.panelAdmin.innerHTML = ''
 
     this.panelAdmin.innerHTML = '<h2>Estadísticas</h2>'
-
+    
     const totalPartidasDiv = this.crearDiv('Total Partidas: ', data.total_partidas)
     this.panelAdmin.appendChild(totalPartidasDiv)
 
@@ -36,15 +36,14 @@ class C_dashboard{
     const frecuenciaPersonajesDiv = this.crearDiv('Frecuencia Personajes: ', this.frecuenciaPersonaje(data.frecuencia_personajes))
     this.panelAdmin.appendChild(frecuenciaPersonajesDiv)
     
-
+    const tamanoBaseDeDatosDiv = this.crearDiv('Tamaño de la Base de Datos:', `${data.tamano_mb} MB`);
+    this.panelAdmin.appendChild(tamanoBaseDeDatosDiv);
     
   }
 
 
   crearDiv(titulo, contenido){
     const contenedor = document.createElement('div')
-    contenedor.style.display = 'flex'
-    contenedor.style.flexDirection = 'column'
     contenedor.classList.add('dinamicos-Admin')
     const encabezado = document.createElement('h3')
     encabezado.innerText = titulo

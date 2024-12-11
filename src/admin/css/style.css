@@ -347,16 +347,33 @@ html, body{
     #mostrarDatosPanelAdmin{
       display: flex;
       flex-direction: column;
-      border: 1px solid black;
       width: 100%;
       height: fit-content;
     }
 
     .dinamicos-Admin{
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
       width: fit-content;
       height: fit-content;
     }
     
+    .dinamicos-Admin h3{
+
+      font-size: 2em;
+      color: blue;
+      width: fit-content;
+      margin: 5px 10px;
+
+    }
+
+    .dinamicos-Admin p{
+      font-size: 2em;
+    }
+
+    
+
 /* ------------- GESTION DE IMAGENES ------------- */
 
     #vistaListar {

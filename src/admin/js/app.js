@@ -1,6 +1,7 @@
 import C_login from './controllers/c_login.js'
 import C_validarEnemigo from './controllers/c_validarEnemigo.js'
 import C_dashboard from './controllers/c_dashboard.js'
+import C_entidades from './controllers/c_entidades.js'
 
 window.addEventListener('DOMContentLoaded', () => {
 
@@ -50,9 +51,14 @@ window.addEventListener('DOMContentLoaded', () => {
 
     const botonDashboard = document.getElementById('dashboard')
     botonDashboard.addEventListener('click', function(event) {
-      console.log('1')
       let dashboard = new C_dashboard(panelAdmin)
       dashboard.cargarDatos()
     })
   }
+
+    const botonPersonajes = document.getElementById('personajes')
+    botonPersonajes.addEventListener('click', function(event){
+      console.log('HOLA')
+      const entidades = new C_entidades(panelAdmin)
+    })
 })
