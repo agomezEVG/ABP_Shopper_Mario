@@ -116,6 +116,99 @@
         }
         /* ------------------------------- FIN VALIDACION DE DATOS PERSONAJES ------------------------------- */
 
+        
+        /* ------------------------------- CRUD DE JUGADOR ------------------------------- */
+
+        public function c_AltaJugador ($datosJugador) {
+
+            $estado = $this->vDatosJugador($datosJugador);
+            
+            $this->objMPanelControl->mAltaJugador($datosJugador);
+
+            if($estado) {
+
+                $nombre = $datosJugador['nombre'];
+                $descripcion = $datosJugador['descripcion'];
+                $tipo = 'J';
+                $urlImagen = $datosJugador['url'];
+                
+                $idJugador = $this->objMPanelControl->mAltaPersonaje($nombre, $descripcion, $tipo);
+            } else {
+                return false;
+            }
+            
+            if(!$idJugador) {
+                $this->vista = 'Error';
+                return false;
+            } else {
+                $this->objMPanelControl->mAltaImagen($idJugador, $urlImagen);
+                return true;
+            }
+        }
+
+        public function c_ModificarJugador ($datosJugador) {
+
+            $estado = $this->vDatosJugador($datosJugador);
+
+            if($estado) {
+
+                $idJugador = $datosJugador['idPersonaje'];
+                $nombre = $datosJugador['nombre'];
+                $descripcion = $datosJugador['descripcion'];
+                $tipo = 'J';
+                $urlImagen = $datosJugador['url'];
+
+                $estado = $this->objMPanelControl->mModificarPersonaje($idJugador, $nombre, $descripcion, $tipo, $urlImagen);
+
+            } else {
+                return false;
+            }            
+        }
+
+        public function c_EliminarJugador ($idJugador) {
+            
+            $estado = $this->objMPanelControl->mEliminarPersonaje($idJugador);
+
+            if($estado) {
+                $this->vista = 'PanelAdmin';
+            } else {
+                $this->vista = 'Error';
+            }
+
+        }
+        public function c_ListarJugador () {
+            
+            $datos = $this->objMPanelControl->mListarJugador();
+        }
+
+        /* ------------------------------- VALIDACION DE DATOS JUGADOR ------------------------------- */
+
+        public function vDatosJugador($datosJugador) {
+            if (empty($datosJugador['nombre'])) {
+                $this->mensajeEstado = 'No se ha rellenado el nombre';
+                return false;
+            }
+    
+            if (empty($datosJugador['descripcion'])) {
+                $this->mensajeEstado = 'No se ha rellenado la descripción';
+                return false;
+            }
+    
+            if (empty($datosJugador['imagen'])) {
+                $this->mensajeEstado = 'No se ha añadido la URL de la imagen';
+                return false;
+            }
+
+            if (!isset($datosJugador['tipo'])) {
+                $this->mensajeEstado = 'No se ha añadido tipo de personaje';
+                return false;
+            }
+    
+            return true;
+        }
+
+        /* ------------------------------- FIN VALIDACION DE DATOS JUGADOR ------------------------------- */
+
 
         /* ------------------------------- CRUD DE NPC ------------------------------- */
         public function c_AltaNPC ($datosNPC) {
@@ -179,7 +272,7 @@
             
             $datos = $this->objMPanelControl->mListarNPC();
         }
-        /* ------------------------------- VALIDACION DE DATOS PERSONAJES ------------------------------- */
+        /* ------------------------------- VALIDACION DE DATOS NPC ------------------------------- */
         public function vDatosNPC($datosNPC) {
             if (empty($datosNPC['nombre'])) {
                 $this->mensajeEstado = 'No se ha rellenado el nombre';
@@ -203,7 +296,7 @@
     
             return true;
         }
-        /* ------------------------------- FIN VALIDACION DE DATOS PERSONAJES ------------------------------- */
+        /* ------------------------------- FIN VALIDACION DE DATOS NPC ------------------------------- */
 
 
         /* ------------------------------- CRUD DE DIALOGO ------------------------------- */
@@ -364,6 +457,6 @@
         }
 
     /* ------------------------------- FIN VALIDACION DE DATOS OBJETOS ------------------------------- */
-    
+
     }
 ?>

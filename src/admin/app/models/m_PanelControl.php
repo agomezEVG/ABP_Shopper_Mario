@@ -130,6 +130,38 @@
         /* ------------------------------- FIN MÉTODOS DE IMAGENES ------------------------------- */
 
 
+        /* ------------------------------- MÉTODOS DE JUGADOR ------------------------------- */
+        public function mAltaJugador ($idJugador) {
+
+            $sql = 'INSERT INTO jugador (idJugador) VALUES ("'.$idJugador.'");';
+            
+            $resultado = $this->conexion->query($sql);
+
+            if($resultado) 
+                return true;
+            else
+                return false;
+        }
+
+        public function mListarJugador () {
+            
+            $sql = 'SELECT nombre, descripcion FROM jugador INNER JOIN personaje ON idJugador = idPersonaje;';
+
+            $resultado = $this->conexion->query($sql);
+
+            if($resultado->num_rows > 0) {
+
+                $datosJugador = [];
+
+                while($fila = $resultado->fetch_assoc())
+                    $datosJugador[] = $fila;
+                
+                return $datosJugador;
+            } else {
+                return false;
+            }
+        }
+
         /* ------------------------------- MÉTODOS DE NPCs ------------------------------- */
         public function mAltaNPC ($idNPC) {
 
