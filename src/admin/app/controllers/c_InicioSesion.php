@@ -8,7 +8,7 @@
             $this->objMInicioSesion = new M_InicioSesion();
         }
 
-        public function inicio (){
+        public function inicioSesion (){
             $this->vista = 'InicioSesion';
         }
         

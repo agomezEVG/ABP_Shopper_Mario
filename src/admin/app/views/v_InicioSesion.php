@@ -29,5 +29,8 @@
                 </form>
             </section>
         </main>
+        <script type="module" src="js/views/v_InicioSesion.js"></script>
+        <script type="module" src="js/controllers/c_InicioSesion.js"></script>
+        <script type="module" src="js/models/m_InicioSesion.js"></script>
     </body>
 </html>

@@ -1,5 +1,5 @@
 <?php
-    Class M_PanelControl {
+    class M_PanelControl {
 
         private $conexion;
 
@@ -124,16 +124,16 @@
         // }
         public function mListarNPC () {
             
-            $sql = 'SELECT nombre, descripcion FROM npc INNER JOIN personaje ON idNPC = idPersonaje;';
+            $sql = 'SELECT idNPC, nombre, descripcion FROM personaje INNER JOIN npc ON idNPC = idPersonaje;';
 
             $resultado = $this->conexion->query($sql);
-
             if($resultado->num_rows > 0) {
 
                 $datosNPC = [];
 
                 while($fila = $resultado->fetch_assoc())
                     $datosNPC[] = $fila;
+
                 
                 return $datosNPC;
             } else {

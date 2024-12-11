@@ -305,7 +305,7 @@ html, body{
     }
     
     #panelAdmin > main {
-        position: relative;
+        display: flex;
         height: 95dvh;
         margin: 1%;
         border-radius: 0.5vw;
@@ -313,8 +313,8 @@ html, body{
     }
 
     #panelAdmin section {
-        width: 60%;
-        height: 100%;
+        width: 90%;
+        margin: auto;
         padding: 2.5% 0;
         box-sizing: border-box;
     }
@@ -369,7 +369,7 @@ html, body{
     }
 
     table {
-        width: 80%;
+        width: 100%;
         border-collapse: collapse;
         background-color: #fff;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);

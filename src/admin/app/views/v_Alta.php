@@ -64,11 +64,9 @@
         </style>
     </head>
     <body>
-
         <h2>Alta de Personaje</h2>
-
         <div class="form-container">
-            <form action="../../../alta.php" method="POST">
+            <form action="index.php?c=PanelControl&m=" method="POST">
                 <label for="nombre">Nombre del Personaje:</label>
                 <input type="text" id="nombre" name="nombre">
 

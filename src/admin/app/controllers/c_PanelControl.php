@@ -1,13 +1,13 @@
 <?php
 
-    Class C_panelcontrol {
+    class C_PanelControl {
 
         private $objMPanelControl;
         public $mensajeEstado;
         public $vista;
 
-        public function __construct(){
-            require_once 'app/models/m_PanelControl';
+        public function __construct() {
+            require_once 'app/models/m_PanelControl.php';
             $this->objMPanelControl = new M_PanelControl();
         }
 
@@ -17,7 +17,7 @@
         }
 
         /* ------------------------------- CRUD DE PERSONAJES ------------------------------- */
-        public function c_AltaPersonaje($datosPersonaje) {
+        public function cAltaPersonaje($datosPersonaje) {
 
             $estado = $this->vDatosPersonaje($datosPersonaje);
 
@@ -34,6 +34,7 @@
             }
             
             if($idPersonaje) {
+
                 $estado = $this->objMPanelControl->mAltaImagen($idPersonaje, $urlImagen);
                 $this->vista = 'Alta';
                 return true;
@@ -81,8 +82,8 @@
             $personajes = $this->objMPanelControl->mListarPersonajes();
 
             if($personajes != false) {
-                $this->vista = 'Listar';
-                return true;
+                $this->vista = 'ListarPersonajes';
+                return $personajes;
             }
             else {
                 $this->vista = 'Error';
@@ -118,7 +119,7 @@
 
 
         /* ------------------------------- CRUD DE NPC ------------------------------- */
-        public function c_AltaNPC ($datosNPC) {
+        public function cAltaNPC ($datosNPC) {
 
             $estado = $this->vDatosNPC($datosNPC);
             
@@ -144,7 +145,7 @@
                 return true;
             }
         }
-        public function c_ModificarNPC ($datosNPC) {
+        public function cModificarNPC ($datosNPC) {
 
             $estado = $this->vDatosNPC($datosNPC);
 
@@ -165,7 +166,7 @@
 
             
         }
-        public function c_EliminarNPC ($idNPC) {
+        public function cEliminarNPC ($idNPC) {
             
             $estado = $this->objMPanelControl->mEliminarPersonaje($idNPC);
 
@@ -175,9 +176,16 @@
                 $this->vista = 'Error';
             }
         }
-        public function c_ListarNPC () {
-            
-            $datos = $this->objMPanelControl->mListarNPC();
+        public function cListarNPC() {
+
+            $datosNPC = $this->objMPanelControl->mListarNPC();
+            if($datosNPC != false) {
+                $this->vista = 'ListarNPC';
+                return $datosNPC;
+            } else {
+                $this->vista = 'Error';
+                return false;
+            }
         }
         /* ------------------------------- VALIDACION DE DATOS PERSONAJES ------------------------------- */
         public function vDatosNPC($datosNPC) {

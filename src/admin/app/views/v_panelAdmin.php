@@ -7,20 +7,16 @@
         
         <!-- ENLACES DE DISEÑO E ICONOS -->
         <link rel="shortcut icon" href="img/iconoRedondo.png" type="image/x-icon">
-
         <link rel="stylesheet" href="css/style.css" type="text/css">
-
-        <!-- ARCHIVOS JAVASCRIPT -->
-        <!-- <script src="../../src/js/controllers/imagenes.js"></script> -->
     </head>
     <body id="panelAdmin">
         <aside>
-            <a href="index.php?c=PanelControl&m=Dashboard"><button><h3>DASHBOARD</h3></button></a>
-            <a href="index.php?c=PanelControl&m=ListarPersonajes"><button><h3>PERSONAJES</h3></button></a>
-            <a href="index.php?c=PanelControl&m=ListarImagenes"><button><h3>IMAGENES</h3></button></a>
-            <a href="index.php?c=PanelControl&m=ListarObjetos""><button><h3>OBJETOS</h3></button></a>
-            <a href="index.php?c=PanelControl&m=ListarDialogos""><button><h3>DIÁLOGOS</h3></button></a>
-            <a href="index.php?c=PanelControl&m=ListarRanking""><button><h3>RANKING</h3></button></a>
+            <a href="index.php?c=PanelControl&m=inicio"><button><h3>DASHBOARD</h3></button></a>
+            <a href="index.php?c=PanelControl&m=cListarPersonajes"><button><h3>PERSONAJES</h3></button></a>
+            <a href="index.php?c=PanelControl&m=cListarImagenes"><button><h3>IMAGENES</h3></button></a>
+            <a href="index.php?c=PanelControl&m=cListarObjetos""><button><h3>OBJETOS</h3></button></a>
+            <a href="index.php?c=PanelControl&m=cListarDialogos""><button><h3>DIÁLOGOS</h3></button></a>
+            <a href="index.php?c=PanelControl&m=cListarRanking""><button><h3>RANKING</h3></button></a>
         </aside>
         <main>
             <section>
