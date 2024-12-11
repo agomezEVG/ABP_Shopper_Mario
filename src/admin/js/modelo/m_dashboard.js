@@ -5,7 +5,6 @@ class M_dashboard{
 
 
     try {
-      console.log('3')
       const respuesta = await fetch('../../index.php?c=Dashboard&m=llamada')
 
       const data = await respuesta.json()

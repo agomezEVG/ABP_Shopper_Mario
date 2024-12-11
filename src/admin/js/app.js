@@ -59,6 +59,14 @@ window.addEventListener('DOMContentLoaded', () => {
     const botonPersonajes = document.getElementById('personajes')
     botonPersonajes.addEventListener('click', function(event){
       console.log('HOLA')
-      const entidades = new C_entidades(panelAdmin)
+      const selectEntidades = document.createElement('select')
+      selectEntidades.id = 'select-entidades'
+      panelAdmin.appendChild(selectEntidades)
+
+      const defaultOption = document.createElement('option')
+      defaultOption.value = ''
+      defaultOption.textContent = 'Elige'
+      selectEntidades.appendChild(defaultOption)
+      new C_entidades(panelAdmin,selectEntidades)
     })
 })

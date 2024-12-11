@@ -1,11 +1,14 @@
 class M_entidades{
 
 
-  datosDashboard(){
+  async datosDashboard(){
 
 
     try {
-      console.log('ULTIMO PASO')
+
+      const respuesta = await fetch('../../index.php?c=Paneladmin&m=listarTipos')
+      const data = await respuesta.text()
+      console.log(data)
     } catch (error) {
 
       console.error('Error: ',error)
