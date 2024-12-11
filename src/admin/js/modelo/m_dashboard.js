@@ -8,10 +8,11 @@ class M_dashboard{
       console.log('3')
       const respuesta = await fetch('../../index.php?c=Dashboard&m=llamada')
 
-      const data = await respuesta.text()
-      console.log(data)
+      const data = await respuesta.json()
+      return data
     } catch (error) {
-      
+
+      console.error('Error: ',error)
     }
   }
 }

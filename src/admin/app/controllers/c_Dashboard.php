@@ -13,6 +13,8 @@ Class C_Dashboard {
 
     $objMPanelControl = new M_dashboard();
     $datos = $objMPanelControl->datosAdmin();
-    echo $datos;
+    header('Content-Type: application/json');
+
+    echo json_encode($datos);
   }
 }
