@@ -7,7 +7,7 @@ class M_listarTablas{
     try {
 
 
-      const response =  await fetch('../../index.php?c=Entidades&m=listarTipos',{
+      const response =  await fetch('../../index.php?c=listarTablas&m=listarTipos',{
         method: 'POST',
         headers: {
           'Content-Type': 'application/json' 
