@@ -3,8 +3,10 @@ import M_listarTareas from "../modelo/m_listarTablas.js"
 
 class C_entidades {
 
-  constructor(panelAdmin,selectEntidades){
+  constructor(panelAdmin){
     this.panelAdmin = panelAdmin
+    this.contenedorTabla = document.createElement('div')
+    this.contenedorTabla.id = 'contenedorTabla'
     console.log('MAURI vas bien')
   }
 
@@ -38,12 +40,82 @@ class C_entidades {
     
   }
 
-  manejarOption(valorSelect){
+  async manejarOption(valorSelect){
   
     const listarTablas = new M_listarTareas()
-    listarTablas.listar(valorSelect)
+  let personajes = await listarTablas.listar(valorSelect)
+
+    console.log(personajes)
+
+    this.generarTabla(personajes)
+
 
   }
+
+  generarTabla(personajes){
+
+    this.panelAdmin.appendChild(this.contenedorTabla)
+    this.contenedorTabla.innerHTML = ''
+
+    if(personajes.mensaje){
+      this.contenedorTabla.innerHTML  = `<h2>${personajes.mensaje}</h2>`
+    }
+
+    const table = document.createElement('table')
+    const cabeceras = Object.keys(personajes[0])
+    let theadHTML = '<thead><tr>'
+    cabeceras.forEach(cabecera =>{
+
+      theadHTML += `<th>${cabecera.toUpperCase()}</th>`
+    })
+    theadHTML += '<th>ACCIONES</th></thead>'
+
+    table.innerHTML = theadHTML
+
+    const tbody = document.createElement('tbody')
+    personajes.forEach(personaje => {
+      const fila = document.createElement('tr')
+      cabeceras.forEach(cabecera => {
+       const celda = document.createElement('td')
+        if (cabecera === 'url' && personaje[cabecera]) {
+          const imagenDiv = document.createElement('div')
+          const imagen = document.createElement('img')
+          imagen.src = personaje[cabecera]
+          imagen.alt = 'Imagen del personaje'
+          imagen.style.width = '100px' 
+          imagen.style.height = 'auto'
+          imagenDiv.appendChild(imagen)
+          celda.appendChild(imagenDiv)
+        } else {
+          celda.textContent = personaje[cabecera]
+        } 
+        fila.appendChild(celda)
+      })
+        const actionCell = document.createElement('td')
+        actionCell.classList.add('action-buttons')
+        actionCell.innerHTML = `
+            <button class="btn btn-eliminar" data-id="${personaje.idPersonaje}">Eliminar</button>
+            <button class="btn btn-modificar" data-id="${personaje.idPersonaje}">Modificar</button>
+        `
+        fila.appendChild(actionCell)
+
+        tbody.appendChild(fila)
+
+    })
+    
+    table.appendChild(tbody)
+    this.contenedorTabla.appendChild(table)
+    //Delegación de Eventos
+    this.contenedorTabla.addEventListener('click', (event)=>{
+      if(event.target.classList.contains('btn-eliminar')){
+        console.log(event.target.dataset.id)
+      }
+     if(event.target.classList.contains('btn-modificar')){
+        console.log(event.target.dataset.id)
+      }
+    })
+    }
+
 
 
 
