@@ -64,8 +64,8 @@
             return true; 
         }
         public function mListarPersonajes() {
-            $sql = 'SELECT personaje.idPersonaje, personaje.nombre, personaje.descripcion, personaje.tipo, imagen.url
-                    FROM personaje LEFT JOIN imagen ON personaje.idPersonaje = imagen.idPersonaje';
+
+            $sql = 'SELECT p.idPersonaje, p.nombre, p.descripcion, p.tipo, GROUP_CONCAT(i.nombreArchivo SEPARATOR ", " ) AS imagenes FROM personaje p LEFT JOIN imagen i ON p.idPersonaje = i.idPersonaje GROUP BY p.idPersonaje;';
         
             $resultado = $this->conexion->query($sql);
         

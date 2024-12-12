@@ -121,32 +121,37 @@
         /* ------------------------------- CRUD DE NPC ------------------------------- */
         public function cAltaNPC ($datosNPC) {
 
-            $estado = $this->vDatosNPC($datosNPC);
-            
-            $this->objMPanelControl->mAltaNPC($datosNPC);
-
-            if($estado) {
-
-                $nombre = $datosNPC['nombre'];
-                $descripcion = $datosNPC['descripcion'];
-                $tipo = 'N';
-                $urlImagen = $datosNPC['url'];
+            if (isset($datosNPC['anadirNPC'])) {
+                    
+                $estado = $this->vDatosNPC($datosNPC);
                 
-                $idNPC = $this->objMPanelControl->mAltaPersonaje($nombre, $descripcion, $tipo);
+                $this->objMPanelControl->mAltaNPC($datosNPC);
+                
+                if($estado) {
+                    
+                    $nombre = $datosNPC['nombre'];
+                    $descripcion = $datosNPC['descripcion'];
+                    $tipo = 'N';
+                    $urlImagen = $datosNPC['url'];
+                    
+                    $idNPC = $this->objMPanelControl->mAltaPersonaje($nombre, $descripcion, $tipo);
+                } else {
+                    return false;
+                }
+                
+                if(!$idNPC) {
+                    $this->vista = 'Error';
+                    return false;
+                } else {
+                    $this->objMPanelControl->mAltaImagen($idNPC, $urlImagen);
+                    return true;
+                }
             } else {
-                return false;
-            }
-            
-            if(!$idNPC) {
-                $this->vista = 'Error';
-                return false;
-            } else {
-                $this->objMPanelControl->mAltaImagen($idNPC, $urlImagen);
-                return true;
+                $this->vista = 'AltaNPC';
             }
         }
         public function cModificarNPC ($datosNPC) {
-
+            
             if(isset($datosNPC['guardarCambios'])) {
 
                 $estado = $this->vDatosNPC($datosNPC);

@@ -3,8 +3,9 @@
 
     /* ------------- TIPOGRAFIA Y ESTILOS ------------- */
 
-    @import url('https://fonts.cdnfonts.com/css/super-mario-256');
-    @import url('https://fonts.googleapis.com/css2?family=Jersey+10&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+        @import url('https://fonts.cdnfonts.com/css/super-mario-256');
+        @import url('https://fonts.googleapis.com/css2?family=Jersey+10&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+    /* ------------------------------------------------ */
 
 * {
     margin: 0;
@@ -20,10 +21,11 @@ html, body{
     background-size: cover;
 }
 
-    main {
-        width: 100%;
-        height: 100dvh;
-    }
+main {
+    width: 100%;
+    height: 100dvh;
+}
+/* -------------------------------------------- */
 
 /* ------------- OPCIONES INICIO ------------- */
 
@@ -56,21 +58,24 @@ html, body{
         h1 span:nth-child(13) { color: #0074D9; } 
         h1 span:nth-child(14) { color: #FF4136; } 
 
-    h2, h2 > a{
-        width: 40%;
-        margin-top: 2%;
-        font-size: 4.5rem;
-        color: brown;
-    }
+        h2, h2 > a{
+            width: 40%;
+            margin-top: 2%;
+            font-size: 4.5rem;
+            color: brown;
+        }
 
-    h3, h3 > a{
-        width: 40%;
-        margin-top: 2%;
-        font-size: 3rem;
-        text-decoration: none;
-        color: brown;
-        -webkit-text-stroke-color: black;
-    }
+        h3, h3 > a{
+            width: 40%;
+            margin-top: 2%;
+            font-size: 3rem;
+            text-decoration: none;
+            color: brown;
+            -webkit-text-stroke-color: black;
+        }
+    /* ---------------------------------- */
+
+/* ------------------------------------------- */
 
 /* ------------- ACCESO ADMIN ------------- */
     img {
@@ -83,6 +88,8 @@ html, body{
     #admin{
         cursor: default;
     }
+
+/* ---------------------------------------- */
 
 /* ------------- INICIO SESION ADMIN ------------- */
 
@@ -99,7 +106,7 @@ html, body{
         
     }
 
-    #sectionLogin {
+    #sectionFormularios {
         width: 50%;
         border-radius: 0.5vw;
         background-image: url('../img/fondoLadrillo.jpg');
@@ -107,7 +114,7 @@ html, body{
         background-size: cover;
     }
 
-    #sectionLogin, #sectionLogin * {
+    #sectionFormularios, #sectionFormularios * {
         color: white;
         font-size: 1.75rem;
         font-family: 'Jersey 10';
@@ -116,13 +123,13 @@ html, body{
         text-shadow:none;
     }
 
-    #sectionLogin > form {
+    #sectionFormularios > form {
         width: 100%;
         padding: 1.5% 0;
     }
 
 
-    #sectionLogin input {
+    #sectionFormularios input {
         display: block;
         width: fit-content;
         margin: 1.5% auto;
@@ -133,24 +140,24 @@ html, body{
         font-size: 1.75rem;
     }
 
-    #sectionLogin input::placeholder {
+    #sectionFormularios input::placeholder {
         color: #D9D9D9;
         -webkit-text-stroke-width: 1.5px;
         font-style: italic;
     }
 
-    #sectionLogin div {
+    #sectionFormularios div {
         width: fit-content;
         margin: auto;
         color: #D9D9D9;
         -webkit-text-stroke-width: 2px;
     }
 
-    #sectionLogin div > input[type="checkbox"] {
+    #sectionFormularios div > input[type="checkbox"] {
         display: inline-block;
     }
 
-    #sectionLogin p {
+    #sectionFormularios p {
         margin-top: 3%;
         font-size: 0.8rem;
         text-align: center;
@@ -160,16 +167,15 @@ html, body{
         -webkit-text-stroke-color: black;
     }
 
-    #sectionLogin a{
+    #sectionFormularios a{
         color: lightsteelblue;
     }
 
-    #sectionLogin input[type="submit"] {
+    #sectionFormularios input[type="submit"] {
         width: 40%;
         margin-top: 3%;
     }
-
-
+/* ----------------------------------------------- */
 
 /* ------------- RANKING ------------- */
 
@@ -193,7 +199,7 @@ html, body{
         color: #D9D9D9;
         text-shadow: 6px 7px black;
     }
-    
+/* ----------------------------------- */
 
 /* ------------- RECUPERAR CONTRASEÑA ------------- */
     /*
@@ -254,6 +260,7 @@ html, body{
     #sectionOlvidado input[type="submit"]:hover {
     background-color: darkgreen;
     }
+/* ------------------------------------------------ */
 
 /* ------------- PANEL ADMINISTRADOR ------------- */
 
@@ -312,9 +319,10 @@ html, body{
         background-color: #d9d9d99f;
     }
 
-    #panelAdmin section {
-        width: 90%;
-        padding: 2.5% 0;
+    #panelAdmin > main > section {
+        width: 87%;
+        height: 95vh;
+        /* padding: 2.5% 0; */
         box-sizing: border-box;
     }
 
@@ -341,7 +349,7 @@ html, body{
     #Logout {
         position: absolute;
         top: 1%;
-        left: 98%;
+        left: 3%;
         transform: translate(-50%);
         width: 2.5%;
         padding: 0.2vw;
@@ -352,59 +360,60 @@ html, body{
     #Logout img {
         text-align: center;
         font-family: 'Jersey 10';
-        font-size: 1.4rem;
         color: #860101;
         letter-spacing: 0.5vw;
         text-shadow: 0.1vw 0.1vw black;
         -webkit-text-stroke-width: 0;
     }
-
-    
-
-
+/* ----------------------------------------------- */
 
 /* ------------- GESTION DE DATOS ------------- */
 
-    section.modificarDatos {
-        width: 100%;
+    section.datos {
+
+        margin-left: 11%;
+        /* padding: 10% 0 0; */
     }
+
+    /* ------------- TABLA GENERAL DE INFORMACION ------------- */
+        table {
+            width: 100%;
+            border-radius: 0.5vh;
+            border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 0.5vw;
+            text-align: left;
+            font-family: 'Jersey 10';
+            text-shadow: none;
+            color: black;
+        }
+
+        th {
+            background-color: #007BFF;
+            color: white;
+            text-align: center;
+            font-size: 1.4rem;
+        }
+
+        td {
+            font-size: 1.4rem;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #ddd;
+        }
+    /* -------------------------------------------------------- */    
 
     .modificarDatos table {
         width: 80%;
-    }
-
-    table {
-        width: 90%;
-        border-collapse: collapse;
-        background-color: #fff;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-    
-    th, td {
-        padding: 12px;
-        text-align: left;
-        font-family: 'Jersey 10';
-        text-shadow: none;
-        color: black;
-    }
-    
-    th {
-        background-color: #007BFF;
-        color: white;
-        text-align: center;
-        font-size: 2rem;
-    }
-    
-    td {
-        font-size: 1.6rem;
-    }
-    
-    tr:nth-child(even) {
-        background-color: #f2f2f2;
-    }
-
-    tr:hover {
-        background-color: #ddd;
     }
 
     .action-buttons {
@@ -445,16 +454,22 @@ html, body{
     #btnAnadir {
         position: absolute;
         top: 0.5%;
-        left: 92%;
+        left: 6%;
         width: 3.5%;
     }
 
     /* ------------- SELECT PERSONAJES ------------- */
         select#tipoPersonaje {
             position: absolute;
-            left: 2%;
-            margin: auto;
-            font-size: 1em;
+            top: 9%;
+            left: 0.5%;
+            width: 10%;
+            border-radius: 0.5vw;
+            font-size: 1.6em;
+            font-family: 'Jersey 10';
+        }
+
+        option {
             font-family: 'Jersey 10';
         }
 

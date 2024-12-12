@@ -16,7 +16,7 @@
                 <span>I</span><span>N</span><span>I</span><span>C</span><span>I</span><span>O</span>
                 <span>S</span><span>E</span><span>S</span><span>I</span><span>Ó</span><span>N</span>
             </h1>
-            <section id="sectionLogin">
+            <section id="sectionFormularios">
                 <form action="index.php?c=InicioSesion&m=validarInicioSesion" method="POST">
                     <input type="email" name="email" id="email" placeholder="Email"/>
                     <input type="password" name="passwd" id="passwd" placeholder="Password"/>

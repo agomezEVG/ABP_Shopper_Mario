@@ -12,29 +12,30 @@
     <body id="panelAdmin">
         <aside>
             <a href="index.php?c=PanelControl&m=inicio"><button><h3>DASHBOARD</h3></button></a>
-            <a href="index.php?c=PanelControl&m=cListarPersonajes"><button><h3>PERSONAJES</h3></button></a>
+            <a href="index.php?c=PanelControl&m=cListarNPC"><button><h3>PERSONAJES</h3></button></a>
             <a href="index.php?c=PanelControl&m=cListarObjetos"><button><h3>OBJETOS</h3></button></a>
             <a href="index.php?c=PanelControl&m=cListarDialogos"><button><h3>DIÁLOGOS</h3></button></a>
             <a href="index.php?c=PanelControl&m=cListarRanking"><button><h3>RANKING</h3></button></a>
         </aside>
         <main>
-            <section>
+            <section class="datos">
+                <a href="index.php"><img src="img/logout.png" alt="LOGOUT" id="Logout"/></a>
+                <a href="index.php?c=PanelControl&m=cAltaNPC"><img src="img/btnAnadir.svg" alt="Boton Añadir" id="btnAnadir"/></a>
                 <form id="tipoPersonaje" method="POST">
                     <select name="tipoPersonaje" id="tipoPersonaje">
-                        <option disable></option>
+                        <option value="Personajes" hidden disable>Personaje</option>
                         <option value="J">Jugador</option>
                         <option value="E">Enemigo</option>
                         <option value="N">NPC</option>
                     </select>
                 </form>
-            </section>
-            <section>
                 <table>
                     <thead>
                         <tr>
                             <th>Nombre</th>
                             <th>Descripción</th>
                             <th>Tipo</th>
+                            <th>Imagenes</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -46,6 +47,7 @@
                                 echo '<td>' . $personaje['nombre'] . '</td>';
                                 echo '<td>' . $personaje['descripcion'] . '</td>';
                                 echo '<td>' . $personaje['tipo'] . '</td>';
+                                echo '<td>' . $personaje['imagenes'] . '</td>';
                                 echo '<td class="action-buttons">';
                                 echo '<form action="index.php?c=PanelControl&m=cEliminarPersonajes" method="POST" style="display:inline;">';
                                 echo '<button type="submit" class="btn btn-eliminar" value="'.$personaje['idPersonaje'].'">Eliminar</button>';
@@ -58,7 +60,6 @@
                             }
                         }else
                             echo '<h1>NO HAY PERSNAJES</h1>';
-                        
                         ?>
                     </tbody>
                 </table>

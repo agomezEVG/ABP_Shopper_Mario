@@ -18,19 +18,17 @@
             <a href="index.php?c=PanelControl&m=cListarRanking"><button><h3>RANKING</h3></button></a>
         </aside>
         <main>
-            <section>
+            <section class="datos">
                 <a href="index.php"><img src="img/logout.png" alt="LOGOUT" id="Logout"/></a>
                 <a href="index.php?c=PanelControl&m=cAltaNPC"><img src="img/btnAnadir.svg" alt="Boton Añadir" id="btnAnadir"/></a>
                 <form id="tipoPersonaje" method="POST">
                     <select name="tipoPersonaje" id="tipoPersonaje">
-                        <option disable></option>
+                        <option value="Personajes"hidden disable>Personaje</option>
                         <option value="J">Jugador</option>
                         <option value="E">Enemigo</option>
                         <option value="N">NPC</option>
                     </select>
                 </form>
-            </section>
-            <section>
                 <table>
                     <thead>
                         <tr>
