@@ -7,7 +7,7 @@ class M_listarTablas{
     try {
 
 
-      const response =  await fetch(`../../index.php?c=panelAdmin&m=listar&v=${valorSelect}`,{
+      const response =  await fetch('../../index.php?c=Entidades&m=listarTipos',{
         method: 'POST',
         headers: {
           'Content-Type': 'application/json' 
@@ -15,12 +15,12 @@ class M_listarTablas{
         body: JSON.stringify({valor: valorSelect})
       })
 
-      const data =  await response.text()
+      const data =  await response.json()
       console.log(data)
       
 
     } catch (error) {
-      console.error()
+      console.error(error)
     }
   }
 }
