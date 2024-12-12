@@ -299,6 +299,99 @@
         /* ------------------------------- FIN VALIDACION DE DATOS NPC ------------------------------- */
 
 
+        /* ------------------------------- CRUD DE ENEMIGO ------------------------------- */
+
+        public function c_AltaEnemigo ($datosEnemigo) {
+
+            $estado = $this->vDatosEnemigo($datosEnemigo);
+            
+            $this->objMPanelControl->mAltaEnemigo($datosEnemigo);
+
+            if($estado) {
+
+                $nombre = $datosEnemigo['nombre'];
+                $descripcion = $datosEnemigo['descripcion'];
+                $tipo = 'E';
+                $urlImagen = $datosEnemigo['url'];
+                
+                $idEnemigo = $this->objMPanelControl->mAltaPersonaje($nombre, $descripcion, $tipo);
+            } else {
+                return false;
+            }
+            
+            if(!$idEnemigo) {
+                $this->vista = 'Error';
+                return false;
+            } else {
+                $this->objMPanelControl->mAltaImagen($idEnemigo, $urlImagen);
+                return true;
+            }
+        }
+
+        public function c_ModificarEnemigo ($datosEnemigo) {
+
+            $estado = $this->vDatosEnemigo($datosEnemigo);
+
+            if($estado) {
+
+                $idEnemigo = $datosEnemigo['idPersonaje'];
+                $nombre = $datosEnemigo['nombre'];
+                $descripcion = $datosEnemigo['descripcion'];
+                $tipo = 'E';
+                $urlImagen = $datosEnemigo['url'];
+
+                $estado = $this->objMPanelControl->mModificarPersonaje($idEnemigo, $nombre, $descripcion, $tipo, $urlImagen);
+
+            } else {
+                return false;
+            }            
+        }
+
+        public function c_EliminarEnemigo ($idEnemigo) {
+            
+            $estado = $this->objMPanelControl->mEliminarPersonaje($idEnemigo);
+
+            if($estado) {
+                $this->vista = 'PanelAdmin';
+            } else {
+                $this->vista = 'Error';
+            }
+
+        }
+        public function c_ListarEnemigo () {
+            
+            $datos = $this->objMPanelControl->mListarEnemigo();
+        }
+
+        /* ------------------------------- VALIDACION DE DATOS ENEMIGO ------------------------------- */
+
+        public function vDatosEnemigo($datosEnemigo) {
+            if (empty($datosEnemigo['nombre'])) {
+                $this->mensajeEstado = 'No se ha rellenado el nombre';
+                return false;
+            }
+    
+            if (empty($datosEnemigo['descripcion'])) {
+                $this->mensajeEstado = 'No se ha rellenado la descripción';
+                return false;
+            }
+    
+            if (empty($datosEnemigo['imagen'])) {
+                $this->mensajeEstado = 'No se ha añadido la URL de la imagen';
+                return false;
+            }
+
+            if (!isset($datosEnemigo['tipo'])) {
+                $this->mensajeEstado = 'No se ha añadido tipo de personaje';
+                return false;
+            }
+    
+            return true;
+        }
+
+        /* ------------------------------- FIN VALIDACION DE DATOS ENEMIGO ------------------------------- */
+
+
         /* ------------------------------- CRUD DE DIALOGO ------------------------------- */
         public function c_AltaDialogo ($datosDialogo) {
 

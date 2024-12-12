@@ -161,6 +161,8 @@
                 return false;
             }
         }
+        /* ------------------------------- FIN MÉTODOS DE JUGADOR ------------------------------- */
+
 
         /* ------------------------------- MÉTODOS DE NPCs ------------------------------- */
         public function mAltaNPC ($idNPC) {
@@ -206,6 +208,40 @@
             }
         }
         /* ------------------------------- FIN MÉTODOS DE NPCs ------------------------------- */
+
+
+        /* ------------------------------- MÉTODOS DE ENEMIGO ------------------------------- */
+        public function mAltaEnemigo ($idEnemigo) {
+
+            $sql = 'INSERT INTO enemigo (idEnemigo) VALUES ("'.$idEnemigo.'");';
+            
+            $resultado = $this->conexion->query($sql);
+
+            if($resultado) 
+                return true;
+            else
+                return false;
+        }
+
+        public function mListarEnemigo () {
+            
+            $sql = 'SELECT nombre, descripcion FROM enemigo INNER JOIN personaje ON idEnemigo = idPersonaje;';
+
+            $resultado = $this->conexion->query($sql);
+
+            if($resultado->num_rows > 0) {
+
+                $datosEnemigo = [];
+
+                while($fila = $resultado->fetch_assoc())
+                    $datosEnemigo[] = $fila;
+                
+                return $datosEnemigo;
+            } else {
+                return false;
+            }
+        }
+        /* ------------------------------- FIN MÉTODOS DE ENEMIGO ------------------------------- */
 
 
         /* ------------------------------- MÉTODOS DE DIÁLOGOS ------------------------------- */
