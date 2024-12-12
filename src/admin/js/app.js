@@ -15,7 +15,6 @@ window.addEventListener('DOMContentLoaded', () => {
 
     loginForm.addEventListener('submit', function(event) {
           event.preventDefault()
-
           const formData = new FormData(loginForm)
           const data = Object.fromEntries(formData.entries())
           const login = new C_login(data)
@@ -43,30 +42,26 @@ window.addEventListener('DOMContentLoaded', () => {
         new C_validarEnemigo(enemyForm)
       }
 
-
   /*--------------------- PANEL ADMIN -------------------- */
 
   const panelAdmin = document.getElementById('mostrarDatosPanelAdmin')
   if(panelAdmin){
-
     const botonDashboard = document.getElementById('dashboard')
-    botonDashboard.addEventListener('click', function(event) {
-      let dashboard = new C_dashboard(panelAdmin)
-      dashboard.cargarDatos()
-    })
-  }
+    if(botonDashboard){
+      botonDashboard.addEventListener('click', function(event) {
+        let dashboard = new C_dashboard(panelAdmin)
+        dashboard.cargarDatos()
+      })
+    }
 
     const botonPersonajes = document.getElementById('personajes')
-    botonPersonajes.addEventListener('click', function(event){
-      console.log('HOLA')
-      const selectEntidades = document.createElement('select')
-      selectEntidades.id = 'select-entidades'
-      panelAdmin.appendChild(selectEntidades)
+    if(botonPersonajes){
+      botonPersonajes.addEventListener('click', function(event){
+        console.log('HOLA')
+        const entidades = new C_entidades(panelAdmin)
+        entidades.crearSelect()
+        })
+      }
+  }
 
-      const defaultOption = document.createElement('option')
-      defaultOption.value = ''
-      defaultOption.textContent = 'Elige'
-      selectEntidades.appendChild(defaultOption)
-      new C_entidades(panelAdmin,selectEntidades)
-    })
 })

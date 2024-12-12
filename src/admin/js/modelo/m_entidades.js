@@ -7,8 +7,8 @@ class M_entidades{
     try {
 
       const respuesta = await fetch('../../index.php?c=Paneladmin&m=listarTipos')
-      const data = await respuesta.text()
-      console.log(data)
+      const data = await respuesta.json()
+      return data
     } catch (error) {
 
       console.error('Error: ',error)
