@@ -54,7 +54,7 @@ window.addEventListener('DOMContentLoaded', () => {
       })
     }
 
-    const botonPersonajes = document.getElementById('personajes')
+    const botonPersonajes = document.getElementById('entidades')
     if(botonPersonajes){
       botonPersonajes.addEventListener('click', function(event){
         console.log('HOLA')
@@ -62,6 +62,8 @@ window.addEventListener('DOMContentLoaded', () => {
         entidades.crearSelect()
         })
       }
+
+    const botonDialogos = document.getElementById('dialogos')
   }
 
 })
