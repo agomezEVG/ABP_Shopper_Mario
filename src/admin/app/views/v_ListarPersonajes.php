@@ -13,12 +13,21 @@
         <aside>
             <a href="index.php?c=PanelControl&m=inicio"><button><h3>DASHBOARD</h3></button></a>
             <a href="index.php?c=PanelControl&m=cListarPersonajes"><button><h3>PERSONAJES</h3></button></a>
-            <a href="index.php?c=PanelControl&m=cListarImagenes"><button><h3>IMAGENES</h3></button></a>
             <a href="index.php?c=PanelControl&m=cListarObjetos"><button><h3>OBJETOS</h3></button></a>
             <a href="index.php?c=PanelControl&m=cListarDialogos"><button><h3>DIÁLOGOS</h3></button></a>
             <a href="index.php?c=PanelControl&m=cListarRanking"><button><h3>RANKING</h3></button></a>
         </aside>
         <main>
+            <section>
+                <form id="tipoPersonaje" method="POST">
+                    <select name="tipoPersonaje" id="tipoPersonaje">
+                        <option disable></option>
+                        <option value="J">Jugador</option>
+                        <option value="E">Enemigo</option>
+                        <option value="N">NPC</option>
+                    </select>
+                </form>
+            </section>
             <section>
                 <table>
                     <thead>
@@ -38,12 +47,10 @@
                                 echo '<td>' . $personaje['descripcion'] . '</td>';
                                 echo '<td>' . $personaje['tipo'] . '</td>';
                                 echo '<td class="action-buttons">';
-                                echo '<form action="eliminar.php" method="POST" style="display:inline;">';
-                                echo '<input type="hidden" name="idPersonaje" value="' . $personaje['idPersonaje'] . '">';
+                                echo '<form action="index.php?c=PanelControl&m=cEliminarPersonajes" method="POST" style="display:inline;">';
                                 echo '<button type="submit" class="btn btn-eliminar" value="'.$personaje['idPersonaje'].'">Eliminar</button>';
                                 echo '</form>';
-                                echo '<form action="src/php/views/vistaModificar.php" method="POST" style="display:inline;">';
-                                echo '<input type="hidden" name="idPersonaje" value="' . $personaje['idPersonaje'] . '">';
+                                echo '<form action="index.php?c=PanelControl&m=cModificarPersonajes" method="POST" style="display:inline;">';
                                 echo '<button type="submit" class="btn btn-modificar" value="'.$personaje['idPersonaje'].'">Modificar</button>';
                                 echo '</form>';
                                 echo '</td>';

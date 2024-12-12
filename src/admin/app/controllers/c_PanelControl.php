@@ -44,7 +44,7 @@
             }
 
         }
-        public function cEliminarPersonaje($idPersonaje) {
+        public function cEliminarPersonaje($idPersonaje) {  
             
             if(!empty($idPersonaje)) {
                 $estado = $this->objMPanelControl->mEliminarPersonaje($idPersonaje);
@@ -147,21 +147,27 @@
         }
         public function cModificarNPC ($datosNPC) {
 
-            $estado = $this->vDatosNPC($datosNPC);
+            if($this->vista == 'ModificarNPC') {
 
-            if($estado) {
-
-                $idNPC = $datosNPC['idPersonaje'];
-                $nombre = $datosNPC['nombre'];
-                $descripcion = $datosNPC['descripcion'];
-                $tipo = 'N';
-                $urlImagen = $datosNPC['url'];
-
-                $estado = $this->objMPanelControl->mModificarPersonaje($idNPC, $nombre, $descripcion, $tipo, $urlImagen);
-
-
-            } else {
-                return false;
+                $estado = $this->vDatosNPC($datosNPC);
+                
+                if($estado) {
+                    
+                    $idNPC = $datosNPC['idNPC'];
+                    $nombre = $datosNPC['nombre'];
+                    $descripcion = $datosNPC['descripcion'];
+                    $tipo = 'N';
+                    $urlImagen = $datosNPC['url'];
+                    
+                    $estado = $this->objMPanelControl->mModificarPersonaje($idNPC, $nombre, $descripcion, $tipo, $urlImagen);
+                    
+                    
+                } else {
+                    return false;
+                }
+            } else  {
+                $this->vista = 'ModificarNPC';
+                return $datosNPC;
             }
 
             

@@ -60,8 +60,7 @@ CREATE TABLE npc_dialogo (
 
 CREATE TABLE imagen (
     idImagen TINYINT UNSIGNED NOT NULL AUTO_INCREMENT,
-    url VARCHAR(255) NOT NULL,
-    tipo CHAR(1) NOT NULL,
+    nombreArchivo VARCHAR(255) NOT NULL,
     posicion VARCHAR (45) NOT NULL,
     idPersonaje TINYINT UNSIGNED NOT NULL,
     CONSTRAINT pk_idImagen PRIMARY KEY (idImagen),

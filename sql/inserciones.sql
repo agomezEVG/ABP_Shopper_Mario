@@ -61,46 +61,46 @@ VALUES
 (8, 5);
 
 -- Insertar imágenes para jugadores (5 imágenes por jugador)
-INSERT INTO imagen (url, tipo, posicion, idPersonaje)
+INSERT INTO imagen (nombreArchivo, posicion, idPersonaje)
 VALUES 
-('https://example.com/images/guerrero_frente.png', 'J', 'Frente', 1),
-('https://example.com/images/guerrero_espalda.png', 'J', 'Espalda', 1),
-('https://example.com/images/guerrero_lateral_izq.png', 'J', 'Lateral Izquierdo', 1),
-('https://example.com/images/guerrero_lateral_der.png', 'J', 'Lateral Derecho', 1),
-('https://example.com/images/guerrero_combate.png', 'J', 'En combate', 1),
+('guerrero_frente', 'J', 'Frente', 1),
+('guerrero_espalda', 'J', 'Espalda', 1),
+('guerrero_lateral_izq', 'J', 'Lateral Izquierdo', 1),
+('guerrero_lateral_der', 'J', 'Lateral Derecho', 1),
+('guerrero_combate', 'J', 'En combate', 1),
 
-('https://example.com/images/maga_frente.png', 'J', 'Frente', 2),
-('https://example.com/images/maga_espalda.png', 'J', 'Espalda', 2),
-('https://example.com/images/maga_lateral_izq.png', 'J', 'Lateral Izquierdo', 2),
-('https://example.com/images/maga_lateral_der.png', 'J', 'Lateral Derecho', 2),
-('https://example.com/images/maga_hechizo.png', 'J', 'Lanzando hechizo', 2),
+('maga_frente', 'J', 'Frente', 2),
+('maga_espalda', 'J', 'Espalda', 2),
+('maga_lateral_izq', 'J', 'Lateral Izquierdo', 2),
+('maga_lateral_der', 'J', 'Lateral Derecho', 2),
+('maga_hechizo', 'J', 'Lanzando hechizo', 2),
 
-('https://example.com/images/ladron_frente.png', 'J', 'Frente', 3),
-('https://example.com/images/ladron_espalda.png', 'J', 'Espalda', 3),
-('https://example.com/images/ladron_lateral_izq.png', 'J', 'Lateral Izquierdo', 3),
-('https://example.com/images/ladron_lateral_der.png', 'J', 'Lateral Derecho', 3),
-('https://example.com/images/ladron_sigiloso.png', 'J', 'Modo sigiloso', 3);
+('ladron_frente.png', 'J', 'Frente', 3),
+('ladron_espalda.png', 'J', 'Espalda', 3),
+('ladron_lateral_izq', 'J', 'Lateral Izquierdo', 3),
+('ladron_lateral_der', 'J', 'Lateral Derecho', 3),
+('ladron_sigiloso', 'J', 'Modo sigiloso', 3);
 
 -- Insertar imágenes para enemigos (3 imágenes por enemigo)
-INSERT INTO imagen (url, tipo, posicion, idPersonaje)
+INSERT INTO imagen (nombreArchivo, posicion, idPersonaje)
 VALUES 
-('https://example.com/images/troll_frente.png', 'E', 'Frente', 4),
-('https://example.com/images/troll_combate.png', 'E', 'En combate', 4),
-('https://example.com/images/troll_derrota.png', 'E', 'Derrotado', 4),
+('troll_frente.png', 'E', 'Frente', 4),
+('troll_combate.png', 'E', 'En combate', 4),
+('troll_derrota.png', 'E', 'Derrotado', 4),
 
-('https://example.com/images/brujo_frente.png', 'E', 'Frente', 5),
-('https://example.com/images/brujo_atacando.png', 'E', 'Atacando', 5),
-('https://example.com/images/brujo_derrota.png', 'E', 'Derrotado', 5),
+('brujo_frente.png', 'E', 'Frente', 5),
+('brujo_atacando.png', 'E', 'Atacando', 5),
+('brujo_derrota.png', 'E', 'Derrotado', 5),
 
-('https://example.com/images/dragon_volando.png', 'E', 'Volando', 6),
-('https://example.com/images/dragon_atacando.png', 'E', 'Atacando', 6),
-('https://example.com/images/dragon_descansando.png', 'E', 'Descansando', 6);
+('dragon_volando.png', 'E', 'Volando', 6),
+('dragon_atacando.png', 'E', 'Atacando', 6),
+('dragon_descansando.png', 'E', 'Descansando', 6);
 
 -- Insertar imágenes para NPCs (1 imagen por NPC)
-INSERT INTO imagen (url, tipo, posicion, idPersonaje)
+INSERT INTO imagen (nombreArchivo, posicion, idPersonaje)
 VALUES 
-('https://example.com/images/aldeano_frente.png', 'N', 'Frente', 7),
-('https://example.com/images/comerciante_frente.png', 'N', 'Frente', 8);
+('aldeano_frente.png', 'N', 'Frente', 7),
+('comerciante_frente.png', 'N', 'Frente', 8);
 
 -- Insertar objetos
 INSERT INTO objeto (nombre, descripcion)

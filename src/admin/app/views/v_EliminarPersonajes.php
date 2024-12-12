@@ -4,29 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Confirmar Eliminación</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            color: #333;
-            text-align: center;
-        }
-        .btn {
-            padding: 10px 20px;
-            margin: 10px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .btn-confirmar {
-            background-color: #d9534f;
-            color: white;
-        }
-        .btn-cancelar {
-            background-color: #007bff;
-            color: white;
-        }
-    </style>
+    
+    <!-- ENLACES DE DISEÑO E ICONOS -->
+    <link rel="shortcut icon" href="img/iconoRedondo.png" type="image/x-icon">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
 </head>
 <body>
     <h2>¿Estás seguro de que quieres eliminar este personaje?</h2>
