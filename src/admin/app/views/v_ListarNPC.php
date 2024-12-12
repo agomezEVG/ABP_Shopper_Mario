@@ -12,13 +12,15 @@
     <body id="panelAdmin">
         <aside>
             <a href="index.php?c=PanelControl&m=inicio"><button><h3>DASHBOARD</h3></button></a>
-            <a href="index.php?c=PanelControl&m=cListarPersonajes"><button><h3>PERSONAJES</h3></button></a>
+            <a href="index.php?c=PanelControl&m=cListarNPC"><button><h3>PERSONAJES</h3></button></a>
             <a href="index.php?c=PanelControl&m=cListarObjetos"><button><h3>OBJETOS</h3></button></a>
             <a href="index.php?c=PanelControl&m=cListarDialogos"><button><h3>DIÁLOGOS</h3></button></a>
             <a href="index.php?c=PanelControl&m=cListarRanking"><button><h3>RANKING</h3></button></a>
         </aside>
         <main>
             <section>
+                <a href="index.php"><img src="img/logout.png" alt="LOGOUT" id="Logout"/></a>
+                <a href="index.php?c=PanelControl&m=cAltaNPC"><img src="img/btnAnadir.svg" alt="Boton Añadir" id="btnAnadir"/></a>
                 <form id="tipoPersonaje" method="POST">
                     <select name="tipoPersonaje" id="tipoPersonaje">
                         <option disable></option>
@@ -45,7 +47,7 @@
                                     echo '<td>' . $npc['nombre'] . '</td>';
                                     echo '<td>' . $npc['descripcion'] . '</td>';
                                     echo '<td class="action-buttons">';
-                                    echo '<form action="index.php?c=PanelControl&m=cEliminarNPC" method="POST" style="display:inline;">';
+                                    echo '<form action="index.php?c=PanelControl&m=cEliminarNPC" method="POST" style="display:inline;">'; 
                                     echo '<button type="submit" class="btn btn-eliminar" name="idNPC" value="'.$npc['idNPC'].'">Eliminar</button>';
                                     echo '</form>';
                                     echo '<form action="index.php?c=PanelControl&m=cModificarNPC" method="POST" style="display:inline;">';

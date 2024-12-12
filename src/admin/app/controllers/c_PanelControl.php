@@ -147,19 +147,28 @@
         }
         public function cModificarNPC ($datosNPC) {
 
-            if($this->vista == 'ModificarNPC') {
+            if(isset($datosNPC['guardarCambios'])) {
 
                 $estado = $this->vDatosNPC($datosNPC);
                 
                 if($estado) {
-                    
+
                     $idNPC = $datosNPC['idNPC'];
                     $nombre = $datosNPC['nombre'];
                     $descripcion = $datosNPC['descripcion'];
                     $tipo = 'N';
-                    $urlImagen = $datosNPC['url'];
+                    $nombreArchivo = $datosNPC['nombreArchivo'];
                     
-                    $estado = $this->objMPanelControl->mModificarPersonaje($idNPC, $nombre, $descripcion, $tipo, $urlImagen);
+                    $estado = $this->objMPanelControl->mModificarPersonaje($idNPC, $nombre, $descripcion, $tipo, $nombreArchivo);
+
+                    if($estado) {
+                        $datos = $this->cListarNPC();
+                        return $datos;
+                    } else {
+                        $this->vista = 'Error';
+                        return 'El NPC ha sido borrado';
+                        
+                    }
                     
                     
                 } else {
@@ -172,14 +181,15 @@
 
             
         }
-        public function cEliminarNPC ($idNPC) {
-            
-            $estado = $this->objMPanelControl->mEliminarPersonaje($idNPC);
+        public function cEliminarNPC ($datosNPC) {
+            $estado = $this->objMPanelControl->mEliminarPersonaje($datosNPC['idNPC']);
 
             if($estado) {
                 $this->vista = 'PanelAdmin';
             } else {
+                $mensaje = 'No hay ningun NPC que borrar';
                 $this->vista = 'Error';
+                return $mensaje;
             }
         }
         public function cListarNPC() {
@@ -190,7 +200,7 @@
                 return $datosNPC;
             } else {
                 $this->vista = 'Error';
-                return false;
+                return 'No hay ningun NPC que visualizar';
             }
         }
         /* ------------------------------- VALIDACION DE DATOS PERSONAJES ------------------------------- */
@@ -205,16 +215,15 @@
                 return false;
             }
     
-            if (empty($datosNPC['imagen'])) {
+            if (empty($datosNPC['nombreArchivo'])) {
                 $this->mensajeEstado = 'No se ha añadido la URL de la imagen';
                 return false;
             }
 
-            if (!isset($datosNPC['tipo'])) {
-                $this->mensajeEstado = 'No se ha añadido tipo de personaje';
+            if (empty($datosNPC['tipo'])) {
+                $this->mensajeEstado = 'No se ha añadido el tipo de personaje';
                 return false;
             }
-    
             return true;
         }
         /* ------------------------------- FIN VALIDACION DE DATOS PERSONAJES ------------------------------- */

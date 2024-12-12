@@ -359,6 +359,9 @@ html, body{
         -webkit-text-stroke-width: 0;
     }
 
+    
+
+
 
 /* ------------- GESTION DE DATOS ------------- */
 
@@ -439,12 +442,20 @@ html, body{
         color: white;
     }
 
+    #btnAnadir {
+        position: absolute;
+        top: 0.5%;
+        left: 92%;
+        width: 3.5%;
+    }
+
     /* ------------- SELECT PERSONAJES ------------- */
         select#tipoPersonaje {
             position: absolute;
             left: 2%;
             margin: auto;
             font-size: 1em;
+            font-family: 'Jersey 10';
         }
 
 /* ------------- INSERTAR ------------- */

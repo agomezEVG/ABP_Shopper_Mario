@@ -16,7 +16,7 @@
                 <div class="container">
                         <?php 
                             $mensaje = $datos;
-                            echo '<p>$mensaje</p>'; 
+                            echo '<p>'.$mensaje.'</p>';
                         ?>
                 </div>
             </div>

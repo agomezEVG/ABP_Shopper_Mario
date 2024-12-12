@@ -63,44 +63,44 @@ VALUES
 -- Insertar imágenes para jugadores (5 imágenes por jugador)
 INSERT INTO imagen (nombreArchivo, posicion, idPersonaje)
 VALUES 
-('guerrero_frente', 'J', 'Frente', 1),
-('guerrero_espalda', 'J', 'Espalda', 1),
-('guerrero_lateral_izq', 'J', 'Lateral Izquierdo', 1),
-('guerrero_lateral_der', 'J', 'Lateral Derecho', 1),
-('guerrero_combate', 'J', 'En combate', 1),
+('guerrero_frente', 'Frente', 1),
+('guerrero_espalda', 'Espalda', 1),
+('guerrero_lateral_izq','Lateral Izquierdo', 1),
+('guerrero_lateral_der','Lateral Derecho', 1),
+('guerrero_combate', 'En combate', 1),
 
-('maga_frente', 'J', 'Frente', 2),
-('maga_espalda', 'J', 'Espalda', 2),
-('maga_lateral_izq', 'J', 'Lateral Izquierdo', 2),
-('maga_lateral_der', 'J', 'Lateral Derecho', 2),
-('maga_hechizo', 'J', 'Lanzando hechizo', 2),
+('maga_frente', 'Frente', 2),
+('maga_espalda', 'Espalda', 2),
+('maga_lateral_izq', 'Lateral Izquierdo', 2),
+('maga_lateral_der', 'Lateral Derecho', 2),
+('maga_hechizo', 'Lanzando hechizo', 2),
 
-('ladron_frente.png', 'J', 'Frente', 3),
-('ladron_espalda.png', 'J', 'Espalda', 3),
-('ladron_lateral_izq', 'J', 'Lateral Izquierdo', 3),
-('ladron_lateral_der', 'J', 'Lateral Derecho', 3),
-('ladron_sigiloso', 'J', 'Modo sigiloso', 3);
+('ladron_frente.png', 'Frente', 3),
+('ladron_espalda.png', 'Espalda', 3),
+('ladron_lateral_izq', 'Lateral Izquierdo', 3),
+('ladron_lateral_der', 'Lateral Derecho', 3),
+('ladron_sigiloso', 'Modo sigiloso', 3);
 
 -- Insertar imágenes para enemigos (3 imágenes por enemigo)
 INSERT INTO imagen (nombreArchivo, posicion, idPersonaje)
 VALUES 
-('troll_frente.png', 'E', 'Frente', 4),
-('troll_combate.png', 'E', 'En combate', 4),
-('troll_derrota.png', 'E', 'Derrotado', 4),
+('troll_frente.png', 'Frente', 4),
+('troll_combate.png', 'En combate', 4),
+('troll_derrota.png', 'Derrotado', 4),
 
-('brujo_frente.png', 'E', 'Frente', 5),
-('brujo_atacando.png', 'E', 'Atacando', 5),
-('brujo_derrota.png', 'E', 'Derrotado', 5),
+('brujo_frente.png', 'Frente', 5),
+('brujo_atacando.png', 'Atacando', 5),
+('brujo_derrota.png', 'Derrotado', 5),
 
-('dragon_volando.png', 'E', 'Volando', 6),
-('dragon_atacando.png', 'E', 'Atacando', 6),
-('dragon_descansando.png', 'E', 'Descansando', 6);
+('dragon_volando.png', 'Volando', 6),
+('dragon_atacando.png', 'Atacando', 6),
+('dragon_descansando.png', 'Descansando', 6);
 
 -- Insertar imágenes para NPCs (1 imagen por NPC)
 INSERT INTO imagen (nombreArchivo, posicion, idPersonaje)
 VALUES 
-('aldeano_frente.png', 'N', 'Frente', 7),
-('comerciante_frente.png', 'N', 'Frente', 8);
+('aldeano_frente.png', 'Frente', 7),
+('comerciante_frente.png','Frente', 8);
 
 -- Insertar objetos
 INSERT INTO objeto (nombre, descripcion)

@@ -52,7 +52,7 @@
     </style>
 </head>
 <body>
-    <h2>Modificar Personaje</h2>
+    <h2>Modificar NPC</h2>
     <form action="index.php?c=PanelControl&m=cModificarNPC" method="POST">
         <table>
             <thead>
@@ -61,7 +61,7 @@
                     <th>Nombre</th>
                     <th>Descripción</th>
                     <th>Tipo</th>
-                    <th>URL</th>
+                    <th>Nombre Archivo</th>
                 </tr>
             </thead>
             <tbody>
@@ -74,11 +74,11 @@
                     <td><input type="text" name="nombre"></td>
                     <td><input type="text" name="descripcion"></td>
                     <td><input type="text" name="tipo" value="N" readonly></td>
-                    <td><input type="text" name="url" ></td>
+                    <td><input type="text" name="nombreArchivo" ></td>
                 </tr>
             </tbody>
         </table>
-        <button type="submit" name="confirmar" class="btn">Guardar Cambios</button>
+        <input type="submit" name="guardarCambios" value="Guardar Cambios" class="btn"/>
     </form>
 </body>
 </html>
