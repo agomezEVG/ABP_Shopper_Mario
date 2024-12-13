@@ -30,38 +30,29 @@
         }        
         public function mEliminarPersonaje($idPersonaje) {
             
-            $sql = 'DELETE FROM personaje WHERE idPersonaje = '.$idPersonaje.';';
+            $sql = "DELETE FROM personaje WHERE idPersonaje = '.$idPersonaje.';";
+            
             $resultado = $this->conexion->query($sql);
-
-            if (!$resultado) {
+            echo $resultado;
+            if ($resultado) 
+                return true;
+            else 
                 return false;
-            }
 
-            $filasAfectadas = $this->conexion->affected_rows;
-        
-            if ($filasAfectadas > 0) {
-                return $filasAfectadas;
-            }
-            return false;
         }        
-        public function mModificarPersonaje($idPersonaje, $nombre, $descripcion, $tipo, $nombreArchivo) {
+        public function mModificarPersonaje($idPersonaje, $nombre, $descripcion, $tipo) {
 
             $sqlPersonaje = 'UPDATE personaje SET nombre = "'.$nombre.'", descripcion = "'.$descripcion.'", tipo = "'.$tipo.'" WHERE idPersonaje = "'.$idPersonaje.'";';
             $resultadoPersonaje = $this->conexion->query($sqlPersonaje);
         
-            if (!$resultadoPersonaje) {
-                return false; 
-            }
+            if ($resultadoPersonaje) {
 
-            $sqlImagen = 'UPDATE imagen SET nombreArchivo = "'.$nombreArchivo.'" WHERE idPersonaje = "'.$idPersonaje.'";';
-            
-            $resultadoImagen = $this->conexion->query($sqlImagen);
-        
-            if (!$resultadoImagen) {
+                $idPersonaje = $this->conexion->insert_id;
+
+                return $idPersonaje;
+            } else {
                 return false;
-            }
-        
-            return true; 
+            } 
         }
         public function mListarPersonajes() {
 
@@ -70,6 +61,7 @@
             $resultado = $this->conexion->query($sql);
         
             if ($resultado->num_rows > 0) {
+                
                 $personajes = [];
                 while ($fila = $resultado->fetch_assoc()) {
                     $personajes[] = $fila;
@@ -83,9 +75,9 @@
 
 
         /* ------------------------------- MÉTODOS DE IMAGENES ------------------------------- */
-        public function mAltaImagen($idPersonaje, $urlImagen) {
+        public function mAltaImagen($idPersonaje, $nombreArchivo) {
             
-            $sql = 'INSERT INTO imagen (idPersonaje, url) VALUES ("'.$idPersonaje.'", "'.$urlImagen.'");';
+            $sql = 'INSERT INTO imagen (idPersonaje, nombreArchivo) VALUES ("'.$idPersonaje.'", "'.$nombreArchivo.'");';
             
             $resultado = $this->conexion->query($sql);
 
@@ -94,6 +86,18 @@
             } else {
                 return false;
             }
+        }
+
+        public function mModificarImagen($idPersonaje, $nombreArchivo) {
+
+            $sqlImagen = 'UPDATE imagen SET nombreArchivo = "'.$nombreArchivo.'" WHERE idPersonaje = "'.$idPersonaje.'";';
+            
+            $resultadoImagen = $this->conexion->query($sqlImagen);
+        
+            if ($resultadoImagen) {
+                return true;
+            }
+            return true;
         }
         /* ------------------------------- FIN MÉTODOS DE IMAGENES ------------------------------- */
 
@@ -128,6 +132,7 @@
             $sql = 'SELECT idNPC, nombre, descripcion FROM personaje INNER JOIN npc ON idNPC = idPersonaje;';
 
             $resultado = $this->conexion->query($sql);
+            
             if($resultado->num_rows > 0) {
 
                 $datosNPC = [];
@@ -135,7 +140,6 @@
                 while($fila = $resultado->fetch_assoc())
                     $datosNPC[] = $fila;
 
-                
                 return $datosNPC;
             } else {
                 return false;

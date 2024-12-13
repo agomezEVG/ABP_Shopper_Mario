@@ -11,14 +11,12 @@
     </head>
     <body>
         <main>
-            <button id="volver" onclick='window.location.href="index.php"'>Volver</button>
-            <div class="tabla">
-                <div class="container">
-                        <?php 
-                            $mensaje = $datos;
-                            echo '<p>'.$mensaje.'</p>';
-                        ?>
-                </div>
+            <button id="volver" onclick='window.location.href="index.php?c=PanelControl&m=inicio"'>Volver</button>
+            <div id="mensaje de error">
+                <?php 
+                    $mensajeEstado = $datos;
+                    echo '<p>'.$mensajeEstado.'</p>';
+                ?>
             </div>
         </main>
     </body>

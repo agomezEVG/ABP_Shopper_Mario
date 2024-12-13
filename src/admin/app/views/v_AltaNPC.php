@@ -22,7 +22,10 @@
             <section id="sectionInsertar">
                 <h2>Alta del NPC</h2>
                 <form action="index.php?c=PanelControl&m=cAltaNPC" method="POST">
-                    <input type="text" name="nombre" id="nombre" placeholder="Nombre del NPC"/>
+                    <div>
+                        <input type="text" name="nombre" id="nombre" placeholder="Nombre del NPC"/>
+                        <input type="text" name="nombreArchivo" placeholder="Nombre de la imagen"/>
+                    </div>
                     <textarea id="descripcion" name="descripcion" rows="4" placeholder="Descripcion del NPC"></textarea>
                     <select id="tipo" name="tipo">
                         <option disabled >Selecciona un tipo de personaje</option>
@@ -30,7 +33,6 @@
                         <option disble value="E">Enemigo</option>
                         <option selected value="N">NPC</option>
                     </select>
-                    <input type="text" name="nombreArchivo" placeholder="Nombre de la imagen"/>
                 <input type="submit" name="anadirNPC" value="Añadir NPC"/>
                 </form>
             </section>

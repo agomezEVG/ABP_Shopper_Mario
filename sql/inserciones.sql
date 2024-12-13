@@ -34,31 +34,24 @@ VALUES
 -- Insertar NPCs
 INSERT INTO npc (idNPC)
 VALUES 
-(7),
-(8);
+(11),
+(12);
 
 -- Insertar diálogos
-INSERT INTO dialogo (mensaje)
+INSERT INTO dialogo (mensaje, idNPC)
 VALUES 
-('¡Bienvenido, aventurero! ¿Qué buscas?'), -- idDialogo 1
-('¿Has escuchado los rumores sobre el Dragón?'), -- idDialogo 2
-('Cuidado en el bosque, hay muchos peligros.'), -- idDialogo 3
-('Tengo cosas interesantes para ti.'), -- idDialogo 4
-('Gracias por tu ayuda, héroe.'); -- idDialogo 5
+('¡Bienvenido, aventurero! ¿Qué buscas?', 11), 
+('¡Bienvenido, aventurero! ¿Qué buscas?', 12),  
+('¿Has escuchado los rumores sobre el Dragón?', 11),
+('¿Has escuchado los rumores sobre el Dragón?', 12),
+('Cuidado en el bosque, hay muchos peligros.', 11),
+('Cuidado en el bosque, hay muchos peligros.', 12),
+('Tengo cosas interesantes para ti.', 11), 
+('Tengo cosas interesantes para ti.', 12), 
+('Gracias por tu ayuda, héroe.', 11);
+('Gracias por tu ayuda, héroe.', 12);
 
--- Relación NPC-Dialogo
-INSERT INTO npc_dialogo (idNPC, idDialogo)
-VALUES 
-(7, 1),
-(7, 2),
-(7, 3),
-(7, 4),
-(7, 5),
-(8, 1),
-(8, 2),
-(8, 3),
-(8, 4),
-(8, 5);
+
 
 -- Insertar imágenes para jugadores (5 imágenes por jugador)
 INSERT INTO imagen (nombreArchivo, posicion, idPersonaje)

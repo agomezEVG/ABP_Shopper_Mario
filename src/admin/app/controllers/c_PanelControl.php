@@ -26,57 +26,95 @@
                 $nombre = $datosPersonaje['nombre'];
                 $descripcion = $datosPersonaje['descripcion'];
                 $tipo = $datosPersonaje['tipo'];
-                $urlImagen = $datosPersonaje['url'];
+                $nombreArchivo = $datosPersonaje['nombreArchivo'];
                 
                 $idPersonaje = $this->objMPanelControl->mAltaPersonaje($nombre, $descripcion, $tipo);
             } else {
+                $this->vista = 'Error';
                 return false;
             }
             
-            if($idPersonaje) {
+            if($idPersonaje =! false) {
 
-                $estado = $this->objMPanelControl->mAltaImagen($idPersonaje, $urlImagen);
-                $this->vista = 'Alta';
-                return true;
+                if($tipo == 'N')
+                    $this->objMPanelControl->mAltaNPC($idPersonaje);
+                if($tipo == 'J')
+                    // $this->objMPanelControl->mAltaJugador($idPersonaje);
+                if($tipo == 'E')
+                    // $this->objMPanelControl->mAltaEnemigo($idPersonaje);
+
+                $estado = $this->objMPanelControl->mAltaImagen($idPersonaje, $nombreArchivo);
+                
+                if($estado) {
+                    $this->vista = 'ListarPersonajes';
+                    return true;
+                } else {
+                    $this->vista = 'Error';
+                    return false;
+                }
             } else {
                 $this->vista = 'Error';
                 return false;
             }
 
         }
-        public function cEliminarPersonaje($idPersonaje) {  
-            
-            if(!empty($idPersonaje)) {
+        public function cEliminarPersonaje($datosEliminar) {
+            if(isset($datosEliminar['confirmar'])) {
+                $idPersonaje = $datosEliminar['idPersonaje'];
+                echo $idPersonaje;
+                    
                 $estado = $this->objMPanelControl->mEliminarPersonaje($idPersonaje);
-                return $estado;
-            }
-            
-            return false;
-        }
-        public function cModificarPersonaje($datosPersonaje) {
-
-            $estado = $this->vDatosPersonaje($datosPersonaje);
-
-            if($estado) {
-                $idPersonaje = $datosPersonaje['idPersonaje'];
-                $nombre = $datosPersonaje['nombre'];
-                $descripcion = $datosPersonaje['descripcion'];
-                $tipo = $datosPersonaje['tipo'];
-                $urlImagen = $datosPersonaje['url'];
-
-                $estado = $this->objMPanelControl->mModificarPersonaje($idPersonaje, $nombre, $descripcion, $tipo, $urlImagen);
 
                 if($estado) {
-                    $this->vista = 'PanelAdmin';
-                    return true;
-                }            
-                else {
-                    $this->vista = 'Error';
-                    return false;
+                    $datos = $this->cListarPersonajes();
+                    return $datos;
                 }
+                return false;
+            
+
+            } else {
+                $this->vista = 'EliminarPersonajes';
+                return $datosEliminar;
             }
-            return false;
         }
+        public function cModificarPersonaje($datos) {
+            print_r($datos);
+            if(!isset($datosEliminar['guardarCambios'])) {
+                $this->vista = 'ModificarPersonajes'; return $datos;
+                
+                $estado = $this->vDatosPersonaje($datos);
+                print_r($estado);
+                if($estado) {
+                    
+                    $idPersonaje = $datos['idPersonaje'];
+                    $nombre = $datos['nombre'];
+                    $descripcion = $datos['descripcion'];
+                $tipo = $datos['tipo'];
+                $nombreArchivo = $datos['nombreArchivo'];
+
+                $idPersonaje = $this->objMPanelControl->mModificarPersonaje($idPersonaje, $nombre, $descripcion, $tipo);
+                
+                if($idPersonaje != false) {
+
+                    $estado = $this->objMPanelControl->mModificarImagen($idPersonaje, $nombreArchivo);
+                    
+                    if($estado) {
+                        $datos = $this->cListarPersonajes();
+                        return $datos;
+                    } else {
+                        echo 'error';
+                        $mensajeEstado = 'Imagen no insertada';
+                        $this->vista  = 'Error';
+                        return $mensajeEstado;
+                    }
+                }
+            } else {
+                echo 'error';
+                $this->vista = 'Error';
+            }
+            }
+        }
+
         public function cListarPersonajes() {
             
             $personajes = $this->objMPanelControl->mListarPersonajes();
@@ -86,6 +124,7 @@
                 return $personajes;
             }
             else {
+                $this->mensajeEstado = 'No hay personajes';
                 $this->vista = 'Error';
                 return false;
             }
@@ -93,6 +132,7 @@
 
         /* ------------------------------- VALIDACION DE DATOS PERSONAJES ------------------------------- */
         public function vDatosPersonaje($datosPersonaje) {
+
             if (empty($datosPersonaje['nombre'])) {
                 $this->mensajeEstado = 'No se ha rellenado el nombre';
                 return false;
@@ -103,12 +143,12 @@
                 return false;
             }
     
-            if (empty($datosPersonaje['imagen'])) {
-                $this->mensajeEstado = 'No se ha añadido la URL de la imagen';
+            if (empty($datosPersonaje['nombreArchivo'])) {
+                $this->mensajeEstado = 'No se ha añadido el nombre del archivo de la imagen';
                 return false;
             }
 
-            if (!isset($datosPersonaje['tipo'])) {
+            if (empty($datosPersonaje['tipo'])) {
                 $this->mensajeEstado = 'No se ha añadido tipo de personaje';
                 return false;
             }
@@ -125,14 +165,14 @@
                     
                 $estado = $this->vDatosNPC($datosNPC);
                 
-                $this->objMPanelControl->mAltaNPC($datosNPC);
                 
                 if($estado) {
+                    
                     
                     $nombre = $datosNPC['nombre'];
                     $descripcion = $datosNPC['descripcion'];
                     $tipo = 'N';
-                    $urlImagen = $datosNPC['url'];
+                    $nombreArchivo = $datosNPC['nombreArchivo'];
                     
                     $idNPC = $this->objMPanelControl->mAltaPersonaje($nombre, $descripcion, $tipo);
                 } else {
@@ -143,8 +183,18 @@
                     $this->vista = 'Error';
                     return false;
                 } else {
-                    $this->objMPanelControl->mAltaImagen($idNPC, $urlImagen);
-                    return true;
+                    $this->objMPanelControl->mAltaNPC($idNPC);
+                    $this->objMPanelControl->mAltaImagen($idNPC, $nombreArchivo);
+                    
+                    $datos = $this->cListarNPC();
+
+                    if($datos) {
+                        $this->vista = 'ListarNPC';
+                        return $datos;
+                    }
+
+                    $this->vista = 'Error';
+                    return false;
                 }
             } else {
                 $this->vista = 'AltaNPC';
@@ -164,11 +214,16 @@
                     $tipo = 'N';
                     $nombreArchivo = $datosNPC['nombreArchivo'];
                     
-                    $estado = $this->objMPanelControl->mModificarPersonaje($idNPC, $nombre, $descripcion, $tipo, $nombreArchivo);
+                    $estado = $this->objMPanelControl->mModificarPersonaje($idNPC, $nombre, $descripcion, $tipo);
 
                     if($estado) {
-                        $datos = $this->cListarNPC();
-                        return $datos;
+
+                        $estado = $this->objMPanelControl->mModificarImagen($idNPC, $nombreArchivo);
+
+                        if($estado) {
+                            $datos = $this->cListarNPC();
+                            return $datos;
+                        }
                     } else {
                         $this->vista = 'Error';
                         return 'El NPC ha sido borrado';
@@ -200,6 +255,7 @@
         public function cListarNPC() {
 
             $datosNPC = $this->objMPanelControl->mListarNPC();
+            var_dump($datosNPC);
             if($datosNPC != false) {
                 $this->vista = 'ListarNPC';
                 return $datosNPC;

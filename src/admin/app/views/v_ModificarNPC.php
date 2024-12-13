@@ -73,7 +73,7 @@
                     </td>
                     <td><input type="text" name="nombre"></td>
                     <td><input type="text" name="descripcion"></td>
-                    <td><input type="text" name="tipo" value="N" readonly></td>
+                    <td><input type="text" name="tipo"></td>
                     <td><input type="text" name="nombreArchivo" ></td>
                 </tr>
             </tbody>

@@ -17,7 +17,7 @@
 
     if(method_exists($objControlador, $_GET['m'])) {
         $datos = $objControlador->{$_GET['m']}($_POST);
-    }
+}
 
     // Incluye la vista del controlador correspondiente
     require_once 'app/views/v_' . $objControlador->vista.'.php';
