@@ -444,195 +444,136 @@ html, body{
     }
 
 
-/* ------------- INSERTAR ------------- */
-/*
-#panelInsertar , #panelInsertar *{
-    text-shadow: none;
-    -webkit-text-stroke-width: 0;
-    -webkit-text-stroke-color: transparent;
-    font-family: monospace;
+/* Modal contenedor */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 }
-#panelInsertar {
-  padding: 50px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-  max-width: 800px;
-  background-color: #1F2937;
-  color: #EDEDED; 
-  border: 2px solid #3B82F6;
-  text-align: center;
-}    
 
-#panelInsertar h3 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #3B82F6;
+/* Mostrar el modal */
+.modal:not(.hidden) {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Contenido del modal */
+.modal-content {
+  background: #ffffff;
+  padding: 20px 30px;
+  border-radius: 12px;
+  max-width: 500px;
+  width: 100%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  position: relative;
+  left: 10%;
+  animation: fadeIn 0.3s ease;
+}
+
+/* Animación de aparición */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Botón de cierre */
+.close-button {
+  font-size: 18px;
+  font-weight: bold;
+  color: #555;
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  cursor: pointer;
+}
+
+.close-button:hover {
+  color: #ff0000;
+}
+
+/* Footer del modal */
+.modal-footer {
+  margin-top: 15px;
+  text-align: right;
+}
+
+/* Botón guardar */
+.btn {
+  background-color: #007bff;
+  color: #ffffff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #0056b3;
+}
+
+/* Estilo de etiquetas */
+form label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: #333;
+}
+
+/* Estilo de inputs */
+form input,
+form textarea,
+form select {
+  width: 100%;
+  padding: 8px 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+form input:focus,
+form textarea:focus,
+form select:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  outline: none;
+}
+
+/* Estilo del textarea */
+form textarea {
+  resize: vertical; /* Permitir solo redimensionar verticalmente */
+  min-height: 80px;
+}
+
+/* Responsive: Ajustar el modal en pantallas pequeñas */
+@media (max-width: 600px) {
+  .modal-content {
+    width: 90%;
+    padding: 15px 20px;
   }
 
-#panelInsertar label{
-  font-family: monospace;
-  display: block;
-  font-size: 1.25em;
-  margin: 10px;
-
-}
-
-#selectInsertar {
-    width: 15%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-    background-color: #f9f9f9;
-    color:#1F2937;
-}
-
-#selectInsertar:focus {
-    border-color: #007bff;
-    outline: none;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-}
-
-input[type="text"], textarea, input[type="file"] {
-    width: 50%;
-    padding: 10px;
-    margin-left: 20px;
-    margin-bottom: 20px;
-    color:#1F2937;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-    background-color: #f9f9f9;
-}
-
-
-input[type="text"]:focus, textarea:focus {
-    border-color: #007bff;
-    outline: none;
-    box-shadow: 0 0 8px rgba(59, 130, 246, 0.3); 
-}
-
-button {
-    display: block;
-    width: 20%;
-    padding: 10px;
-    background-color: #3B82F6;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin: 10px auto;
-}
-
-button:hover {
-    background-color: #2563EB;
-}
-
-button[type='submit']{
-  background-color:red;
-  width: 10%;
-}
-
-
-button[type='button']:hover {
-  background-color:rgba(0, 123, 255, 0.5) ;
-}
-/* ------------- MODIFICAR ------------- */
-/*
-#panelModificar , #panelModificar *{
-    text-shadow: none;
-    -webkit-text-stroke-width: 0;
-    -webkit-text-stroke-color: transparent;
-    font-family: monospace;
-}
-
-#panelModificar {
-  padding: 50px;
-  border-radius: 10px;
-  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
-  width: 90%;
-  height: fit-content;
-  background-color: #1F2937;
-  color: #EDEDED; 
-  border: 2px solid #3B82F6;
-}    
-
-#panelModificar h3 {
+  .btn {
+    width: 100%;
     text-align: center;
-    margin-bottom: 20px;
-    color:#3B82F6;
-}
-
-
-#selectModificar {
-    width: 10%;
-    padding: 10px;
-    margin-left: 20px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 1em;
-    background-color: #f9f9f9;
-    color:#1F2937;
-}
-
-#selectModificar:focus {
-    border-color: #007bff;
-    outline: none;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-}
-
-
-/* button {
-    width: fit-content;
-    padding: 10px;
-    background-color:#3B82F6 ;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    font-size: 1.15em;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin: 10px auto;
-} */
-/*
-button:hover {
-  background-color:rgba(0, 123, 255, 0.5);
-}
-.btn-borrar{
-  background-color: red;
-}
-.btn-borrar:hover{
-  background-color: crimson;
-}
-#panelModificar table{
-  border-spacing: 20px;
-}
-
-#panelModificar thead {
-  font-size: 3em;
-  color:#3B82F6 ;
-}
-
-
-#panelModificar tbody td{
-  font-size: 1.5em;
-  padding: 10px;
-}
-
-.img-container{
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-  flex-wrap: wrap;
-  align-items: center;
-}
-
-#panelModificar img{
-  position: static;
-  width: 30%;
-  height: auto;
+  }
 }

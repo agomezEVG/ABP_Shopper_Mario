@@ -22,7 +22,7 @@ class M_Dialogos{
   public function obtenerDialogos() {
     try {
 
-      $sql = 'SELECT * FROM dialogo;';
+      $sql = 'SELECT dialogo.idDialogo, personaje.nombre, mensaje FROM dialogo INNER JOIN npc_dialogo ON npc_dialogo.idDialogo = dialogo.idDialogo INNER JOIN npc ON npc.idNPC = npc_dialogo.idNPC INNER JOIN personaje ON personaje.idPersonaje = npc.idNPC;';
       $resultado = $this->conexion->query($sql);
 
       if (!$resultado) {
