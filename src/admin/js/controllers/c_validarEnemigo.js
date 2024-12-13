@@ -1,62 +1,75 @@
-class C_validarEnemigo{
+class C_validarEnemigo {
 
   constructor(formElement) {
     if (!formElement) {
       throw new Error("El formulario no existe en el DOM.")
     }
-
-    this.formElement = formElement;
-    this.nombreEnemigo = document.getElementById('nombreEnemigo')
-    this.descripcionEnemigo = document.getElementById('descripcionEnemigo')
-    this.habilidadesEnemigo = document.getElementById('habilidadesEnemigo')
-    this.imagenesEnemigo = document.getElementById('imagenesEnemigo')
-    this.enemigosContenedor = document.getElementById('enemigos')
-
-    this.inicializarEventos()
+    this.formElement = formElement
+    this.id
+    this.nombreEnemigo = document.getElementById('nombre')
+    this.descripcionEnemigo = document.getElementById('descripcion')
+    this.tipoSeleccionado = document.getElementById('tipo')
+    this.imagenes = document.getElementById('url')
+    this.contenedorImagen = document.createElement('div')
+    this.formElement.appendChild(this.contenedorImagen)
+    
   }
 
-  inicializarEventos() {
-    this.formElement.addEventListener('submit', (event) => this.validarFormulario(event))
-    this.mostrarImagen()
-  }
 
-  validarFormulario(event) {
-    event.preventDefault()
+  validarFormulario() {
     this.limpiarErrores()
-
+    
+    
     let valido = true
 
-    if (!this.nombreEnemigo.value.trim()) {
-      valido = false
-      this.mostrarError(this.nombreEnemigo, 'El nombre del enemigo es obligatorio')
-    }
-
-    if (this.descripcionEnemigo.value.trim().length < 10) {
-      valido = false
-      this.mostrarError(this.descripcionEnemigo, 'La descripción tiene que tener al menos 10 caracteres')
-    }
-
-    if (!this.habilidadesEnemigo.value) {
-      valido = false
-      this.mostrarError(this.habilidadesEnemigo, 'Debes seleccionar una habilidad')
-    }
-
-    if (!this.imagenesEnemigo.files.length) {
-      valido = false
-      this.mostrarError(this.imagenesEnemigo, 'Debes subir al menos una imagen')
-    }else{
-      if(!this.validarFormatoImagenes(this.imagenesEnemigo.files)){
-        valido = false
-      }
-    }
-
+    // Validación genérica de campos
+    valido = this.validarCampo(this.nombreEnemigo, 'El nombre del enemigo es obligatorio') && valido
+    valido = this.validarDescripcion(this.descripcionEnemigo) && valido
+    valido = this.validarCampo(this.tipoSeleccionado, 'Debes seleccionar un tipo') && valido
+    valido = this.validarImagenes() && valido
 
     if (valido) {
-      const formData = new FormData(this.formElement)
-      const data = Object.fromEntries(formData.entries())
-      console.log('Formulario válido: ', data)
-      alert('Formulario enviado con éxito')
+      console.log('SSSSSSS')
+      return true
     }
+  }
+
+  validarCampo(campo, mensajeError) {
+    if (!campo.value.trim()) {
+      this.mostrarError(campo, mensajeError)
+      return false
+    }
+    return true
+  }
+
+  validarDescripcion(campo) {
+    if (campo.value.trim().length < 10) {
+      this.mostrarError(campo, 'La descripción debe tener al menos 10 caracteres')
+      return false
+    }
+    return true
+  }
+
+  validarImagenes() {
+    if (!this.imagenes.files.length) {
+      this.mostrarError(this.imagenes, 'Debes subir al menos una imagen')
+      return false
+    }
+    return this.validarFormatoImagenes(this.imagenes.files)
+  }
+
+  validarFormatoImagenes(files) {
+    const formatosPermitidos = ['image/jpeg', 'image/png']
+    let valido = true
+
+    Array.from(files).forEach(file => {
+      if (!formatosPermitidos.includes(file.type)) {
+        valido = false
+        this.mostrarError(this.imagenes, 'Formato de la imagen no permitido, solo se aceptan JPEG y PNG')
+      }
+    })
+
+    return valido
   }
 
   mostrarError(elemento, mensaje) {
@@ -73,45 +86,24 @@ class C_validarEnemigo{
     document.querySelectorAll('.mensaje-error').forEach(msg => msg.remove())
   }
 
-  validarFormatoImagenes(files) {
-    const formatosPermitidos = ['image/jpeg','image/png'];
-    let valido = true
-    
-    Array.from(files).forEach(file =>{
-      if(!formatosPermitidos.includes(file.type)){
-        valido = false
-        this.mostrarError(this.imagenesEnemigo, 'Formato de la imagen no permitido, solo se aceptan JPEG y PNG')
-      }
-    })
-
-    return valido
-  }
-
-  mostrarImagen(){
-
-    this.imagenesEnemigo.addEventListener('change', (event)=>{
+  /*mostrarImagen() {
+    this.imagenes.addEventListener('change', (event) => {
       const archivos = event.target.files
-      console.log('Va bien')
-
-      if(archivos.length > 0){
-        Array.from(archivos).forEach(archivo =>{
+      if (archivos.length > 0) {
+        Array.from(archivos).forEach(archivo => {
           const reader = new FileReader()
-          
-          reader.onload = function(e){
+          reader.onload = function(e) {
             const img = document.createElement('img')
             img.src = e.target.result
             img.className = 'img-enemigo'
             img.style.maxWidth = '100px'
-            img.style.height = 'auto';
-            contenedorImagenes.appendChild(img)
+            img.style.height = 'auto'
+            this.contenedorImagen.appendChild(img)  // Asegúrate de tener un contenedor
           }
-
           reader.readAsDataURL(archivo)
         })
       }
     })
- 
-  }
+  }*/
 }
-
 export default C_validarEnemigo
