@@ -4,7 +4,6 @@ class C_dashboard{
 
   constructor(panelAdmin){
     this.panelAdmin = panelAdmin
-    console.log('2')
   }
 
   async cargarDatos(){

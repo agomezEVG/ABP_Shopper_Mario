@@ -14,7 +14,7 @@ class C_login {
       const respuesta = await modeloLogin.login()
 
       if (respuesta.success === 1) {
-        window.location.href = '../../app/views/v_panelAdmin.html'
+        window.location.href = '/shopperMario/src/admin/app/views/v_panelAdmin.html'
       } else {
           const existingError = formulario.querySelector('.error-message')
           if (existingError) {
