@@ -2,6 +2,7 @@ import C_login from './controllers/c_login.js'
 import C_validarEnemigo from './controllers/c_validarEnemigo.js'
 import C_dashboard from './controllers/c_dashboard.js'
 import C_entidades from './controllers/c_entidades.js'
+import C_dialogos from './controllers/c_dialogos.js'
 
 window.addEventListener('DOMContentLoaded', () => {
 
@@ -57,13 +58,20 @@ window.addEventListener('DOMContentLoaded', () => {
     const botonPersonajes = document.getElementById('entidades')
     if(botonPersonajes){
       botonPersonajes.addEventListener('click', function(event){
-        console.log('HOLA')
         const entidades = new C_entidades(panelAdmin)
         entidades.crearSelect()
         })
       }
 
     const botonDialogos = document.getElementById('dialogos')
+    if(botonDialogos){
+      botonDialogos.addEventListener('click', function(event){
+        panelAdmin.innerHTML=''
+        const dialogos = new C_dialogos(panelAdmin)
+        dialogos.cargarDatos()
+
+        })
+    }
   }
 
 })

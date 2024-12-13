@@ -5,8 +5,7 @@ class M_entidades{
 
 
     try {
-
-      const respuesta = await fetch('../../index.php?c=Paneladmin&m=listarTipos')
+      const respuesta = await fetch('/shopperMario/src/admin/index.php?c=Paneladmin&m=listarTipos')
       const data = await respuesta.json()
       return data
     } catch (error) {

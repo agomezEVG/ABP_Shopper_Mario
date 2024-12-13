@@ -7,7 +7,7 @@ class M_listarTablas{
     try {
 
 
-      const response =  await fetch('../../index.php?c=listarTablas&m=listarTipos',{
+      const response =  await fetch('/shopperMario/src/admin/index.php?c=listarTablas&m=listarTipos',{
         method: 'POST',
         headers: {
           'Content-Type': 'application/json' 

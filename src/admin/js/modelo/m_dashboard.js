@@ -5,7 +5,7 @@ class M_dashboard{
 
 
     try {
-      const respuesta = await fetch('../../index.php?c=Dashboard&m=llamada')
+      const respuesta = await fetch('/shopperMario/src/admin/index.php?c=Dashboard&m=llamada')
 
       const data = await respuesta.json()
       return data
