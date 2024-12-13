@@ -1,5 +1,6 @@
 import M_entidades from "../modelo/m_entidades.js"
 import M_listarTareas from "../modelo/m_listarTablas.js"
+import C_validarEnemigo from './c_validarEnemigo.js'
 
 class C_entidades {
 
@@ -112,90 +113,93 @@ class C_entidades {
   }
 
   generarFormulario(personaje, data) {
-    let modal = document.getElementById('modal')
-    if (!modal) {
-      modal = document.createElement('div')
-      modal.id = 'modal'
-      modal.className = 'modal hidden'
-      modal.innerHTML = `
-        <div class="modal-content">
-          <span class="close-button">&times;</span>
-          <div id="modal-body"></div>
-          <div class="modal-footer">
-              <button id="guardar-cambios" class="btn">Guardar Cambios</button>
-          </div>
-        </div>`
-      document.body.appendChild(modal)
-    }
-
-    const modalBody = document.getElementById('modal-body')
-    modalBody.innerHTML = ''
-
-    const formulario = document.createElement('form')
-    formulario.id = 'formulario-modificar'
-
-    Object.keys(personaje).forEach(key => {
-      const label = document.createElement('label')
-      label.textContent = key === 'url' ? 'IMAGENES' : key.toUpperCase()
-      label.setAttribute('for', key)
-
-      let input
-      if (key === 'nombre') {
-        input = document.createElement('input')
-        input.type = 'text'
-        input.value = personaje[key]
-      } else if (key === 'descripcion') {
-        input = document.createElement('textarea')
-        input.value = personaje[key]
-      } else if (key === 'tipo') {
-        input = document.createElement('select')
-        data.forEach(valor => {
-          const option = document.createElement('option')
-          option.value = valor.tipo
-          option.textContent = valor.nombre
-          if (valor.tipo === personaje[key]) {
-            option.selected = true
-          }
-          input.appendChild(option)
-        })
-      } else if (key === 'url') {
-        input = document.createElement('input')
-        input.type = 'file'
-      } else {
-        input = document.createElement('input')
-        input.type = 'text'
-        input.value = personaje[key] || ''
-      }
-      input.id = key
-      formulario.appendChild(label)
-      formulario.appendChild(input)
-      formulario.appendChild(document.createElement('br'))
-    })
-
-    modalBody.appendChild(formulario)
-
-    modal.classList.remove('hidden')
-
-    const closeButton = modal.querySelector('.close-button')
-    closeButton.onclick = () => {
-      modal.classList.add('hidden')
-    }
-
-    const guardarCambios = document.getElementById('guardar-cambios')
-    guardarCambios.onclick = (event) => {
-      event.preventDefault()
-      const formData = {}
-      Array.from(formulario.elements).forEach(element => {
-        if (element.id) {
-          formData[element.id] = element.value
-        }
-      })
-      console.log("Formulario guardado:", formData)
-      modal.classList.add('hidden')
-    }
-
-    this.contenedorTabla.appendChild(modal)
+  let modal = document.getElementById('modal')
+  if (!modal) {
+    modal = document.createElement('div')
+    modal.id = 'modal'
+    modal.className = 'modal hidden'
+    modal.innerHTML = `
+      <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <div id="modal-body"></div>
+        <div class="modal-footer">
+            <button id="guardar-cambios" class="btn">Guardar Cambios</button>
+        </div>
+      </div>`
+    document.body.appendChild(modal)
   }
-}
+
+  const modalBody = document.getElementById('modal-body')
+  modalBody.innerHTML = ''
+
+  const formulario = document.createElement('form')
+  formulario.id = 'formulario-modificar'
+
+  Object.keys(personaje).forEach(key => {
+    const label = document.createElement('label')
+    label.textContent = key === 'url' ? 'IMAGENES' : key.toUpperCase()
+    label.setAttribute('for', key)
+
+    let input
+    if (key === 'nombre') {
+      input = document.createElement('input')
+      input.type = 'text'
+      input.name = key // Importante: añadir el atributo name
+      input.value = personaje[key]
+    } else if (key === 'descripcion') {
+      input = document.createElement('textarea')
+      input.name = key // Añadir name
+      input.value = personaje[key]
+    } else if (key === 'tipo') {
+      input = document.createElement('select')
+      input.name = key // Añadir name
+      data.forEach(valor => {
+        const option = document.createElement('option')
+        option.value = valor.tipo
+        option.textContent = valor.nombre
+        if (valor.tipo === personaje[key]) {
+          option.selected = true
+        }
+        input.appendChild(option)
+      })
+    } else if (key === 'url') {
+      input = document.createElement('input')
+      input.type = 'file'
+      input.name = key // Añadir name
+      input.multiple = true
+    } else {
+      input = document.createElement('input')
+      input.type = 'text'
+      input.name = key // Añadir name
+      input.value = personaje[key] || ''
+      input.readOnly = true
+    }
+    input.id = key
+    formulario.appendChild(label)
+    formulario.appendChild(input)
+    formulario.appendChild(document.createElement('br'))
+  })
+
+  modalBody.appendChild(formulario)
+
+  modal.classList.remove('hidden')
+
+  const closeButton = modal.querySelector('.close-button')
+  closeButton.onclick = () => {
+    modal.classList.add('hidden')
+  }
+
+const guardarCambios = modal.querySelector('#guardar-cambios')
+guardarCambios.addEventListener('click', (event) => {
+  event.preventDefault() 
+const valido = new C_validarEnemigo(formulario).validarFormulario()
+  if (valido) {
+    const formData = new FormData(formulario)
+    const data = Object.fromEntries(formData.entries())
+    console.log(data) 
+  }
+}) 
+  this.contenedorTabla.appendChild(modal)
+}}
  
 export default C_entidades
