@@ -1,7 +1,6 @@
 <?php
     Class C_InicioSesion {
         private $objMInicioSesion;
-        public $vista;
 
         public function __construct() {
             require_once 'app/models/m_InicioSesion.php';

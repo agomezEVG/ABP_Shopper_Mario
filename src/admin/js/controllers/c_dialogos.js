@@ -24,10 +24,11 @@ class C_dialogos{
 
     if(data.mensaje){
       this.contenedorTabla.innerHTML  = `<h2>${data.mensaje}</h2>`
+      return
     }
 
     const table = document.createElement('table')
-    const cabeceras = Object.keys(data[0])
+    const cabeceras = Object.keys(data[0]).filter(cabecera => cabecera !== 'idDialogo');
     let theadHTML = '<thead><tr>'
     cabeceras.forEach(cabecera =>{
 
@@ -41,8 +42,11 @@ class C_dialogos{
     data.forEach(dato => {
       const fila = document.createElement('tr')
       cabeceras.forEach(cabecera => {
-       const celda = document.createElement('td')
-       celda.textContent = dato[cabecera]
+        const celda = document.createElement('td')
+        if(dato[cabecera]!='idDialogo'){
+
+          celda.textContent = dato[cabecera]
+        }
         fila.appendChild(celda)
       })
         const actionCell = document.createElement('td')
