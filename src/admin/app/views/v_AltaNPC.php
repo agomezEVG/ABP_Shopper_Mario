@@ -19,10 +19,10 @@
             <a href="index.php?c=PanelControl&m=ListarRanking"><button><h3>RANKING</h3></button></a>
         </aside>
         <main>
-            <section>
+            <section id="sectionInsertar">
+                <h2>Alta del NPC</h2>
                 <form action="index.php?c=PanelControl&m=cAltaNPC" method="POST">
-                    <h2>Alta del NPC</h2>
-                    <input type="text" value="nombre" id="nombre" placeholder="Nombre del NPC"/>
+                    <input type="text" name="nombre" id="nombre" placeholder="Nombre del NPC"/>
                     <textarea id="descripcion" name="descripcion" rows="4" placeholder="Descripcion del NPC"></textarea>
                     <select id="tipo" name="tipo">
                         <option disabled >Selecciona un tipo de personaje</option>
