@@ -34,15 +34,6 @@ window.addEventListener('DOMContentLoaded', () => {
 
   }
 
-  
-  /*--------------------- PÁGINA INSERTAR ENEMIGOS --------------------- */
-
-    const enemyForm = document.getElementById('formInsertEnemigo')
-
-  if(enemyForm){
-        new C_validarEnemigo(enemyForm)
-      }
-
   /*--------------------- PANEL ADMIN -------------------- */
 
   const panelAdmin = document.getElementById('mostrarDatosPanelAdmin')

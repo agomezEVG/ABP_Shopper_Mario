@@ -197,6 +197,8 @@ const valido = new C_validarEnemigo(formulario).validarFormulario()
     const formData = new FormData(formulario)
     const data = Object.fromEntries(formData.entries())
     console.log(data) 
+    modal.classList.add('hidden')
+
   }
 }) 
   this.contenedorTabla.appendChild(modal)
