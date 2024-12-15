@@ -319,9 +319,6 @@ class C_entidades {
         // Instanciar el modelo para modificar la entidad
         const modificar = new M_modificar()
         await modificar.mandarModificacion(data)
-
-      } else {
-        alert('Hay campos inválidos en el formulario.')
       }
     })
   }
