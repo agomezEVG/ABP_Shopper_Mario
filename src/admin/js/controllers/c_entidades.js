@@ -12,33 +12,42 @@ class C_entidades {
     this.contenedorTabla.id = 'contenedorTabla'
   }
 
-  async crearSelect() {
-    this.panelAdmin.innerHTML = ''
-    const selectEntidades = document.createElement('select')     
+ async crearSelect() {
+  this.panelAdmin.innerHTML = ''
+  const selectEntidades = document.createElement('select')     
 
-    selectEntidades.id = 'select-entidades'
-    panelAdmin.appendChild(selectEntidades)
+  selectEntidades.id = 'select-entidades'
+  this.panelAdmin.appendChild(selectEntidades)
 
-    const defaultOption = document.createElement('option')
-    defaultOption.value = ''
-    defaultOption.textContent = 'Elige'
-    selectEntidades.appendChild(defaultOption)
-    this.panelAdmin.appendChild(selectEntidades)
-    const entidades = new M_entidades()
-    const data = await entidades.datosDashboard()
-    data.forEach(item => {
-      const option = document.createElement('option')
-      option.value = item.tipo 
-      option.textContent = item.nombre
-      selectEntidades.appendChild(option)
+  const defaultOption = document.createElement('option')
+  defaultOption.value = ''
+  defaultOption.textContent = 'Elige'
+  selectEntidades.appendChild(defaultOption)
+  
+
+  const entidades = new M_entidades()
+  const data = await entidades.datosDashboard()
+  data.forEach(item => {
+    const option = document.createElement('option')
+    option.value = item.tipo 
+    option.textContent = item.nombre
+    selectEntidades.appendChild(option)
+  })
+    const insertarButton = document.createElement('button')
+      insertarButton.id = 'insertar-btn'
+      insertarButton.classList.add('btn', 'btn-insertar')
+      insertarButton.textContent = 'Insertar'
+    this.panelAdmin.appendChild(insertarButton)
+
+    insertarButton.addEventListener('click' ,(event) => {
+      this.generarFormularioVacio(data)
     })
+  selectEntidades.addEventListener('change', (event) => {
+    const valorSelect = event.target.value
+    this.manejarOption(valorSelect, data)
+  })
 
-    selectEntidades.addEventListener('change', (event) => {
-      const valorSelect = event.target.value
-      this.manejarOption(valorSelect, data)
-    })
-  }
-
+} 
   async manejarOption(valorSelect, data) {
     const listarTablas = new M_listarTareas()
     let personajes = await listarTablas.listar(valorSelect)
@@ -129,6 +138,7 @@ class C_entidades {
             this.generarFormulario(personajeSeleccionado, data)
         }
     })
+
   }
 
   generarFormulario(personaje, data) {
@@ -314,6 +324,128 @@ class C_entidades {
       }
     })
   }
-}
 
+
+generarFormularioVacio(data) {
+
+  let modal = document.getElementById('modal')
+  if (!modal) {
+    modal = document.createElement('div')
+    modal.id = 'modal'
+    modal.className = 'modal hidden'
+    modal.innerHTML = `
+      <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <div id="modal-body"></div>
+        <div class="modal-footer">
+            <button id="guardar-cambios" class="btn">Guardar Cambios</button>
+        </div>
+      </div>`
+    document.body.appendChild(modal)
+  }
+
+  const modalBody = document.getElementById('modal-body')
+  modalBody.innerHTML = ''
+
+  const formulario = document.createElement('form')
+  formulario.id = 'formulario-insertar'
+  formulario.enctype = 'multipart/form-data' // Para manejar archivos
+  const fields = ['nombre', 'descripcion', 'tipo', 'urls']
+  
+  fields.forEach(key => {
+    const label = document.createElement('label')
+    label.textContent = key.toUpperCase()
+    label.setAttribute('for', key)
+
+    let input
+    if (key === 'tipo') {
+      input = document.createElement('select')
+      input.name = key
+      // Suponiendo que `data` contiene los valores de tipos posibles
+      data.forEach(valor => {
+        const option = document.createElement('option')
+        option.value = valor.tipo
+        option.textContent = valor.nombre
+        input.appendChild(option)
+      })
+    } else if (key === 'urls') {
+      input = document.createElement('input')
+      input.type = 'file'
+      input.id='insertImagenes'
+      input.name = 'newImages[]'
+      input.multiple = true
+    } else {
+      input = document.createElement('input')
+      input.type = 'text'
+      input.name = key
+    }
+
+    input.id = key
+    formulario.appendChild(label)
+    formulario.appendChild(input)
+    formulario.appendChild(document.createElement('br'))
+  })
+
+  modalBody.appendChild(formulario)
+  modal.classList.remove('hidden')
+
+  const closeButton = modal.querySelector('.close-button')
+  closeButton.onclick = () => {
+    modal.classList.add('hidden')
+  }
+
+  const guardarCambios = modal.querySelector('#guardar-cambios')
+  guardarCambios.addEventListener('click', async (event) => {
+    event.preventDefault()
+
+    // Validar formulario
+   const valido = new C_validarEnemigo(formulario).validarFormulario()
+      if (valido) {
+        const formData = new FormData(formulario)
+
+        // Crear objeto con los datos del formulario
+        const data = Object.fromEntries(formData.entries())
+        if (data.idPersonaje) {
+          data.idPersonaje = Number(data.idPersonaje) // Convertir idPersonaje a número
+        }
+
+        // Obtener imágenes existentes y eliminadas
+        const existingImages = formData.getAll('existingImages[]')
+        const deletedImages = formData.getAll('deletedImages[]')
+
+        const newImages = formData.getAll('newImages[]')
+        const newImageNames = []
+        const subeImagenes = new M_subirImagenes()
+
+        for (const imageFile of newImages) {
+           try {
+             const filename = await subeImagenes.uploadImage(imageFile)
+            newImageNames.push(filename.filename)
+          } catch (error) {
+            console.error('Error subiendo la imagen:', error)
+            alert('Hubo un problema al subir las imágenes.')
+            return
+          }    
+        }
+
+        console.log(newImageNames)
+        data['newImages'] = newImageNames
+
+        // Asignar imágenes existentes y eliminadas al objeto `data`
+        data['existingImages'] = existingImages
+        data['deletedImages'] = deletedImages
+
+        // Cerrar el modal
+        modal.classList.add('hidden')
+
+        // Instanciar el modelo para modificar la entidad
+        const modificar = new M_modificar()
+        await modificar.mandarModificacion(data)
+
+      } else {
+        alert('Hay campos inválidos en el formulario.')
+      }
+    })
+}
+}
 export default C_entidades

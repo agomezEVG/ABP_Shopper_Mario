@@ -350,7 +350,10 @@ html, body{
       width: 100%;
       height: fit-content;
     }
-
+    #mostrarDatosPanelAdmin .btn-insertar{
+      margin: 30px 25px;
+      width: fit-content;
+    }
     .dinamicos-Admin{
       display: flex;
       flex-direction: column;
@@ -442,7 +445,7 @@ html, body{
     .btn-modificar:hover {
         background-color: #357a38;
     }
-
+      
 #select-entidades{
   position:fixed;
   top: 14%;

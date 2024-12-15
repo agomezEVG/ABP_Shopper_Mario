@@ -9,6 +9,7 @@ class C_validarEnemigo {
     this.descripcionEnemigo = document.getElementById('descripcion')
     this.tipoSeleccionado = document.getElementById('tipo')
     this.imagenes = document.getElementById('insertImagenes')
+    this.imagenes2 = document.getElementById('insert2')
     this.contenedorImagen = document.createElement('div')
     this.formElement.appendChild(this.contenedorImagen)
     
@@ -28,7 +29,7 @@ class C_validarEnemigo {
     valido = this.validarImagenes() && valido
 
     if (valido) {
-      console.log('SSSSSSS')
+      console.log('Formulario valido')
       return true
     }
   }
@@ -53,8 +54,9 @@ class C_validarEnemigo {
   validarImagenes() {
     if (this.imagenes.files.length === 0) {
       return true
+    }else{
+      return this.validarFormatoImagenes(this.imagenes.files)
     }
-    return this.validarFormatoImagenes(this.imagenes.files)
   }
 
   validarFormatoImagenes(files) {

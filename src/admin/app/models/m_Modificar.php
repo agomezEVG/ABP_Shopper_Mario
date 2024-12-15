@@ -124,5 +124,76 @@ class M_Modificar {
         error_log('El idPersonaje no está definido o es vacío.');
         return false;
     }
-  
-}}
+    }
+
+
+   public function consultaInsertar($dato) {
+    // Verificar que los datos necesarios están presentes
+    if (isset($dato['nombre']) && !empty($dato['nombre']) && isset($dato['descripcion']) && !empty($dato['descripcion'])) {
+        
+        // Iniciar una transacción para garantizar que ambas inserciones se realicen correctamente
+        $this->conexion->begin_transaction();
+
+        try {
+            // Insertar en la tabla personaje
+            $sqlInsert = "INSERT INTO personaje (nombre, descripcion, tipo) VALUES (?, ?, ?)";
+            $stmt = $this->conexion->prepare($sqlInsert);
+
+            if ($stmt === false) {
+                throw new Exception('Error al preparar la consulta SQL: ' . $this->conexion->error);
+            }
+
+            // 's' para string en los parámetros de la consulta
+            $stmt->bind_param("sss", $dato['nombre'], $dato['descripcion'], $dato['tipo']);
+
+            $executeResult = $stmt->execute();
+
+            if (!$executeResult) {
+                throw new Exception('Error al ejecutar la consulta SQL: ' . $stmt->error);
+            }
+
+            // Obtener el ID del personaje recién insertado
+            $idPersonaje = $this->conexion->insert_id;
+
+            // Ahora insertar las imágenes asociadas (si las hay)
+            if (isset($dato['newImages']) && !empty($dato['newImages'])) {
+                $sqlInsertImages = "INSERT INTO imagenes (idPersonaje, url) VALUES (?, ?)";
+                $stmtImage = $this->conexion->prepare($sqlInsertImages);
+
+                if ($stmtImage === false) {
+                    throw new Exception('Error al preparar la consulta SQL para imágenes: ' . $this->conexion->error);
+                }
+
+                // Iterar sobre las imágenes y guardarlas en la base de datos
+                foreach ($dato['newImages'] as $imageUrl) {
+                    $stmtImage->bind_param("is", $idPersonaje, $imageUrl); // 'i' para el ID del personaje, 's' para la URL
+                    $executeImageResult = $stmtImage->execute();
+
+                    if (!$executeImageResult) {
+                        throw new Exception('Error al insertar la imagen: ' . $stmtImage->error);
+                    }
+                }
+                
+                $stmtImage->close();
+            }
+
+            // Confirmar la transacción
+            $this->conexion->commit();
+
+            // Cerrar el stmt de personaje
+            $stmt->close();
+
+            return true;
+
+        } catch (Exception $e) {
+            // En caso de error, revertir la transacción
+            $this->conexion->rollback();
+            error_log($e->getMessage());
+            return false;
+        }
+    } else {
+        error_log('Los datos necesarios no están completos.');
+        return false;
+    }
+} 
+}
