@@ -1,10 +1,7 @@
 class   M_modificar{
 
 
-  constructor(data){
-    this.data = data
-  }
-  async  mandarModificacion(){
+  async  mandarModificacion(data){
     
     try{
       const response = await fetch('/shopperMario/src/admin/index.php?c=Modificar&m=modificar', {
@@ -12,8 +9,32 @@ class   M_modificar{
         headers:{
           'Content-type': 'application-json',
         },
-        body: JSON.stringify(this.data)
+        body: JSON.stringify(data)
       })
+      const resultado = response.json()
+      
+
+      console.log(resultado)
+    
+    }catch(error){
+      console.error('Error en la solicitud del fetch: ',error)
+    }
+
+  
+  }
+    
+  async eliminarPersonaje(id) {
+        try {
+      const response = await fetch('/shopperMario/src/admin/index.php?c=Modificar&m=borrar', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    action: 'eliminar_personaje', // Puede ser la acción que quieras en tu backend
+                    idPersonaje: id
+                })
+            }) 
       const data = response.json()
       
 
@@ -25,6 +46,7 @@ class   M_modificar{
 
   
   }
+
 }
 
 export default M_modificar

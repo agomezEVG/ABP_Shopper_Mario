@@ -95,4 +95,34 @@ class M_Modificar {
             return false;
         }
     }
-}
+
+
+    public function consultaEliminar($id){
+      if (isset($id) && !empty($id)) {
+        $sqlDelete = "DELETE FROM personaje WHERE idPersonaje = ?";
+        
+        $stmt = $this->conexion->prepare($sqlDelete);
+        
+        if ($stmt === false) {
+            error_log('Error al preparar la consulta SQL: ' . $this->conexion->error);
+            return false;
+        }
+        
+        $stmt->bind_param("i", $id['idPersonaje']); // 'i' es para entero
+        
+        $executeResult = $stmt->execute();
+        
+        if (!$executeResult) {
+            error_log('Error al ejecutar la consulta SQL: ' . $stmt->error);
+            return false;
+        }
+        
+        $stmt->close();
+        
+        return true;
+    } else {
+        error_log('El idPersonaje no está definido o es vacío.');
+        return false;
+    }
+  
+}}

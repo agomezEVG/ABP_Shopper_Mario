@@ -35,7 +35,6 @@ class C_entidades {
 
     selectEntidades.addEventListener('change', (event) => {
       const valorSelect = event.target.value
-      console.log('Has seleccionado, ', valorSelect)
       this.manejarOption(valorSelect, data)
     })
   }
@@ -43,13 +42,10 @@ class C_entidades {
   async manejarOption(valorSelect, data) {
     const listarTablas = new M_listarTareas()
     let personajes = await listarTablas.listar(valorSelect)
-
-    console.log(personajes)
-
     this.generarTabla(personajes, data)
   }
 
- generarTabla(personajes, data) {
+  generarTabla(personajes, data) {
     this.panelAdmin.appendChild(this.contenedorTabla)
     this.contenedorTabla.innerHTML = ''
 
@@ -80,9 +76,9 @@ class C_entidades {
 
                 // Convertir la cadena de URLs a un array
                 const imagenes = personaje[cabecera].split(',')
-              console.log(imagenes)
+                console.log(imagenes)
                 imagenes.forEach(url => {
-                  console.log(url)
+                    console.log(url)
                     const imagen = document.createElement('img')
                     imagen.src = '../../img/'+url.trim() 
                     imagen.className = 'imagen-lista'
@@ -118,205 +114,206 @@ class C_entidades {
     // Delegación de Eventos
     this.contenedorTabla.addEventListener('click', (event) => {
         if (event.target.classList.contains('btn-eliminar')) {
-            const id = event.target.dataset.id
-            console.log('Eliminar personaje con id:', id)
-            // Aquí podrías añadir lógica para eliminar
+          let id = event.target.dataset.id
+          console.log(id)
+          id= Number(id) 
+          const respuesta = confirm("Estás seguro que deseas borrarlo?")
+          if(respuesta){
+
+              const modificar = new M_modificar().eliminarPersonaje(id)
+          }
         }
         if (event.target.classList.contains('btn-modificar')) {
             const id = event.target.dataset.id
-            console.log('Modificar personaje con id:', id)
             const personajeSeleccionado = personajes.find(p => p.idPersonaje == id)
             this.generarFormulario(personajeSeleccionado, data)
         }
     })
-} 
- generarFormulario(personaje, data) {
-  let modal = document.getElementById('modal')
-  if (!modal) {
-    modal = document.createElement('div')
-    modal.id = 'modal'
-    modal.className = 'modal hidden'
-    modal.innerHTML = `
-      <div class="modal-content">
-        <span class="close-button">&times;</span>
-        <div id="modal-body"></div>
-        <div class="modal-footer">
-            <button id="guardar-cambios" class="btn">Guardar Cambios</button>
-        </div>
-      </div>`
-    document.body.appendChild(modal)
   }
 
-  const modalBody = document.getElementById('modal-body')
-  modalBody.innerHTML = ''
-
-  const formulario = document.createElement('form')
-  formulario.id = 'formulario-modificar'
-  formulario.enctype = 'multipart/form-data' // Para manejar archivos
-  Object.keys(personaje).forEach(key => {
-    const label = document.createElement('label')
-    label.textContent = key === 'urls' ? 'Imagenes' : key.toUpperCase()
-    label.setAttribute('for', key)
-
-    let input
-    if (key === 'nombre') {
-      input = document.createElement('input')
-      input.type = 'text'
-      input.name = key
-      input.value = personaje[key]
-    } else if (key === 'descripcion') {
-      input = document.createElement('textarea')
-      input.name = key
-      input.value = personaje[key]
-    } else if (key === 'tipo') {
-      input = document.createElement('select')
-      input.name = key
-      data.forEach(valor => {
-        const option = document.createElement('option')
-        option.value = valor.tipo
-        option.textContent = valor.nombre
-        if (valor.tipo === personaje[key]) {
-          option.selected = true
-        }
-        input.appendChild(option)
-      })
-    } else if (key === 'urls') {
-      const imageContainer = document.createElement('div')
-      imageContainer.className = 'image-container'
-      imageContainer.style.display = 'flex'
-
-      personaje[key].split(',').forEach((url, index) => {
-        const imgWrapper = document.createElement('div')
-        imgWrapper.className = 'img-wrapper'
-        imgWrapper.style.display = 'flex'
-        imgWrapper.style.flexDirection = 'column'
-
-        // Imagen actual
-        const img = document.createElement('img')
-        img.src = '../../img/' + url.trim()
-        img.className ='imagen-sql'
-        img.alt = `Imagen ${index + 1}`
-        img.style.width = '100px'
-        img.style.height = '100px'
-
-        // Botón para eliminar la imagen
-        const deleteButton = document.createElement('button')
-        deleteButton.type = 'button'
-        deleteButton.textContent = 'Eliminar'
-        deleteButton.onclick = () => {
-          imgWrapper.remove()
-
-          const deletedInput = document.createElement('input')
-            deletedInput.type = 'hidden'
-            deletedInput.name = 'deletedImages[]'
-            deletedInput.value = url.trim()
-            formulario.appendChild(deletedInput)
-        }
-
-        imgWrapper.appendChild(img)
-        imgWrapper.appendChild(deleteButton)
-        imageContainer.appendChild(imgWrapper)
-
-        // Campo oculto para indicar imágenes que se conservarán
-        const hiddenInput = document.createElement('input')
-        hiddenInput.type = 'hidden'
-        hiddenInput.name = `existingImages[]`
-        hiddenInput.value = url.trim()
-        imgWrapper.appendChild(hiddenInput)
-
-      })
-
-      formulario.appendChild(label)
-      formulario.appendChild(imageContainer)
-
-      // Campo para seleccionar nuevas imágenes
-      const newImageInput = document.createElement('input')
-      newImageInput.type = 'file'
-      newImageInput.id='insertImagenes'
-      newImageInput.name = 'newImages[]'
-      newImageInput.multiple = true
-      formulario.appendChild(newImageInput)
-    } else {
-      input = document.createElement('input')
-      input.type = 'text'
-      input.name = key
-      input.value = personaje[key] || ''
-      input.readOnly = true
+  generarFormulario(personaje, data) {
+    let modal = document.getElementById('modal')
+    if (!modal) {
+      modal = document.createElement('div')
+      modal.id = 'modal'
+      modal.className = 'modal hidden'
+      modal.innerHTML = `
+        <div class="modal-content">
+          <span class="close-button">&times;</span>
+          <div id="modal-body"></div>
+          <div class="modal-footer">
+              <button id="guardar-cambios" class="btn">Guardar Cambios</button>
+          </div>
+        </div>`
+      document.body.appendChild(modal)
     }
 
-    if (key !== 'urls') {
-      input.id = key
-      formulario.appendChild(label)
-      formulario.appendChild(input)
-      formulario.appendChild(document.createElement('br'))
+    const modalBody = document.getElementById('modal-body')
+    modalBody.innerHTML = ''
+
+    const formulario = document.createElement('form')
+    formulario.id = 'formulario-modificar'
+    formulario.enctype = 'multipart/form-data' // Para manejar archivos
+    Object.keys(personaje).forEach(key => {
+      const label = document.createElement('label')
+      label.textContent = key === 'urls' ? 'Imagenes' : key.toUpperCase()
+      label.setAttribute('for', key)
+
+      let input
+      if (key === 'nombre') {
+        input = document.createElement('input')
+        input.type = 'text'
+        input.name = key
+        input.value = personaje[key]
+      } else if (key === 'descripcion') {
+        input = document.createElement('textarea')
+        input.name = key
+        input.value = personaje[key]
+      } else if (key === 'tipo') {
+        input = document.createElement('select')
+        input.name = key
+        data.forEach(valor => {
+          const option = document.createElement('option')
+          option.value = valor.tipo
+          option.textContent = valor.nombre
+          if (valor.tipo === personaje[key]) {
+            option.selected = true
+          }
+          input.appendChild(option)
+        })
+      } else if (key === 'urls') {
+        const imageContainer = document.createElement('div')
+        imageContainer.className = 'image-container'
+        imageContainer.style.display = 'flex'
+
+        personaje[key].split(',').forEach((url, index) => {
+          const imgWrapper = document.createElement('div')
+          imgWrapper.className = 'img-wrapper'
+          imgWrapper.style.display = 'flex'
+          imgWrapper.style.flexDirection = 'column'
+
+          // Imagen actual
+          const img = document.createElement('img')
+          img.src = '../../img/' + url.trim()
+          img.className ='imagen-sql'
+          img.alt = `Imagen ${index + 1}`
+          img.style.width = '100px'
+          img.style.height = '100px'
+
+          // Botón para eliminar la imagen
+          const deleteButton = document.createElement('button')
+          deleteButton.type = 'button'
+          deleteButton.textContent = 'Eliminar'
+          deleteButton.onclick = () => {
+            imgWrapper.remove()
+
+            const deletedInput = document.createElement('input')
+              deletedInput.type = 'hidden'
+              deletedInput.name = 'deletedImages[]'
+              deletedInput.value = url.trim()
+              formulario.appendChild(deletedInput)
+          }
+
+          imgWrapper.appendChild(img)
+          imgWrapper.appendChild(deleteButton)
+          imageContainer.appendChild(imgWrapper)
+
+          // Campo oculto para indicar imágenes que se conservarán
+          const hiddenInput = document.createElement('input')
+          hiddenInput.type = 'hidden'
+          hiddenInput.name = `existingImages[]`
+          hiddenInput.value = url.trim()
+          imgWrapper.appendChild(hiddenInput)
+
+        })
+
+        formulario.appendChild(label)
+        formulario.appendChild(imageContainer)
+
+        // Campo para seleccionar nuevas imágenes
+        const newImageInput = document.createElement('input')
+        newImageInput.type = 'file'
+        newImageInput.id='insertImagenes'
+        newImageInput.name = 'newImages[]'
+        newImageInput.multiple = true
+        formulario.appendChild(newImageInput)
+      } else {
+        input = document.createElement('input')
+        input.type = 'text'
+        input.name = key
+        input.value = personaje[key] || ''
+        input.readOnly = true
+      }
+
+      if (key !== 'urls') {
+        input.id = key
+        formulario.appendChild(label)
+        formulario.appendChild(input)
+        formulario.appendChild(document.createElement('br'))
+      }
+    })
+
+    modalBody.appendChild(formulario)
+    modal.classList.remove('hidden')
+
+    const closeButton = modal.querySelector('.close-button')
+    closeButton.onclick = () => {
+      modal.classList.add('hidden')
     }
-  })
-
-  modalBody.appendChild(formulario)
-  modal.classList.remove('hidden')
-
-  const closeButton = modal.querySelector('.close-button')
-  closeButton.onclick = () => {
-    modal.classList.add('hidden')
-  }
 
     const guardarCambios = modal.querySelector('#guardar-cambios')
-guardarCambios.addEventListener('click', async (event) => {
-  event.preventDefault()
+    guardarCambios.addEventListener('click', async (event) => {
+      event.preventDefault()
 
-  // Validar formulario
-  const valido = new C_validarEnemigo(formulario).validarFormulario()
-  if (valido) {
-    const formData = new FormData(formulario)
+      // Validar formulario
+      const valido = new C_validarEnemigo(formulario).validarFormulario()
+      if (valido) {
+        const formData = new FormData(formulario)
 
-    // Crear objeto con los datos del formulario
-    const data = Object.fromEntries(formData.entries())
-    if (data.idPersonaje) {
-      data.idPersonaje = Number(data.idPersonaje) // Convertir idPersonaje a número
-    }
+        // Crear objeto con los datos del formulario
+        const data = Object.fromEntries(formData.entries())
+        if (data.idPersonaje) {
+          data.idPersonaje = Number(data.idPersonaje) // Convertir idPersonaje a número
+        }
 
-    // Obtener imágenes existentes y eliminadas
-    const existingImages = formData.getAll('existingImages[]')
-    const deletedImages = formData.getAll('deletedImages[]')
+        // Obtener imágenes existentes y eliminadas
+        const existingImages = formData.getAll('existingImages[]')
+        const deletedImages = formData.getAll('deletedImages[]')
 
-    const newImages = formData.getAll('newImages[]')
-    const newImageNames = []
-    const subeImagenes = new M_subirImagenes()
+        const newImages = formData.getAll('newImages[]')
+        const newImageNames = []
+        const subeImagenes = new M_subirImagenes()
 
-    for (const imageFile of newImages) {
-       try {
-         const filename = await subeImagenes.uploadImage(imageFile)
-         console.log(filename.filename)
-        newImageNames.push(filename.filename)
-      } catch (error) {
-        console.error('Error subiendo la imagen:', error)
-        alert('Hubo un problema al subir las imágenes.')
-        return
-      }    
-    }
-    
-    console.log(newImageNames)
-    data['newImages'] = newImageNames
+        for (const imageFile of newImages) {
+           try {
+             const filename = await subeImagenes.uploadImage(imageFile)
+            newImageNames.push(filename.filename)
+          } catch (error) {
+            console.error('Error subiendo la imagen:', error)
+            alert('Hubo un problema al subir las imágenes.')
+            return
+          }    
+        }
 
-    // Asignar imágenes existentes y eliminadas al objeto `data`
-    data['existingImages'] = existingImages
-    data['deletedImages'] = deletedImages
+        console.log(newImageNames)
+        data['newImages'] = newImageNames
 
-    // Cerrar el modal
-    modal.classList.add('hidden')
+        // Asignar imágenes existentes y eliminadas al objeto `data`
+        data['existingImages'] = existingImages
+        data['deletedImages'] = deletedImages
 
-    // Instanciar el modelo para modificar la entidad
-    const modificar = new M_modificar(data)
-    await modificar.mandarModificacion()
+        // Cerrar el modal
+        modal.classList.add('hidden')
 
-  } else {
-    console.log("Formulario no válido")
-  }    
-}) 
-      this.contenedorTabla.appendChild(modal)
+        // Instanciar el modelo para modificar la entidad
+        const modificar = new M_modificar()
+        await modificar.mandarModificacion(data)
+
+      } else {
+        alert('Hay campos inválidos en el formulario.')
+      }
+    })
+  }
 }
 
-
-}
- 
 export default C_entidades
