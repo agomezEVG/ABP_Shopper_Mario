@@ -195,6 +195,7 @@ class C_entidades {
         imageContainer.className = 'image-container'
         imageContainer.style.display = 'flex'
 
+        if(personaje[key]){
         personaje[key].split(',').forEach((url, index) => {
           const imgWrapper = document.createElement('div')
           imgWrapper.className = 'img-wrapper'
@@ -235,6 +236,7 @@ class C_entidades {
           imgWrapper.appendChild(hiddenInput)
 
         })
+        }
 
         formulario.appendChild(label)
         formulario.appendChild(imageContainer)
