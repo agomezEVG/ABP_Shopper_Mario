@@ -12,8 +12,8 @@ class M_subirImagenes {
         body: formData,
       });
 
-      const data = await response.json();
-      console.log(data)
+      const data = await response.json()
+      return data
     } catch (error) {
       console.error('Error: ', error);
     }

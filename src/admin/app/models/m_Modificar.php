@@ -1,4 +1,5 @@
-<?php
+<?php 
+
 class M_Modificar {
 
     private $conexion;
@@ -16,10 +17,10 @@ class M_Modificar {
     }
 
     public function consultaModificacion($dato) {
-      $modificado = false;
+        $modificado = false;
 
         try {
-          // Paso 1: Actualizar los datos del personaje
+            // Paso 1: Actualizar los datos del personaje
             if (isset($dato['nombre']) || isset($dato['descripcion']) || isset($dato['tipo'])) {
                 $sqlUpdate = "UPDATE personaje SET nombre = ?, descripcion = ?, tipo = ? WHERE idPersonaje = ?";
                 $stmt = $this->conexion->prepare($sqlUpdate);
@@ -39,9 +40,8 @@ class M_Modificar {
             }
 
             // Paso 2: Eliminar las imágenes marcadas para eliminación
-            if (isset($dato['deletedImages[]'])) {
-          
-                $deletedImages = $dato['deletedImages[]'];
+            if (isset($dato['deletedImages'])) {
+                $deletedImages = $dato['deletedImages'];
                 foreach ($deletedImages as $image) {
                     $sqlDelete = "DELETE FROM imagen WHERE idPersonaje = ? AND url = ?";
                     $stmt = $this->conexion->prepare($sqlDelete);
@@ -61,11 +61,37 @@ class M_Modificar {
                 $modificado = true;
             }
 
-
-           return $modificado;
+            // Paso 3: Subir las nuevas imágenes
+           if (isset($dato['newImages']) && count($dato['newImages']) > 0) {
+    foreach ($dato['newImages'] as $imageName) {
+        if (!empty($imageName)) {
+            // Aquí puedes insertar las nuevas imágenes en la base de datos
+            $sqlInsert = "INSERT INTO imagen (idPersonaje, url) VALUES (?, ?)";
+            $stmt = $this->conexion->prepare($sqlInsert);
+            if ($stmt === false) {
+                error_log('Error en la preparación de la consulta SQL para insertar imagen: ' . $this->conexion->error);
+                return false;
+            }
+            
+            $stmt->bind_param("is", $dato['idPersonaje'], $imageName);
+            $executeResult = $stmt->execute();
+            if (!$executeResult) {
+                error_log('Error al ejecutar la consulta SQL para insertar imagen: ' . $stmt->error);
+                return false;
+            }
+            $stmt->close();
+        } else {
+            // Si el nombre de la imagen es vacío, loguear un error
+            error_log('Nombre de imagen vacio, no se puede insertar');
+            return false;
+        }
+    }
+    $modificado = true;
+} 
+            return $modificado;
 
         } catch (Throwable $th) {
-            error_log('Excepción durante la modificación: ' . $th->getMessage());
+            error_log('Excepcion: ' . $th->getMessage());
             return false;
         }
     }

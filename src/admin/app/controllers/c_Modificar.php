@@ -10,8 +10,8 @@ Class C_Modificar{
 
   public function modificar($dato){
 
-    error_log(print_r($_FILES[0]));
     $obj = new M_Modificar();
+
     if($obj->consultaModificacion($dato)){
       echo json_encode(['success' => '1', "mensaje" => 'modificación ejecutada correctamente']);
     }else{

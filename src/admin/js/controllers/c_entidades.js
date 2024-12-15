@@ -286,16 +286,16 @@ guardarCambios.addEventListener('click', async (event) => {
     for (const imageFile of newImages) {
        try {
          const filename = await subeImagenes.uploadImage(imageFile)
-         console.log(imageFile)
-        newImageNames.push(filename)
+         console.log(filename.filename)
+        newImageNames.push(filename.filename)
       } catch (error) {
         console.error('Error subiendo la imagen:', error)
         alert('Hubo un problema al subir las imágenes.')
         return
       }    
     }
-
-    // Agregar las imágenes nuevas al objeto `data`
+    
+    console.log(newImageNames)
     data['newImages'] = newImageNames
 
     // Asignar imágenes existentes y eliminadas al objeto `data`
