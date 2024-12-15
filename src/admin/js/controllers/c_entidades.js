@@ -128,7 +128,6 @@ class C_entidades {
           id= Number(id) 
           const respuesta = confirm("Estás seguro que deseas borrarlo?")
           if(respuesta){
-
               const modificar = new M_modificar().eliminarPersonaje(id)
           }
         }
@@ -399,10 +398,9 @@ generarFormularioVacio(data) {
     event.preventDefault()
 
     // Validar formulario
-   const valido = new C_validarEnemigo(formulario).validarFormulario()
-      if (valido) {
         const formData = new FormData(formulario)
 
+        modal.classList.add('hidden')
         // Crear objeto con los datos del formulario
         const data = Object.fromEntries(formData.entries())
         if (data.idPersonaje) {
@@ -440,11 +438,8 @@ generarFormularioVacio(data) {
 
         // Instanciar el modelo para modificar la entidad
         const modificar = new M_modificar()
-        await modificar.mandarModificacion(data)
+        await modificar.mandarInsercion(data)
 
-      } else {
-        alert('Hay campos inválidos en el formulario.')
-      }
     })
 }
 }

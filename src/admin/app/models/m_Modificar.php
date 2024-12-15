@@ -127,12 +127,11 @@ class M_Modificar {
     }
 
 
-   public function consultaInsertar($dato) {
+public function consultaInsertar($dato) {
     // Verificar que los datos necesarios están presentes
     if (isset($dato['nombre']) && !empty($dato['nombre']) && isset($dato['descripcion']) && !empty($dato['descripcion'])) {
         
         // Iniciar una transacción para garantizar que ambas inserciones se realicen correctamente
-        $this->conexion->begin_transaction();
 
         try {
             // Insertar en la tabla personaje
@@ -149,18 +148,24 @@ class M_Modificar {
             $executeResult = $stmt->execute();
 
             if (!$executeResult) {
-                throw new Exception('Error al ejecutar la consulta SQL: ' . $stmt->error);
+                $this->conexion->rollback();
+                throw new Exception('Error al ejecutar la consulta SQL de personaje: ' . $stmt->error);
             }
 
             // Obtener el ID del personaje recién insertado
             $idPersonaje = $this->conexion->insert_id;
+            if ($idPersonaje <= 0) {
+                $this->conexion->rollback();
+                throw new Exception('No se pudo obtener el ID del personaje insertado. ID: ' . $idPersonaje);
+            }
 
             // Ahora insertar las imágenes asociadas (si las hay)
             if (isset($dato['newImages']) && !empty($dato['newImages'])) {
-                $sqlInsertImages = "INSERT INTO imagenes (idPersonaje, url) VALUES (?, ?)";
+                $sqlInsertImages = "INSERT INTO imagen (idPersonaje, url) VALUES (?, ?)";
                 $stmtImage = $this->conexion->prepare($sqlInsertImages);
 
                 if ($stmtImage === false) {
+                    $this->conexion->rollback();
                     throw new Exception('Error al preparar la consulta SQL para imágenes: ' . $this->conexion->error);
                 }
 
@@ -170,6 +175,7 @@ class M_Modificar {
                     $executeImageResult = $stmtImage->execute();
 
                     if (!$executeImageResult) {
+                        $this->conexion->rollback();
                         throw new Exception('Error al insertar la imagen: ' . $stmtImage->error);
                     }
                 }
@@ -177,8 +183,7 @@ class M_Modificar {
                 $stmtImage->close();
             }
 
-            // Confirmar la transacción
-            $this->conexion->commit();
+            // Confirmar la transacción solo si todo ha ido bien
 
             // Cerrar el stmt de personaje
             $stmt->close();
@@ -187,7 +192,6 @@ class M_Modificar {
 
         } catch (Exception $e) {
             // En caso de error, revertir la transacción
-            $this->conexion->rollback();
             error_log($e->getMessage());
             return false;
         }

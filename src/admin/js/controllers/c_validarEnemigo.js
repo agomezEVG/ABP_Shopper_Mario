@@ -52,10 +52,19 @@ class C_validarEnemigo {
 
 
   validarImagenes() {
-    if (this.imagenes.files.length === 0) {
-      return true
-    }else{
-      return this.validarFormatoImagenes(this.imagenes.files)
+
+    if(this.imagenes){
+      if (this.imagenes.files.length === 0) {
+        return true
+      }else{
+        return this.validarFormatoImagenes(this.imagenes.files)
+      }
+    }else if(this.imagenes2){
+      if (this.imagenes2.files.length === 0) {
+        return true
+      }else{
+        return this.validarFormatoImagenes(this.imagenes2.files)
+      }
     }
   }
 
@@ -66,7 +75,13 @@ class C_validarEnemigo {
     Array.from(files).forEach(file => {
       if (!formatosPermitidos.includes(file.type)) {
         valido = false
-        this.mostrarError(this.imagenes, 'Formato de la imagen no permitido, solo se aceptan JPEG y PNG')
+        if(this.imagenes){
+
+          this.mostrarError(this.imagenes, 'Formato de la imagen no permitido, solo se aceptan JPEG y PNG')
+        }else if(this.imagenes2){
+
+          this.mostrarError(this.imagenes, 'Formato de la imagen no permitido, solo se aceptan JPEG y PNG')
+        }
       }
     })
 
