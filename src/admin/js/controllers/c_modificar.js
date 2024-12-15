@@ -1,5 +1,0 @@
-class C_modificar{
-
-
-  
-}

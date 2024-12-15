@@ -22,10 +22,16 @@
         public function obtenerTablas($dato) {
 
           try {
-             $sql = 'SELECT personaje.idPersonaje, personaje.nombre, personaje.descripcion, personaje.tipo, imagen.url
+             $sql = 'SELECT 
+                    personaje.idPersonaje, 
+                    personaje.nombre, 
+                    personaje.descripcion, 
+                    personaje.tipo, 
+                    GROUP_CONCAT(imagen.url) AS urls
                 FROM personaje 
                 LEFT JOIN imagen ON personaje.idPersonaje = imagen.idPersonaje 
-                WHERE personaje.tipo = ?'; 
+                WHERE personaje.tipo = ?
+                GROUP BY personaje.idPersonaje'; 
         
           $stmt = $this->conexion->prepare($sql);
           $stmt->bind_param('s',$dato['valor']);

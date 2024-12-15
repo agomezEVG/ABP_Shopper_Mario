@@ -582,3 +582,10 @@ form textarea {
   min-height: 80px;
 }
 
+
+.imagen-sql{
+  position: static;
+}
+.imagen-lista{
+  position: static;
+}

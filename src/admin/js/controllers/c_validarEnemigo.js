@@ -5,11 +5,10 @@ class C_validarEnemigo {
       throw new Error("El formulario no existe en el DOM.")
     }
     this.formElement = formElement
-    this.id
     this.nombreEnemigo = document.getElementById('nombre')
     this.descripcionEnemigo = document.getElementById('descripcion')
     this.tipoSeleccionado = document.getElementById('tipo')
-    this.imagenes = document.getElementById('url')
+    this.imagenes = document.getElementById('insertImagenes')
     this.contenedorImagen = document.createElement('div')
     this.formElement.appendChild(this.contenedorImagen)
     
@@ -50,10 +49,10 @@ class C_validarEnemigo {
     return true
   }
 
+
   validarImagenes() {
-    if (!this.imagenes.files.length) {
-      this.mostrarError(this.imagenes, 'Debes subir al menos una imagen')
-      return false
+    if (this.imagenes.files.length === 0) {
+      return true
     }
     return this.validarFormatoImagenes(this.imagenes.files)
   }
@@ -92,7 +91,7 @@ class C_validarEnemigo {
       if (archivos.length > 0) {
         Array.from(archivos).forEach(archivo => {
           const reader = new FileReader()
-          reader.onload = function(e) {
+            reader.onload = function(e) {
             const img = document.createElement('img')
             img.src = e.target.result
             img.className = 'img-enemigo'
