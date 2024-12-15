@@ -2,6 +2,7 @@ import M_entidades from "../modelo/m_entidades.js"
 import M_listarTareas from "../modelo/m_listarTablas.js"
 import C_validarEnemigo from './c_validarEnemigo.js'
 import M_modificar from '../modelo/m_modificar.js'
+import M_subirImagenes from "../modelo/m_subirImagen.js"
 
 class C_entidades {
 
@@ -260,37 +261,62 @@ class C_entidades {
   }
 
     const guardarCambios = modal.querySelector('#guardar-cambios')
-    guardarCambios.addEventListener('click', (event) => {
-      event.preventDefault() 
-    const valido = new C_validarEnemigo(formulario).validarFormulario()
-      if (valido) {
-        const formData = new FormData(formulario)
+guardarCambios.addEventListener('click', async (event) => {
+  event.preventDefault()
 
-        const data = Object.fromEntries(formData.entries())
-        if (data.idPersonaje) {
-              data.idPersonaje = Number(data.idPersonaje) // Convertir idPersonaje a número
-            }
-        
-        const existingImages = formData.getAll('existingImages[]')
-        const deletedImages = formData.getAll('deletedImages[]')
-        const newImages = formData.getAll('newImages[]')
-        newImages.forEach(imageFile => {
-        formData.append('newImages[]', imageFile); // Añadir cada archivo de imagen al FormData
-        })
-        data['existingImages[]'] = existingImages
-        data['deletedImages[]'] = deletedImages
-        modal.classList.add('hidden')
-        const modificar = new M_modificar(data)
-        console.log(data)
-        modificar.mandarModificacion()
+  // Validar formulario
+  const valido = new C_validarEnemigo(formulario).validarFormulario()
+  if (valido) {
+    const formData = new FormData(formulario)
 
-
-      }else{
-        console.log("no es valido")
-      }
-    }) 
-      this.contenedorTabla.appendChild(modal)
+    // Crear objeto con los datos del formulario
+    const data = Object.fromEntries(formData.entries())
+    if (data.idPersonaje) {
+      data.idPersonaje = Number(data.idPersonaje) // Convertir idPersonaje a número
     }
+
+    // Obtener imágenes existentes y eliminadas
+    const existingImages = formData.getAll('existingImages[]')
+    const deletedImages = formData.getAll('deletedImages[]')
+
+    const newImages = formData.getAll('newImages[]')
+    const newImageNames = []
+    const subeImagenes = new M_subirImagenes()
+
+    for (const imageFile of newImages) {
+       try {
+         const filename = await subeImagenes.uploadImage(imageFile)
+         console.log(imageFile)
+        newImageNames.push(filename)
+      } catch (error) {
+        console.error('Error subiendo la imagen:', error)
+        alert('Hubo un problema al subir las imágenes.')
+        return
+      }    
+    }
+
+    // Agregar las imágenes nuevas al objeto `data`
+    data['newImages'] = newImageNames
+
+    // Asignar imágenes existentes y eliminadas al objeto `data`
+    data['existingImages'] = existingImages
+    data['deletedImages'] = deletedImages
+
+    // Cerrar el modal
+    modal.classList.add('hidden')
+
+    // Instanciar el modelo para modificar la entidad
+    const modificar = new M_modificar(data)
+    await modificar.mandarModificacion()
+
+  } else {
+    console.log("Formulario no válido")
+  }    
+}) 
+      this.contenedorTabla.appendChild(modal)
+}
+
+
 }
  
 export default C_entidades
