@@ -402,7 +402,7 @@ html, body{
 
 /* ------------- QUERIES FORMULARIO ENEMIGOS (Alberto Sánchez) ---------------- */
 
-@media (max-width: 1200px) {
+@media (max-width: 1700px) {
     #sectionEnemigo {
         width: 50%;
         margin: 5% auto;
