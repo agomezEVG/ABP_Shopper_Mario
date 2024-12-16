@@ -54,6 +54,7 @@
                 }
             } else {
                 $this->vista = 'Error';
+                $this->vista = 'Error';
                 return false;
             }
 
