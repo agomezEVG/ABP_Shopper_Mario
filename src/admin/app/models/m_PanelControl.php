@@ -98,7 +98,74 @@
             }
             return true;
         }
+
+        public function mAltaImgObjeto($idObjeto, $urlImagen) {
+            
+            $sql = 'INSERT INTO imagen (url) VALUES ("'.$urlImagen.'");';
+            
+            $resultado = $this->conexion->query($sql);
+
+            if ($resultado) {
+                // Seleccionar idImagen de la imagen en cuestión
+                $sqlId = 'SELECT idImagen FROM imagen WHERE url = "'.$urlImagen.'";';
+                $resultadoId = $this->conexion->query($sqlId);
+            
+                // Verificar si la consulta fue exitosa y si se obtuvo un resultado
+                if ($resultadoId && $row = $resultadoId->fetch_assoc()) {
+                    // Obtener el idImagen
+                    $idImagen = $row['idImagen'];
+            
+                    // Insertar el idImagen en la tabla 'objeto' con el idObjeto proporcionado
+                    $sqlObjeto = 'INSERT INTO objeto (idImagen) VALUES ("'.$idImagen.'") WHERE idObjeto = "'.$idObjeto.'";';
+                    $resultadoObjeto = $this->conexion->query($sqlObjeto);
+            
+                    if ($resultadoObjeto) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                } else {
+                    return false;
+                }
+            } else {
+                return false;
+            }
+        }
         /* ------------------------------- FIN MÉTODOS DE IMAGENES ------------------------------- */
+
+
+        /* ------------------------------- MÉTODOS DE JUGADOR ------------------------------- */
+        public function mAltaJugador ($idJugador) {
+
+            $sql = 'INSERT INTO jugador (idJugador) VALUES ("'.$idJugador.'");';
+            
+            $resultado = $this->conexion->query($sql);
+
+            if($resultado) 
+                return true;
+            else
+                return false;
+        }
+
+        public function mListarJugador () {
+            
+            $sql = 'SELECT nombre, descripcion FROM jugador INNER JOIN personaje ON idJugador = idPersonaje;';
+
+            $resultado = $this->conexion->query($sql);
+
+            if($resultado->num_rows > 0) {
+
+                $datosJugador = [];
+
+                while($fila = $resultado->fetch_assoc())
+                    $datosJugador[] = $fila;
+                
+                return $datosJugador;
+            } else {
+                return false;
+            }
+        }
+        /* ------------------------------- FIN MÉTODOS DE JUGADOR ------------------------------- */
 
 
         /* ------------------------------- MÉTODOS DE NPCs ------------------------------- */
@@ -141,6 +208,40 @@
             }
         }
         /* ------------------------------- FIN MÉTODOS DE NPCs ------------------------------- */
+
+
+        /* ------------------------------- MÉTODOS DE ENEMIGO ------------------------------- */
+        public function mAltaEnemigo ($idEnemigo) {
+
+            $sql = 'INSERT INTO enemigo (idEnemigo) VALUES ("'.$idEnemigo.'");';
+            
+            $resultado = $this->conexion->query($sql);
+
+            if($resultado) 
+                return true;
+            else
+                return false;
+        }
+
+        public function mListarEnemigo () {
+            
+            $sql = 'SELECT nombre, descripcion FROM enemigo INNER JOIN personaje ON idEnemigo = idPersonaje;';
+
+            $resultado = $this->conexion->query($sql);
+
+            if($resultado->num_rows > 0) {
+
+                $datosEnemigo = [];
+
+                while($fila = $resultado->fetch_assoc())
+                    $datosEnemigo[] = $fila;
+                
+                return $datosEnemigo;
+            } else {
+                return false;
+            }
+        }
+        /* ------------------------------- FIN MÉTODOS DE ENEMIGO ------------------------------- */
 
 
         /* ------------------------------- MÉTODOS DE DIÁLOGOS ------------------------------- */
@@ -224,5 +325,73 @@
             }
         }
         /* ------------------------------- FIN MÉTODOS DE DIÁLOGOS ------------------------------- */
+
+        /* ------------------------------- MÉTODOS DE OBJETOS ------------------------------- */
+
+        public function mAltaObjeto($nombre, $descripcion) {
+
+            $sql = 'INSERT INTO objeto (nombre, descripcion) VALUES ("'.$nombre.'", "'.$descripcion.'");';
+            $resultado = $this->conexion->query($sql);
+            
+            if ($resultado) {
+                $idObjeto = $this->conexion->insert_id;
+                return $idObjeto;
+            } else {
+                return false;
+            }
+        }
+        
+        public function mEliminarObjeto($idObjeto) {
+            
+            $sql = 'DELETE FROM objeto WHERE idObjeto = '.$idObjeto.';';
+            $resultado = $this->conexion->query($sql);
+
+            if (!$resultado) {
+                return false;
+            }
+
+            $filasAfectadas = $this->conexion->affected_rows;
+        
+            if ($filasAfectadas > 0) {
+                return $filasAfectadas;
+            }
+            return false;
+        }     
+
+        public function mModificarObjeto($idObjeto, $nombre, $descripcion, $url) {
+            
+            $sqlObjeto = "UPDATE objeto SET nombre = '".$nombre."', descripcion = '".$descripcion."' WHERE idObjeto = ".$idObjeto.";";
+            $resultadoObjeto = $this->conexion->query($sqlObjeto);
+        
+            if (!$resultadoObjeto) {
+                return false; 
+            }
+
+            $sqlImagen = "UPDATE imagen SET url = '".$url."' WHERE idObjeto = ".$idObjeto.";";
+            $resultadoImagen = $this->conexion->query($sqlImagen);
+        
+            if (!$resultadoImagen) {
+                return false;
+            }
+        
+            return true; 
+        }
+
+        public function mListarObjetos() {
+            $sql = 'SELECT objeto.idObjeto, objeto.nombre, objeto.descripcion, imagen.url
+                    FROM objeto LEFT JOIN imagen ON objeto.idImagen = imagen.idImagen';
+        
+            $resultado = $this->conexion->query($sql);
+        
+            if ($resultado->num_rows > 0) {
+                $objetos = [];
+                while ($fila = $resultado->fetch_assoc()) {
+                    $objetos[] = $fila;
+                }
+                return $objetos;
+            } else {
+                return false;
+            }
+        }
     }
 ?>

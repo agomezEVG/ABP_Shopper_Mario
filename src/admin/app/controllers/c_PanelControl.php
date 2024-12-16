@@ -155,6 +155,99 @@
         }
         /* ------------------------------- FIN VALIDACION DE DATOS PERSONAJES ------------------------------- */
 
+        
+        /* ------------------------------- CRUD DE JUGADOR ------------------------------- */
+
+        public function c_AltaJugador ($datosJugador) {
+
+            $estado = $this->vDatosJugador($datosJugador);
+            
+            $this->objMPanelControl->mAltaJugador($datosJugador);
+
+            if($estado) {
+
+                $nombre = $datosJugador['nombre'];
+                $descripcion = $datosJugador['descripcion'];
+                $tipo = 'J';
+                $urlImagen = $datosJugador['url'];
+                
+                $idJugador = $this->objMPanelControl->mAltaPersonaje($nombre, $descripcion, $tipo);
+            } else {
+                return false;
+            }
+            
+            if(!$idJugador) {
+                $this->vista = 'Error';
+                return false;
+            } else {
+                $this->objMPanelControl->mAltaImagen($idJugador, $urlImagen);
+                return true;
+            }
+        }
+
+        public function c_ModificarJugador ($datosJugador) {
+
+            $estado = $this->vDatosJugador($datosJugador);
+
+            if($estado) {
+
+                $idJugador = $datosJugador['idPersonaje'];
+                $nombre = $datosJugador['nombre'];
+                $descripcion = $datosJugador['descripcion'];
+                $tipo = 'J';
+                $urlImagen = $datosJugador['url'];
+
+                $estado = $this->objMPanelControl->mModificarPersonaje($idJugador, $nombre, $descripcion, $tipo, $urlImagen);
+
+            } else {
+                return false;
+            }            
+        }
+
+        public function c_EliminarJugador ($idJugador) {
+            
+            $estado = $this->objMPanelControl->mEliminarPersonaje($idJugador);
+
+            if($estado) {
+                $this->vista = 'PanelAdmin';
+            } else {
+                $this->vista = 'Error';
+            }
+
+        }
+        public function c_ListarJugador () {
+            
+            $datos = $this->objMPanelControl->mListarJugador();
+        }
+
+        /* ------------------------------- VALIDACION DE DATOS JUGADOR ------------------------------- */
+
+        public function vDatosJugador($datosJugador) {
+            if (empty($datosJugador['nombre'])) {
+                $this->mensajeEstado = 'No se ha rellenado el nombre';
+                return false;
+            }
+    
+            if (empty($datosJugador['descripcion'])) {
+                $this->mensajeEstado = 'No se ha rellenado la descripción';
+                return false;
+            }
+    
+            if (empty($datosJugador['imagen'])) {
+                $this->mensajeEstado = 'No se ha añadido la URL de la imagen';
+                return false;
+            }
+
+            if (!isset($datosJugador['tipo'])) {
+                $this->mensajeEstado = 'No se ha añadido tipo de personaje';
+                return false;
+            }
+    
+            return true;
+        }
+
+        /* ------------------------------- FIN VALIDACION DE DATOS JUGADOR ------------------------------- */
+
 
         /* ------------------------------- CRUD DE NPC ------------------------------- */
         public function cAltaNPC ($datosNPC) {
@@ -261,7 +354,7 @@
             //     return 'No hay ningun NPC que visualizar';
             // }
         }
-        /* ------------------------------- VALIDACION DE DATOS PERSONAJES ------------------------------- */
+        /* ------------------------------- VALIDACION DE DATOS NPC ------------------------------- */
         public function vDatosNPC($datosNPC) {
             if (empty($datosNPC['nombre'])) {
                 $this->mensajeEstado = 'No se ha rellenado el nombre';
@@ -284,7 +377,100 @@
             }
             return true;
         }
-        /* ------------------------------- FIN VALIDACION DE DATOS PERSONAJES ------------------------------- */
+        /* ------------------------------- FIN VALIDACION DE DATOS NPC ------------------------------- */
+
+
+        /* ------------------------------- CRUD DE ENEMIGO ------------------------------- */
+
+        public function c_AltaEnemigo ($datosEnemigo) {
+
+            $estado = $this->vDatosEnemigo($datosEnemigo);
+            
+            $this->objMPanelControl->mAltaEnemigo($datosEnemigo);
+
+            if($estado) {
+
+                $nombre = $datosEnemigo['nombre'];
+                $descripcion = $datosEnemigo['descripcion'];
+                $tipo = 'E';
+                $urlImagen = $datosEnemigo['url'];
+                
+                $idEnemigo = $this->objMPanelControl->mAltaPersonaje($nombre, $descripcion, $tipo);
+            } else {
+                return false;
+            }
+            
+            if(!$idEnemigo) {
+                $this->vista = 'Error';
+                return false;
+            } else {
+                $this->objMPanelControl->mAltaImagen($idEnemigo, $urlImagen);
+                return true;
+            }
+        }
+
+        public function c_ModificarEnemigo ($datosEnemigo) {
+
+            $estado = $this->vDatosEnemigo($datosEnemigo);
+
+            if($estado) {
+
+                $idEnemigo = $datosEnemigo['idPersonaje'];
+                $nombre = $datosEnemigo['nombre'];
+                $descripcion = $datosEnemigo['descripcion'];
+                $tipo = 'E';
+                $urlImagen = $datosEnemigo['url'];
+
+                $estado = $this->objMPanelControl->mModificarPersonaje($idEnemigo, $nombre, $descripcion, $tipo, $urlImagen);
+
+            } else {
+                return false;
+            }            
+        }
+
+        public function c_EliminarEnemigo ($idEnemigo) {
+            
+            $estado = $this->objMPanelControl->mEliminarPersonaje($idEnemigo);
+
+            if($estado) {
+                $this->vista = 'PanelAdmin';
+            } else {
+                $this->vista = 'Error';
+            }
+
+        }
+        public function c_ListarEnemigo () {
+            
+            $datos = $this->objMPanelControl->mListarEnemigo();
+        }
+
+        /* ------------------------------- VALIDACION DE DATOS ENEMIGO ------------------------------- */
+
+        public function vDatosEnemigo($datosEnemigo) {
+            if (empty($datosEnemigo['nombre'])) {
+                $this->mensajeEstado = 'No se ha rellenado el nombre';
+                return false;
+            }
+    
+            if (empty($datosEnemigo['descripcion'])) {
+                $this->mensajeEstado = 'No se ha rellenado la descripción';
+                return false;
+            }
+    
+            if (empty($datosEnemigo['imagen'])) {
+                $this->mensajeEstado = 'No se ha añadido la URL de la imagen';
+                return false;
+            }
+
+            if (!isset($datosEnemigo['tipo'])) {
+                $this->mensajeEstado = 'No se ha añadido tipo de personaje';
+                return false;
+            }
+    
+            return true;
+        }
+
+        /* ------------------------------- FIN VALIDACION DE DATOS ENEMIGO ------------------------------- */
 
 
         /* ------------------------------- CRUD DE DIALOGO ------------------------------- */
@@ -349,5 +535,104 @@
             if(!empty($datosDialogo['mensaje']))
                 return false;
         }
+
+    /* ------------------------------- CRUD DE OBJETOS ------------------------------- */
+
+        public function c_AltaObjeto($datosObjeto) {
+
+            $estado = $this->vDatosObjeto($datosObjeto);
+
+            /* urlImagen puede no valer aquí */
+            if($estado) {
+                $nombre = $datosObjeto['nombre'];
+                $descripcion = $datosObjeto['descripcion'];
+                $urlImagen = $datosObjeto['url'];
+
+                $idObjeto = $this->objMPanelControl->mAltaObjeto($nombre, $descripcion);
+            } else {
+                return false;
+            }
+
+            /* Hay que modificar mAltaImgObjeto en m_PanelControl */
+            if($idObjeto) {
+                $estado = $this->objMPanelControl->mAltaImgObjeto($idObjeto, $urlImagen);
+                $this->vista = 'Alta';
+                return true;
+            } else {
+                $this->vista = 'Error';
+                return false;
+            }
+        }
+
+        public function cEliminarObjeto($idObjeto) {
+            
+            if(!empty($idObjeto)) {
+                $estado = $this->objMPanelControl->mEliminarObjeto($idObjeto);
+                return $estado;
+            }
+            
+            return false;
+        }
+
+        public function cModificarObjeto($datosObjeto) {
+
+            $estado = $this->vDatosObjeto($datosObjeto);
+
+            if($estado) {
+                $idObjeto = $datosObjeto['idObjeto'];
+                $nombre = $datosObjeto['nombre'];
+                $descripcion = $datosObjeto['descripcion'];
+                $urlImagen = $datosObjeto['url'];
+
+                $estado = $this->objMPanelControl->mModificarObjeto($idObjeto, $nombre, $descripcion, $urlImagen);
+
+                if($estado) {
+                    $this->vista = 'PanelAdmin';
+                    return true;
+                }            
+                else {
+                    $this->vista = 'Error';
+                    return false;
+                }
+            }
+            return false;
+        }
+
+        public function cListarObjetos() {
+            
+            $objetos = $this->objMPanelControl->mListarObjetos();
+
+            if($objetos != false) {
+                $this->vista = 'Listar';
+                return true;
+            }
+            else {
+                $this->vista = 'Error';
+                return false;
+            }
+        }
+        
+    /* ------------------------------- VALIDACION DE DATOS OBJETOS ------------------------------- */
+
+        public function vDatosObjeto($datosObjeto) {
+            if (empty($datosObjeto['nombre'])) {
+                $this->mensajeEstado = 'No se ha rellenado el nombre';
+                return false;
+            }
+
+            if (empty($datosObjeto['descripcion'])) {
+                $this->mensajeEstado = 'No se ha rellenado la descripción';
+                return false;
+            }
+
+            if (empty($datosObjeto['imagen'])) {
+                $this->mensajeEstado = 'No se ha añadido la URL de la imagen';
+                return false;
+            }
+            return true;
+        }
+
+    /* ------------------------------- FIN VALIDACION DE DATOS OBJETOS ------------------------------- */
+
     }
 ?>
