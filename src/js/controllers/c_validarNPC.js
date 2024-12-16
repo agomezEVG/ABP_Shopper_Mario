@@ -1,15 +1,15 @@
 class C_validarNPC {
     constructor(data) {
-        this.nombre = data.nombre;
+        this.nombre = data.nombre; 
         this.descripcion = data.descripcion;
         this.mensaje = data.mensaje;
-        this.errores = {}; // Almacena los mensajes de error por campo
+        this.errores = {}; // Objeto para almacenar errores
     }
 
     validar() {
-        const regexSoloLetras = /^[a-zA-Z\s]+$/;
+        const regexSoloLetras = /^[a-zA-Z\s]+$/; // Expresión regular para validar solo letras y espacios
 
-        this.errores = {};
+        this.errores = {}; // Limpiar errores
 
         // Validar nombre
         if (!this.nombre) {
@@ -42,7 +42,7 @@ class C_validarNPC {
             this.errores.mensaje = "El diálogo no puede tener más de 300 caracteres.";
         }
 
-        return Object.keys(this.errores).length === 0;
+        return Object.keys(this.errores).length === 0; // Devolver true si no hay errores
     }
 }
 
