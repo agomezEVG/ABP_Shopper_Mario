@@ -43,7 +43,7 @@ class M_Modificar {
             if (isset($dato['deletedImages'])) {
                 $deletedImages = $dato['deletedImages'];
                 foreach ($deletedImages as $image) {
-                    $sqlDelete = "DELETE FROM imagen WHERE idPersonaje = ? AND url = ?";
+                    $sqlDelete = "DELETE FROM imagen WHERE idPersonaje = ? AND nombreArchivo= ?";
                     $stmt = $this->conexion->prepare($sqlDelete);
                     if ($stmt === false) {
                         error_log('Error en la preparación de la consulta SQL para eliminar imagen: ' . $this->conexion->error);
@@ -66,7 +66,7 @@ class M_Modificar {
     foreach ($dato['newImages'] as $imageName) {
         if (!empty($imageName)) {
             // Aquí puedes insertar las nuevas imágenes en la base de datos
-            $sqlInsert = "INSERT INTO imagen (idPersonaje, url) VALUES (?, ?)";
+            $sqlInsert = "INSERT INTO imagen (idPersonaje, nombreArchivo) VALUES (?, ?)";
             $stmt = $this->conexion->prepare($sqlInsert);
             if ($stmt === false) {
                 error_log('Error en la preparación de la consulta SQL para insertar imagen: ' . $this->conexion->error);
@@ -161,7 +161,7 @@ public function consultaInsertar($dato) {
 
             // Ahora insertar las imágenes asociadas (si las hay)
             if (isset($dato['newImages']) && !empty($dato['newImages'])) {
-                $sqlInsertImages = "INSERT INTO imagen (idPersonaje, url) VALUES (?, ?)";
+                $sqlInsertImages = "INSERT INTO imagen (idPersonaje, nombreArchivo) VALUES (?, ?)";
                 $stmtImage = $this->conexion->prepare($sqlInsertImages);
 
                 if ($stmtImage === false) {

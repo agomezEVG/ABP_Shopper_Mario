@@ -27,7 +27,7 @@
                     personaje.nombre, 
                     personaje.descripcion, 
                     personaje.tipo, 
-                    GROUP_CONCAT(imagen.url) AS urls
+                    GROUP_CONCAT(imagen.nombreArchivo) AS urls
                 FROM personaje 
                 LEFT JOIN imagen ON personaje.idPersonaje = imagen.idPersonaje 
                 WHERE personaje.tipo = ?

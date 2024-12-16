@@ -8,7 +8,7 @@
 
             require_once 'app/config/configDb.php';
 
-            $this->conexion = new mysqli(SERVIDOR,USUARIO,PASSWORD,BBDD);
+            $this->conexion = new mysqli(SERVIDOR,USUARIO,PASSWORD,BBDD2);
             $this->conexion->set_charset("utf8");
             
         }
