@@ -11,7 +11,7 @@ VALUES
 ('Guerrero Valiente', 'Un guerrero con gran habilidad en combate cuerpo a cuerpo.', 'J'), -- idPersonaje 1
 ('Maga Elemental', 'Controla los elementos con hechizos poderosos.', 'J'),               -- idPersonaje 2
 ('Ladrón Sigiloso', 'Especialista en sigilo y ataques rápidos.', 'J'),                   -- idPersonaje 3
-('Troll del Bosque', 'Un enemigo peligroso que acecha en el bosque.', 'E'),              -- idPersonaje 4
+('Troll del Bosque', 'Un enemigo peligroso que acecha en el bosque.', 'E'),              -- idPersonaje 4+
 ('Brujo Oscuro', 'Un hechicero que practica magia negra.', 'E'),                         -- idPersonaje 5
 ('Dragón Anciano', 'Una criatura mítica que guarda tesoros.', 'E'),                      -- idPersonaje 6
 ('Aldeano Sabio', 'Un NPC que ofrece información crucial al jugador.', 'N'),             -- idPersonaje 7
@@ -34,22 +34,22 @@ VALUES
 -- Insertar NPCs
 INSERT INTO npc (idNPC)
 VALUES 
-(11),
-(12);
+(7),
+(8);
 
 -- Insertar diálogos
 INSERT INTO dialogo (mensaje, idNPC)
 VALUES 
-('¡Bienvenido, aventurero! ¿Qué buscas?', 11), 
-('¡Bienvenido, aventurero! ¿Qué buscas?', 12),  
-('¿Has escuchado los rumores sobre el Dragón?', 11),
-('¿Has escuchado los rumores sobre el Dragón?', 12),
-('Cuidado en el bosque, hay muchos peligros.', 11),
-('Cuidado en el bosque, hay muchos peligros.', 12),
-('Tengo cosas interesantes para ti.', 11), 
-('Tengo cosas interesantes para ti.', 12), 
-('Gracias por tu ayuda, héroe.', 11);
-('Gracias por tu ayuda, héroe.', 12);
+('¡Bienvenido, aventurero! ¿Qué buscas?', 7), 
+('¡Bienvenido, aventurero! ¿Qué buscas?', 8),  
+('¿Has escuchado los rumores sobre el Dragón?', 7),
+('¿Has escuchado los rumores sobre el Dragón?', 8),
+('Cuidado en el bosque, hay muchos peligros.', 7),
+('Cuidado en el bosque, hay muchos peligros.', 8),
+('Tengo cosas interesantes para ti.', 7), 
+('Tengo cosas interesantes para ti.', 8), 
+('Gracias por tu ayuda, héroe.', 7),
+('Gracias por tu ayuda, héroe.', 8);
 
 
 

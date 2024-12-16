@@ -375,7 +375,6 @@ main {
 
     #sectionInsertar {
         width: fit-content;
-        border: 1px solid;
     }
 
     #sectionInsertar * {

@@ -60,8 +60,8 @@
         }
         public function cEliminarPersonaje($datosEliminar) {
             if(isset($datosEliminar['confirmar'])) {
+                
                 $idPersonaje = $datosEliminar['idPersonaje'];
-                echo $idPersonaje;
                     
                 $estado = $this->objMPanelControl->mEliminarPersonaje($idPersonaje);
 
@@ -78,12 +78,12 @@
             }
         }
         public function cModificarPersonaje($datos) {
-            print_r($datos);
             if(!isset($datosEliminar['guardarCambios'])) {
-                $this->vista = 'ModificarPersonajes'; return $datos;
-                
+                $this->vista = 'ModificarPersonajes'; 
+                return $datos;
+            }    
                 $estado = $this->vDatosPersonaje($datos);
-                print_r($estado);
+
                 if($estado) {
                     
                     $idPersonaje = $datos['idPersonaje'];
@@ -108,10 +108,7 @@
                         return $mensajeEstado;
                     }
                 }
-            } else {
-                echo 'error';
-                $this->vista = 'Error';
-            }
+            
             }
         }
 
@@ -215,7 +212,7 @@
                     $nombreArchivo = $datosNPC['nombreArchivo'];
                     
                     $estado = $this->objMPanelControl->mModificarPersonaje($idNPC, $nombre, $descripcion, $tipo);
-
+                    
                     if($estado) {
 
                         $estado = $this->objMPanelControl->mModificarImagen($idNPC, $nombreArchivo);
@@ -226,11 +223,9 @@
                         }
                     } else {
                         $this->vista = 'Error';
-                        return 'El NPC ha sido borrado';
+                        return 'El NPC no ha sido modificado';
                         
                     }
-                    
-                    
                 } else {
                     return false;
                 }
@@ -245,7 +240,8 @@
             $estado = $this->objMPanelControl->mEliminarPersonaje($datosNPC['idNPC']);
 
             if($estado) {
-                $this->vista = 'PanelAdmin';
+                $datos = $this->cListarNPC();
+                return $datos;
             } else {
                 $mensaje = 'No hay ningun NPC que borrar';
                 $this->vista = 'Error';
@@ -255,14 +251,14 @@
         public function cListarNPC() {
 
             $datosNPC = $this->objMPanelControl->mListarNPC();
-            var_dump($datosNPC);
-            if($datosNPC != false) {
+
+            // if($datosNPC != false) {
                 $this->vista = 'ListarNPC';
                 return $datosNPC;
-            } else {
-                $this->vista = 'Error';
-                return 'No hay ningun NPC que visualizar';
-            }
+            // } else {
+            //     $this->vista = 'Error';
+            //     return 'No hay ningun NPC que visualizar';
+            // }
         }
         /* ------------------------------- VALIDACION DE DATOS PERSONAJES ------------------------------- */
         public function vDatosNPC($datosNPC) {

@@ -71,10 +71,22 @@
                             echo '<input type="text" name="idNPC" value="'.$datos['idNPC'].'" readonly>';
                         ?>
                     </td>
-                    <td><input type="text" name="nombre"></td>
-                    <td><input type="text" name="descripcion"></td>
-                    <td><input type="text" name="tipo"></td>
-                    <td><input type="text" name="nombreArchivo" ></td>
+                    <td>
+                        <?php
+                            echo '<input type="text" name="nombre" value="'.$datos['nombre'].'">';
+                        ?>
+                    </td>
+                    <td>
+                        <?php
+                            echo '<input type="text" name="descripcion" value="'.$datos['descripcion'].'">';
+                        ?>
+                    </td>
+                    <td><input type="text" name="tipo" value="N" readonly></td>
+                    <td>
+                        <?php
+                            echo '<input type="text" name="nombreArchivo" value="'.$datos['nombreArchivo'].'">';
+                        ?>
+                    </td>
                 </tr>
             </tbody>
         </table>

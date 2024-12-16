@@ -34,6 +34,7 @@
                         <tr>
                             <th>Nombre</th>
                             <th>Descripción</th>
+                            <th>Imagen</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -44,11 +45,15 @@
                                     echo '<tr>';
                                     echo '<td>' . $npc['nombre'] . '</td>';
                                     echo '<td>' . $npc['descripcion'] . '</td>';
+                                    echo '<td>' . $npc['nombreArchivo'] . '</td>';
                                     echo '<td class="action-buttons">';
                                     echo '<form action="index.php?c=PanelControl&m=cEliminarNPC" method="POST" style="display:inline;">'; 
                                     echo '<button type="submit" class="btn btn-eliminar" name="idNPC" value="'.$npc['idNPC'].'">Eliminar</button>';
                                     echo '</form>';
                                     echo '<form action="index.php?c=PanelControl&m=cModificarNPC" method="POST" style="display:inline;">';
+                                    echo '<input type="hidden" name="nombre" value="'.$npc['nombre'].'">';
+                                    echo '<input type="hidden" name="descripcion" value="'.$npc['descripcion'].'">';
+                                    echo '<input type="hidden" name="nombreArchivo" value="'.$npc['nombreArchivo'].'">';
                                     echo '<button type="submit" class="btn btn-modificar" name="idNPC" value="'.$npc['idNPC'].'">Modificar</button>';
                                     echo '</form>';
                                     echo '</td>';
