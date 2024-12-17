@@ -540,7 +540,7 @@
 
         public function cAltaObjeto($datosObjeto) {
 
-            if(isset($datosObjeto['anadirObjeto'])) {
+            if(!empty($datosObjeto)) {
 
                 
                 $estado = $this->vDatosObjeto($datosObjeto);
@@ -552,6 +552,7 @@
                     // $urlImagen = $datosObjeto['url'];
 
                     $idObjeto = $this->objMPanelControl->mAltaObjeto($nombre, $descripcion);
+
                 } else {
                     return false;
                 }
@@ -559,8 +560,9 @@
                 /* Hay que modificar mAltaImgObjeto en m_PanelControl */
                 if($idObjeto) {
                     // $estado = $this->objMPanelControl->mAltaImgObjeto($idObjeto, $urlImagen);
+                    $datosObjeto = $this->objMPanelControl->mListarObjetos();
                     $this->vista = 'ListarObjetos';
-                    return true;
+                    return $datosObjeto;
                 } else {
                     $this->vista = 'Error';
                     return false;
@@ -638,10 +640,10 @@
                 return false;
             }
 
-            if (empty($datosObjeto['imagen'])) {
-                $this->mensajeEstado = 'No se ha añadido la URL de la imagen';
-                return false;
-            }
+            // if (empty($datosObjeto['imagen'])) {
+            //     $this->mensajeEstado = 'No se ha añadido la URL de la imagen';
+            //     return false;
+            // }
             return true;
         }
 

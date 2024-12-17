@@ -26,7 +26,7 @@
                         <!-- <input type="text" name="nombreArchivo" placeholder="Nombre de la imagen"/> -->
                     </div>
                     <textarea name="descripcion" id="descripcion" rows="4" placeholder="Descripcion del NPC"></textarea>
-                <input type="submit" name="anadirObjeto" value="Añadir NPC"/>
+                    <input type="submit" name="anadirObjeto" value="Añadir Objeto"/>
                 </form>
             </section>
         </main>

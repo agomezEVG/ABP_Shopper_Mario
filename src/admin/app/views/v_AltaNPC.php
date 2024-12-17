@@ -32,7 +32,7 @@
                         <option disble value="E">Enemigo</option>
                         <option selected value="N">NPC</option>
                     </select>
-                <input type="submit" name="anadirNPC" value="Añadir NPC"/>
+                    <input type="submit" name="anadirNPC" value="Añadir NPC"/>
                 </form>
             </section>
         </main>

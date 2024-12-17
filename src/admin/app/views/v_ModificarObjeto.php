@@ -29,8 +29,8 @@
                             // echo '<input type="text" name="nombreArchivo" value="'.$datos['nombreImagen'].'"placeholder="Nombre de la imagen"/>';
                             ?>
                     </div>
-                    <?php echo '<textarea id="descripcion" name="descripcion" id="descripcion" rows="4" value="'.$datos['descripcion'].'" placeholder="Descripcion del NPC"></textarea>'; ?>
-                <input type="submit" name="anadirObjeto" value="Añadir NPC"/>
+                    <?php echo '<textarea id="descripcion" name="descripcion" id="descripcion" rows="4" placeholder="Descripcion del NPC">'.$datos['descripcion'].'</textarea>'; ?>
+                    <input type="submit" name="anadirObjeto" value="Guardar Objeto"/>
                 </form>
             </section>
         </main>
