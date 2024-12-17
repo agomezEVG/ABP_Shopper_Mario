@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Alta de Personaje</title>
+        <title>SHOPPER MARIO - ALTA OBJETO</title>
         
         <!-- ESTILOS E ICONOS -->
         <link rel="shortcut icon" href="img/iconoRedondo.png" type="image/x-icon">
@@ -19,23 +19,17 @@
         </aside>
         <main>
             <section id="sectionInsertar">
-                <h2>Alta del NPC</h2>
-                <form action="index.php?c=PanelControl&m=cAltaNPC" method="POST">
+                <h2>Alta del Objeto</h2>
+                <form action="index.php?c=PanelControl&m=cAltaObjeto" method="POST" id="formAlta">
                     <div>
-                        <input type="text" name="nombre" id="nombre" placeholder="Nombre del NPC"/>
-                        <input type="text" name="nombreArchivo" placeholder="Nombre de la imagen"/>
+                        <input type="text" name="nombre" id="nombre" placeholder="Nombre del Objeto"/>
+                        <!-- <input type="text" name="nombreArchivo" placeholder="Nombre de la imagen"/> -->
                     </div>
-                    <textarea id="descripcion" name="descripcion" rows="4" placeholder="Descripcion del NPC"></textarea>
-                    <select id="tipo" name="tipo">
-                        <option disabled >Selecciona un tipo de personaje</option>
-                        <option disable value="J">Jugador</option>
-                        <option disble value="E">Enemigo</option>
-                        <option selected value="N">NPC</option>
-                    </select>
-                <input type="submit" name="anadirNPC" value="Añadir NPC"/>
+                    <textarea name="descripcion" id="descripcion" rows="4" placeholder="Descripcion del NPC"></textarea>
+                <input type="submit" name="anadirObjeto" value="Añadir NPC"/>
                 </form>
             </section>
         </main>
-
+        <script src="js/controllers/c_Objetos.js"></script>
     </body>
 </html>

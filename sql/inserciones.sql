@@ -98,10 +98,8 @@ VALUES
 -- Insertar objetos
 INSERT INTO objeto (nombre, descripcion)
 VALUES 
-('Poción de Salud', 'Restaura 50 puntos de vida.'),
-('Espada Antigua', 'Una espada poderosa con historia.'),
-('Anillo Místico', 'Incrementa el poder mágico del portador.'),
-('Escudo del Guardián', 'Aumenta la defensa del jugador.');
+('Camiseta', 'Obtienes 10 puntos al recogerla.'),
+('Pila de ropa', 'Otorga 30 puntos al recogerla.');
 
 -- Insertar imágenes para objetos
 INSERT INTO imagen (url, tipo, posicion, idPersonaje)

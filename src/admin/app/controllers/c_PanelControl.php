@@ -197,7 +197,7 @@
                 $tipo = 'J';
                 $urlImagen = $datosJugador['url'];
 
-                $estado = $this->objMPanelControl->mModificarPersonaje($idJugador, $nombre, $descripcion, $tipo, $urlImagen);
+                $estado = $this->objMPanelControl->mModificarPersonaje($idJugador, $nombre, $descripcion, $tipo);
 
             } else {
                 return false;
@@ -421,7 +421,7 @@
                 $tipo = 'E';
                 $urlImagen = $datosEnemigo['url'];
 
-                $estado = $this->objMPanelControl->mModificarPersonaje($idEnemigo, $nombre, $descripcion, $tipo, $urlImagen);
+                $estado = $this->objMPanelControl->mModificarPersonaje($idEnemigo, $nombre, $descripcion, $tipo);
 
             } else {
                 return false;
@@ -538,29 +538,36 @@
 
     /* ------------------------------- CRUD DE OBJETOS ------------------------------- */
 
-        public function c_AltaObjeto($datosObjeto) {
+        public function cAltaObjeto($datosObjeto) {
 
-            $estado = $this->vDatosObjeto($datosObjeto);
+            if(isset($datosObjeto['anadirObjeto'])) {
 
-            /* urlImagen puede no valer aquí */
-            if($estado) {
-                $nombre = $datosObjeto['nombre'];
-                $descripcion = $datosObjeto['descripcion'];
-                $urlImagen = $datosObjeto['url'];
+                
+                $estado = $this->vDatosObjeto($datosObjeto);
 
-                $idObjeto = $this->objMPanelControl->mAltaObjeto($nombre, $descripcion);
+                /* urlImagen puede no valer aquí */
+                if($estado) {
+                    $nombre = $datosObjeto['nombre'];
+                    $descripcion = $datosObjeto['descripcion'];
+                    // $urlImagen = $datosObjeto['url'];
+
+                    $idObjeto = $this->objMPanelControl->mAltaObjeto($nombre, $descripcion);
+                } else {
+                    return false;
+                }
+
+                /* Hay que modificar mAltaImgObjeto en m_PanelControl */
+                if($idObjeto) {
+                    // $estado = $this->objMPanelControl->mAltaImgObjeto($idObjeto, $urlImagen);
+                    $this->vista = 'ListarObjetos';
+                    return true;
+                } else {
+                    $this->vista = 'Error';
+                    return false;
+                }
             } else {
-                return false;
-            }
-
-            /* Hay que modificar mAltaImgObjeto en m_PanelControl */
-            if($idObjeto) {
-                $estado = $this->objMPanelControl->mAltaImgObjeto($idObjeto, $urlImagen);
-                $this->vista = 'Alta';
-                return true;
-            } else {
-                $this->vista = 'Error';
-                return false;
+                $this->vista = 'AltaObjeto';
+                return $datosObjeto;
             }
         }
 
@@ -576,35 +583,41 @@
 
         public function cModificarObjeto($datosObjeto) {
 
-            $estado = $this->vDatosObjeto($datosObjeto);
+            if(isset($datosNPC['guardarCambios'])) {
 
-            if($estado) {
-                $idObjeto = $datosObjeto['idObjeto'];
-                $nombre = $datosObjeto['nombre'];
-                $descripcion = $datosObjeto['descripcion'];
-                $urlImagen = $datosObjeto['url'];
-
-                $estado = $this->objMPanelControl->mModificarObjeto($idObjeto, $nombre, $descripcion, $urlImagen);
+                $estado = $this->vDatosObjeto($datosObjeto);
 
                 if($estado) {
-                    $this->vista = 'PanelAdmin';
-                    return true;
-                }            
-                else {
-                    $this->vista = 'Error';
-                    return false;
+                    $idObjeto = $datosObjeto['idObjeto'];
+                    $nombre = $datosObjeto['nombre'];
+                    $descripcion = $datosObjeto['descripcion'];
+                    // $urlImagen = $datosObjeto['url'];
+
+                    $estado = $this->objMPanelControl->mModificarObjeto($idObjeto, $nombre, $descripcion);
+
+                    if($estado) {
+                        $this->vista = 'ListarObjetos';
+                        return true;
+                    }            
+                    else {
+                        $this->vista = 'Error';
+                        return false;
+                    }
                 }
+                return false;
+            } else {
+                $this->vista = 'ModificarObjeto';
+                return $datosObjeto;
             }
-            return false;
         }
 
         public function cListarObjetos() {
             
-            $objetos = $this->objMPanelControl->mListarObjetos();
+            $datosObjetos = $this->objMPanelControl->mListarObjetos();
 
-            if($objetos != false) {
-                $this->vista = 'Listar';
-                return true;
+            if($datosObjetos != false) {
+                $this->vista = 'ListarObjetos';
+                return $datosObjetos;
             }
             else {
                 $this->vista = 'Error';

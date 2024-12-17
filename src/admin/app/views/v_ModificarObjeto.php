@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Alta de Personaje</title>
+        <title>SHOPPER MARIO - ALTA OBJETO</title>
         
         <!-- ESTILOS E ICONOS -->
         <link rel="shortcut icon" href="img/iconoRedondo.png" type="image/x-icon">
@@ -19,23 +19,21 @@
         </aside>
         <main>
             <section id="sectionInsertar">
-                <h2>Alta del NPC</h2>
-                <form action="index.php?c=PanelControl&m=cAltaNPC" method="POST">
+                <h2>Modificar del Objeto</h2>
+                <form action="index.php?c=PanelControl&m=cModificarObjeto" method="POST" id="formModificar">
                     <div>
-                        <input type="text" name="nombre" id="nombre" placeholder="Nombre del NPC"/>
-                        <input type="text" name="nombreArchivo" placeholder="Nombre de la imagen"/>
+                        <?php
+                            echo '<input type="text" name="idObjeto" id="idObjeto" value="'.$datos['idObjeto'].'" placeholder="Id del Objeto" readonly/>';
+                            echo '<input type="text" name="nombre" id="nombre" value="'.$datos['nombre'].'" placeholder="Nombre del Objeto"/>';
+
+                            // echo '<input type="text" name="nombreArchivo" value="'.$datos['nombreImagen'].'"placeholder="Nombre de la imagen"/>';
+                            ?>
                     </div>
-                    <textarea id="descripcion" name="descripcion" rows="4" placeholder="Descripcion del NPC"></textarea>
-                    <select id="tipo" name="tipo">
-                        <option disabled >Selecciona un tipo de personaje</option>
-                        <option disable value="J">Jugador</option>
-                        <option disble value="E">Enemigo</option>
-                        <option selected value="N">NPC</option>
-                    </select>
-                <input type="submit" name="anadirNPC" value="Añadir NPC"/>
+                    <?php echo '<textarea id="descripcion" name="descripcion" id="descripcion" rows="4" value="'.$datos['descripcion'].'" placeholder="Descripcion del NPC"></textarea>'; ?>
+                <input type="submit" name="anadirObjeto" value="Añadir NPC"/>
                 </form>
             </section>
         </main>
-
+        <script src="js/controllers/c_Objetos.js"></script>
     </body>
 </html>

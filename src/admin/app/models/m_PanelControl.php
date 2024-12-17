@@ -358,7 +358,7 @@
             return false;
         }     
 
-        public function mModificarObjeto($idObjeto, $nombre, $descripcion, $url) {
+        public function mModificarObjeto($idObjeto, $nombre, $descripcion) {
             
             $sqlObjeto = "UPDATE objeto SET nombre = '".$nombre."', descripcion = '".$descripcion."' WHERE idObjeto = ".$idObjeto.";";
             $resultadoObjeto = $this->conexion->query($sqlObjeto);
@@ -367,19 +367,22 @@
                 return false; 
             }
 
-            $sqlImagen = "UPDATE imagen SET url = '".$url."' WHERE idObjeto = ".$idObjeto.";";
-            $resultadoImagen = $this->conexion->query($sqlImagen);
+            // $sqlImagen = "UPDATE imagen SET url = '".$url."' WHERE idObjeto = ".$idObjeto.";";
+            // $resultadoImagen = $this->conexion->query($sqlImagen);
         
-            if (!$resultadoImagen) {
-                return false;
-            }
+            // if (!$resultadoImagen) {
+            //     return false;
+            // }
         
             return true; 
         }
 
         public function mListarObjetos() {
-            $sql = 'SELECT objeto.idObjeto, objeto.nombre, objeto.descripcion, imagen.url
-                    FROM objeto LEFT JOIN imagen ON objeto.idImagen = imagen.idImagen';
+            // MODIFICAR LAS TABLAS OBJETOS E IMAGENES
+            // $sql = 'SELECT objeto.idObjeto, objeto.nombre, objeto.descripcion, imagen.url
+            //         FROM objeto LEFT JOIN imagen ON objeto.idImagen = imagen.idImagen';
+
+            $sql = 'SELECT * FROM objeto;';
         
             $resultado = $this->conexion->query($sql);
         
