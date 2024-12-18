@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Listado de Personajes</title>
+        <title>Listado de NPC</title>
         
         <!-- ENLACES DE DISEÑO E ICONOS -->
         <link rel="shortcut icon" href="img/iconoRedondo.png" type="image/x-icon">
@@ -47,7 +47,7 @@
                                     echo '<td>' . $npc['descripcion'] . '</td>';
                                     echo '<td>' . $npc['nombreArchivo'] . '</td>';
                                     echo '<td class="action-buttons">';
-                                    echo '<form action="index.php?c=PanelControl&m=cEliminarNPC" method="POST" style="display:inline;">'; 
+                                    echo '<form action="index.php?c=PanelControl&m=cEliminarNPC" method="POST" style="display:inline;">';
                                     echo '<button type="submit" class="btn btn-eliminar" name="idNPC" value="'.$npc['idNPC'].'">Eliminar</button>';
                                     echo '</form>';
                                     echo '<form action="index.php?c=PanelControl&m=cModificarNPC" method="POST" style="display:inline;">';

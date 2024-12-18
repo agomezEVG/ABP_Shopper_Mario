@@ -253,13 +253,13 @@
 
             $datosNPC = $this->objMPanelControl->mListarNPC();
 
-            // if($datosNPC != false) {
+            if($datosNPC != false) {
                 $this->vista = 'ListarNPC';
                 return $datosNPC;
-            // } else {
-            //     $this->vista = 'Error';
-            //     return 'No hay ningun NPC que visualizar';
-            // }
+            } else {
+                $this->vista = 'Error';
+                return 'No hay ningun NPC que visualizar';
+            }
         }
         /* ------------------------------- VALIDACION DE DATOS PERSONAJES ------------------------------- */
         public function vDatosNPC($datosNPC) {
@@ -288,18 +288,40 @@
 
 
         /* ------------------------------- CRUD DE DIALOGO ------------------------------- */
-        public function cAltaDialogo ($datosDialogo) {
+        public function cAltaDialogos ($datosDialogo) {
+
+            if(empty($datosDialogo['anadirDialogo'])) {
+                $this->vista = 'AltaDialogo';
+                return $datosDialogo;
+            }
 
             $estado = $this->vDatosDialogo($datosDialogo);
-
             if($estado) {
 
                 $mensaje = $datosDialogo['mensaje'];
 
-                $estado = $this->objMPanelControl->mAltaDialogo($mensaje);
+                $estado = $this->objMPanelControl->mAltaDialogos($mensaje);
+                
+                if($estado) {
+                    $datos =$this->objMPanelControl->mListarDialogos();
+                    if($datos != false) {
+                        $this->vista = 'ListarDialogos';
+                        return $datos;
+                    }
+                    $this->vista = 'Error';
+                    return false;
+                }
+                $this->vista = 'Error';
+                    return false;
             }
+            $this->vista = 'Error';
+            return false;
         }
-        public function cModificarDialogo ($datosDialogo) {
+        public function cModificarDialogos ($datosDialogo) {
+
+            if(empty($datosDialogo['guardarCambios'])) {
+                $this->vista = '';
+            }
 
             $estado = $this->vDatosDialogo($datosDialogo);
 
@@ -308,7 +330,7 @@
                 $idDialogo = $datosDialogo['idDialogo']; 
                 $mensaje = $datosDialogo['mensaje']; 
 
-                $estado = $this->objMPanelControl->mModificarDialogo($idDialogo, $mensaje);
+                $estado = $this->objMPanelControl->mModificarDialogos($idDialogo, $mensaje);
 
                 if($estado)
                     return true;
@@ -319,9 +341,9 @@
                 return false;
 
         }
-        public function cEliminarDialogo ($idDialogo) {
+        public function cEliminarDialogos ($idDialogo) {
             
-            $estado = $this->objMPanelControl->mEliminarDialogo($idDialogo);
+            $estado = $this->objMPanelControl->mEliminarDialogos($idDialogo);
 
             if($estado){
                 $this->vista = 'Modificar';
@@ -346,8 +368,12 @@
         }
         public function vDatosDialogo($datosDialogo) {
 
-            if(!empty($datosDialogo['mensaje']))
+            if(empty($datosDialogo['mensaje'])){
+
+                echo 'mensaje vacio';
                 return false;
+            }
+            return true;
         }
     }
 ?>

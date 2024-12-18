@@ -123,8 +123,8 @@
         public function mListarNPC () {
             
             $sql = 'SELECT idNPC, nombre, descripcion, nombreArchivo FROM personaje 
-                LEFT JOIN npc ON idNPC = idPersonaje
-                INNER JOIN imagen ON imagen.idPersonaje = personaje.idPersonaje;';
+                INNER JOIN npc ON idNPC = idPersonaje
+                LEFT JOIN imagen ON imagen.idPersonaje = personaje.idPersonaje;';
 
             $resultado = $this->conexion->query($sql);
             
@@ -144,31 +144,33 @@
 
 
         /* ------------------------------- MÉTODOS DE DIÁLOGOS ------------------------------- */
-        public function mAltaDialogo ($mensaje) {
+        public function mAltaDialogos ($mensaje) {
 
-                $sql = 'INSERT INTO dialogo (mensaje) VALUES ("'.$mensaje.'");';
-                
-                $resultado = $this->conexion->query($sql);
-                
-                if($resultado){
+                $sqlNPC = 'SELECT * FROM npc';
+
+                $resultado = $this->conexion->query($sqlNPC);
+
+                if($resultado) {
+
+                    while($fila = $resultado->fetch_assoc())
+                        $arrayIdNPC[] = $fila;
                     
-                    $idDialogo = $this->conexion->insert_id;
+                    
+                    foreach ($arrayIdNPC as $idNPC) {
+                        $sql = 'INSERT INTO dialogo (mensaje, idNPC) VALUES ("'.$mensaje.'","'.$idNPC['idNPC'].'");';
+                        
+                        $resultado = $this->conexion->query($sql);
 
-                    $sqlMultiple = 'SELECT GROUP_CONCAT(
-                            CONCAT(INSERT INTO npc_dialogo (idNPC, idDialogo) VALUES (idNPC, '.$idDialogo.', ); ) )
-                            FROM npc;';
-
-                    $resultado = $this->conexion->multi_query($sqlMultiple);
-
-                    if($resultado) 
-                        return true;
-                    else
-                        return false;
-                } else {   
-                    return false;
+                        if(!$resultado) {
+                            return false;
+                        } 
+                    }
+                    return true;
                 }
+                $mensaje = 'Primera consulta mal';
+                return $mensaje;
         }
-        public function mModificarDialogo ($idDialogo, $mensaje) {
+        public function mModificarDialogos ($idDialogo, $mensaje) {
             
             $sql = 'UPDATE dialogo SET mensaje = "'.$mensaje.'" WHERE idDialogo = '.$idDialogo.');';
 
@@ -186,7 +188,7 @@
 
             return false;
         }
-        public function mEliminarDialogo ($idDialogo) {
+        public function mEliminarDialogos ($idDialogo) {
             
             $sql = 'DELETE FROM dialogo WHERE idDialogo = '.$idDialogo.';';
             
@@ -207,9 +209,9 @@
         }
         public function mListarDialogos () {
             
-            $sql = 'SELECT * FROM dialogo;';
+            $sqlDialogo = 'SELECT * FROM dialogo;';
 
-            $resultado = $this->conexion->query($sql);
+            $resultado = $this->conexion->query($sqlDialogo);
 
             if($resultado->num_rows > 0) {
 

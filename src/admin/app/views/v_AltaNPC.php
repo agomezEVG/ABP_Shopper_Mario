@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Alta de Personaje</title>
+        <title>Alta de NPC</title>
         
         <!-- ESTILOS E ICONOS -->
         <link rel="shortcut icon" href="img/iconoRedondo.png" type="image/x-icon">
@@ -13,7 +13,6 @@
         <aside>
             <a href="index.php?c=PanelControl&m=Dashboard"><button><h3>DASHBOARD</h3></button></a>
             <a href="index.php?c=PanelControl&m=ListarPersonajes"><button><h3>PERSONAJES</h3></button></a>
-            <a href="index.php?c=PanelControl&m=ListarImagenes"><button><h3>IMAGENES</h3></button></a>
             <a href="index.php?c=PanelControl&m=ListarObjetos"><button><h3>OBJETOS</h3></button></a>
             <a href="index.php?c=PanelControl&m=ListarDialogos"><button><h3>DIÁLOGOS</h3></button></a>
             <a href="index.php?c=PanelControl&m=ListarRanking"><button><h3>RANKING</h3></button></a>
@@ -24,7 +23,7 @@
                 <form action="index.php?c=PanelControl&m=cAltaNPC" method="POST">
                     <div>
                         <input type="text" name="nombre" id="nombre" placeholder="Nombre del NPC"/>
-                        <input type="text" name="nombreArchivo" placeholder="Nombre de la imagen"/>
+                        <input type="file" name="imagen"/>
                     </div>
                     <textarea id="descripcion" name="descripcion" rows="4" placeholder="Descripcion del NPC"></textarea>
                     <select id="tipo" name="tipo">
