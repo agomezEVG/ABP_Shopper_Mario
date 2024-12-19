@@ -43,7 +43,7 @@
 
          $queryBasedeDatos= "SELECT ROUND(SUM(data_length + index_length) / 1024 / 1024, 2) AS tamano_mb
               FROM information_schema.tables
-              WHERE table_schema = 'shopperMario'";
+              WHERE table_schema = 'user2daw_BD1-23'";
               $result = $this->conexion->query($queryBasedeDatos);
           $datos['tamano_mb'] = $result->fetch_assoc()['tamano_mb'];
           
